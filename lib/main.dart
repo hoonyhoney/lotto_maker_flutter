@@ -55,7 +55,7 @@ class homeView extends StatelessWidget {
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.search),
-              hintText: 'Please enter number!',
+              hintText: 'Please enter number',
             ),
           ),
           Column()
