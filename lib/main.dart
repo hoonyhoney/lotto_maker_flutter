@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lotto_maker_flutter/utilities/constants.dart';
 
 
 //push test
@@ -32,9 +33,9 @@ class homeView extends StatelessWidget {
             backgroundColor: Colors.amber,
             bottom: const TabBar(
               tabs: [
-                const Text('Home', style: TextStyle(fontSize: 18.0)),
-                const Text('LuckyNumber',style: TextStyle(fontSize: 15.0)),
-                const Text('Board',style: TextStyle(fontSize: 18.0)),
+                const Icon(Icons.home),
+                const Icon(Icons.casino),
+                const Icon(Icons.textsms),
               ],
             ),
             title: const Text('เราไม่ทิ้งกัน Lotto', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
@@ -48,17 +49,32 @@ class homeView extends StatelessWidget {
 
   _buildBody() {
     return Container(
+
       child: Column(
         children: [
           SizedBox(height:20.0),
           TextField(
             keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              prefixIcon: Icon(Icons.search),
-              hintText: 'Please enter number',
-            ),
+            decoration: kTextFieldInputDecoration,
+            onChanged: (value){
+
+            },
+
           ),
-          Column()
+          SizedBox(height:50.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '2021.10.12 Number',
+              ),
+              Icon(
+                Icons.expand_more
+              ),
+
+
+            ],
+          ),
 
 
         ],
