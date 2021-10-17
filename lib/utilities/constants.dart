@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 const kTextFieldInputDecoration = InputDecoration(
 
-
       filled: true,
-      fillColor: Colors.grey,
-      prefix: Icon(Icons.search, color: Colors.white,),
+      fillColor: Colors.white,
+
+      prefix: Icon(
+        Icons.search, color: Colors.grey,
+        size: 30.0,
+        ),
       hintText: 'Please enter number',
       hintStyle: TextStyle(color: Colors.grey,),
       border: OutlineInputBorder(
