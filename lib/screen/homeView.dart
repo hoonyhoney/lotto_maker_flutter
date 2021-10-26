@@ -6,8 +6,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 
 class homeView extends StatelessWidget {
 
-
-
   @override
   Widget build(BuildContext context){
     return MaterialApp(
@@ -28,7 +26,12 @@ class homeView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children :[ AnimatedTextKit(
                 animatedTexts: [
-                  WavyAnimatedText('LottoMaker',speed: Duration(milliseconds: 300)),
+                  WavyAnimatedText('รวย รวย รวย',
+                textStyle: TextStyle(
+                  fontSize: 40.0, color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                speed: Duration(milliseconds: 300)),
                 ],
                 isRepeatingAnimation: true,
                 onTap: () {
@@ -44,25 +47,6 @@ class homeView extends StatelessWidget {
     );
   }
 
-  Widget _buildListView(){
-
-    ListTile _tile(String prize, String number) => ListTile(
-        title: Text(prize + number),
-        leading: Image.network("https://randomuser.me/api/portraits/men/28.jpg")
-    );
-
-
-    return ListView(
-      children: [
-        _tile("1등","  123345"),
-        _tile("2등","  123345"),
-        _tile("3등","  123345"),
-        _tile("4등","  123345"),
-        _tile("5등","  123345"),
-      ],
-    );
-  }
-
 
   _buildBody() {
     return Container(
@@ -70,15 +54,17 @@ class homeView extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height:20.0),
-          TextField(
+          Container(
+            width: 400.0,
+            height: 50.0,
+            child: TextField(
+              textAlign:TextAlign.center,
+              keyboardType: TextInputType.number,
+              decoration: kTextFieldInputDecoration,
+              onChanged: (value){
+              },
 
-            textAlign:TextAlign.center,
-            keyboardType: TextInputType.number,
-            decoration: kTextFieldInputDecoration,
-            onChanged: (value){
-
-            },
-
+            ),
           ),
           SizedBox(height:50.0),
           Row(
@@ -107,9 +93,70 @@ class homeView extends StatelessWidget {
             label:Text('더보기'),
 
           ),
+              Container(width: 500,child: Divider(color: Colors.grey,thickness: 1.0,),),
+              Row(
+              children: [
+                SizedBox(
+                  width: 50.0,
+                  height: 50.0,
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
+                  ),
+                ),
+                SizedBox(
+                  width: 20.0,
+                ),
+
+                Expanded(
+                  child: Text(
+                    '로또 드럽게 안맞네',
+                  ),
+                ),
+                ],
+              ),
+              Row(
+            children: [
+              SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
+                ),
+              ),
+              SizedBox(
+                width: 20.0,
+              ),
+
+              Expanded(
+                child: Text(
+                  '동감임당',
+                ),
+              ),
+            ],
+          ),
+
+
         ],
 
       ),
     );
   }
+}
+
+Widget _buildListView(){
+
+  ListTile _tile(String number) => ListTile(
+      title: Text(number),
+      /*leading: Image.network("https://randomuser.me/api/portraits/men/28.jpg")*/
+  );
+
+
+  return ListView(
+    children: [
+      _tile("123345"),
+      _tile("40"),
+      _tile("154"), _tile("598"),
+      _tile("123"), _tile("456"),
+    ],
+  );
 }

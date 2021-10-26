@@ -9,7 +9,7 @@ const kTextFieldInputDecoration = InputDecoration(
         Icons.search, color: Colors.grey,
         size: 30.0,
         ),
-      hintText: 'Please enter number',
+      labelText: 'Please enter number',
       hintStyle: TextStyle(color: Colors.grey,),
       border: OutlineInputBorder(
       borderRadius: BorderRadius.all(
