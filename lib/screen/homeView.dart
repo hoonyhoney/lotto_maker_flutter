@@ -15,7 +15,16 @@ class homeView extends StatelessWidget {
           appBar: AppBar(
 
             backgroundColor: Colors.amber,
-            bottom: const TabBar(
+            bottom:  TabBar(
+              indicatorWeight: 4,
+              indicatorColor: Colors.black87,
+
+
+              /*
+                  탭 배경색 넣기
+                  indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50), // Creates border
+                  color: Colors.black),*/
               tabs: [
                 const Icon(Icons.home),
                 const Icon(Icons.casino),
@@ -28,7 +37,7 @@ class homeView extends StatelessWidget {
                 animatedTexts: [
                   WavyAnimatedText('รวย รวย รวย',
                 textStyle: TextStyle(
-                  fontSize: 40.0, color: Colors.black,
+                  fontSize: 30.0, color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
                 speed: Duration(milliseconds: 300)),
@@ -49,52 +58,73 @@ class homeView extends StatelessWidget {
 
 
   _buildBody() {
-    return Container(
+    return TabBarView(
+      children:[ Container(
 
-      child: Column(
-        children: [
-          SizedBox(height:20.0),
-          Container(
-            width: 400.0,
-            height: 50.0,
-            child: TextField(
-              textAlign:TextAlign.center,
-              keyboardType: TextInputType.number,
-              decoration: kTextFieldInputDecoration,
-              onChanged: (value){
-              },
+        child: Column(
+          children: [
+            SizedBox(height:20.0),
+            Container(
+              width: 400.0,
+              height: 50.0,
+              child: TextField(
+                textAlign:TextAlign.center,
+                keyboardType: TextInputType.number,
+                decoration: kTextFieldInputDecoration,
+                onChanged: (value){
+                },
+
+              ),
+            ),
+            SizedBox(height:50.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '2021.10.12 Number',
+                ),
+                Icon(
+                    Icons.expand_more
+                ),
+              ],
+            ),
+            Container(
+                height:300,
+                child: _buildListView()
+            ),
+            TextButton.icon(
+              onPressed: () {
+              print('heel');
+            },
+              icon: Icon(
+                Icons.expand_more,
+                size:20,
+              ),
+              label:Text('더보기'),
 
             ),
-          ),
-          SizedBox(height:50.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '2021.10.12 Number',
-              ),
-              Icon(
-                  Icons.expand_more
-              ),
-            ],
-          ),
-          Container(
-              height:300,
-              child: _buildListView()
-          ),
-          TextButton.icon(
-            onPressed: () {
-            print('heel');
-          },
-            icon: Icon(
-              Icons.expand_more,
-              size:20,
-            ),
-            label:Text('더보기'),
+                Container(width: 500,child: Divider(color: Colors.grey,thickness: 1.0,),),
+                Row(
+                children: [
+                  SizedBox(
+                    width: 50.0,
+                    height: 50.0,
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20.0,
+                  ),
 
-          ),
-              Container(width: 500,child: Divider(color: Colors.grey,thickness: 1.0,),),
-              Row(
+                  Expanded(
+                    child: Text(
+                      '로또 드럽게 안맞네',
+                    ),
+                  ),
+                  ],
+                ),
+                Row(
               children: [
                 SizedBox(
                   width: 50.0,
@@ -109,37 +139,29 @@ class homeView extends StatelessWidget {
 
                 Expanded(
                   child: Text(
-                    '로또 드럽게 안맞네',
+                    '동감임당',
                   ),
                 ),
-                ],
-              ),
-              Row(
-            children: [
-              SizedBox(
-                width: 50.0,
-                height: 50.0,
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
-                ),
-              ),
-              SizedBox(
-                width: 20.0,
-              ),
-
-              Expanded(
-                child: Text(
-                  '동감임당',
-                ),
-              ),
-            ],
-          ),
-
-
-        ],
-
+              ],
+            ),
+          ],
+        ),
       ),
+        Container(
+          child: Text(
+            'Center'
+          ),
+        ),
+        Container(
+          child: Text(
+            'last'
+          )
+
+        ),
+
+    ],
     );
+
   }
 }
 
