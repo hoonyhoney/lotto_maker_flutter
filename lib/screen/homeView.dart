@@ -4,31 +4,107 @@ import 'package:lotto_maker_flutter/model/lottoNumbers.dart';
 import 'package:lotto_maker_flutter/utilities/constants.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
-class homeView extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
+
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context){
-    return MaterialApp(
-      home: DefaultTabController(
-        length:3,
-        child: Scaffold(
+    return Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0.0,
+            centerTitle: true,
+/*            leading:IconButton(
+              icon: Icon(Icons.arrow_back, color: Color(0xFF545D68)),
+              onPressed: () {  },
+            ),*/
+            title: Text('Pickup',
+                  style:TextStyle(
+                fontFamily: 'Varela', fontSize:20.0, color:Color(0xFF545D68)
+              ),
+            ),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.notifications_none, color:Color(0xFF545D68),
+                ),
+                onPressed: () {  },
+              ),
+            ],
+          ),
+          body: ListView(
+            padding: EdgeInsets.only(left: 20.0),
+            children: [
+              SizedBox(height: 15.0),
+              Text('Lotto',style: TextStyle(
+                fontFamily: 'Varela',
+                fontSize: 42.0,
+                fontWeight: FontWeight.bold
+              ),),
+              SizedBox(height: 15.0),
+              TabBar(
+                controller: _tabController,
+                indicatorColor: Colors.transparent,
+                labelColor: Color(0xFFC88D67),
+                isScrollable: true,
+                labelPadding: EdgeInsets.only(right: 45.0),
+                unselectedLabelColor: Color(0xFFCDCDCD),
+                tabs: [
+                    Tab(
+                      child:Text('Lotto',style: TextStyle(
+                          fontFamily: 'Varela',
+                          fontSize: 21.0,
+                          fontWeight: FontWeight.bold
+                      ),),
+                    ),                    Tab(
+                      child:Text('Lotto',style: TextStyle(
+                          fontFamily: 'Varela',
+                          fontSize: 21.0,
+                          fontWeight: FontWeight.bold
+                      ),),
+                    ),                    Tab(
+                      child:Text('Lotto',style: TextStyle(
+                          fontFamily: 'Varela',
+                          fontSize: 21.0,
+                          fontWeight: FontWeight.bold
+                      ),),
+                    ),
 
-            backgroundColor: Colors.amber,
-            bottom:  TabBar(
+                ],
+
+
+              ),
+            ],
+          ),
+    );
+  }
+
+
+
+/*            bottom:  TabBar(
               indicatorWeight: 4,
               indicatorColor: Colors.black87,
 
 
-              /*
+              *//*
                   탭 배경색 넣기
                   indicator: BoxDecoration(
                   borderRadius: BorderRadius.circular(50), // Creates border
-                  color: Colors.black),*/
+                  color: Colors.black),*//*
               tabs: [
                 const Icon(Icons.home),
                 const Icon(Icons.casino),
-                const Icon(Icons.textsms),
               ],
             ),
             title:Row(
@@ -47,17 +123,15 @@ class homeView extends StatelessWidget {
                 },
               ),
               ],
-            ),
-
-          ),
-          body: _buildBody(),
-        ),
-      ),
-    );
-  }
+            ),*/
 
 
-  _buildBody() {
+ /*         body: _buildBody(),*/
+
+
+
+
+ /* _buildBody() {
     return TabBarView(
       children:[ Container(
 
@@ -148,28 +222,29 @@ class homeView extends StatelessWidget {
         ),
       ),
         Container(
-          child: Text(
-            'Center'
-          ),
-        ),
-        Container(
-          child: Text(
-            'last'
-          )
+          child: GridView.count(
+            crossAxisCount: 2,
+            padding: EdgeInsets.all(16.0),
+            childAspectRatio: 8.0/9.0,
 
+            children: [Card()],
+          ),
         ),
 
     ],
     );
 
-  }
+  }*/
 }
 
+/*
 Widget _buildListView(){
 
   ListTile _tile(String number) => ListTile(
       title: Text(number),
-      /*leading: Image.network("https://randomuser.me/api/portraits/men/28.jpg")*/
+      */
+/*leading: Image.network("https://randomuser.me/api/portraits/men/28.jpg")*//*
+
   );
 
 
@@ -181,4 +256,4 @@ Widget _buildListView(){
       _tile("123"), _tile("456"),
     ],
   );
-}
+}*/
