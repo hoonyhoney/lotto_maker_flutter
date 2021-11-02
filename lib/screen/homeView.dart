@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lotto_maker_flutter/model/lottoNumbers.dart';
+import 'package:lotto_maker_flutter/screen/cookie_page.dart';
 import 'package:lotto_maker_flutter/utilities/constants.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+
+import 'bottom_bar.dart';
 
 class MyHomePage extends StatefulWidget {
 
@@ -85,8 +88,26 @@ class MyHomePage extends StatefulWidget {
 
 
               ),
+              Container(
+                height: MediaQuery.of(context).size.height -100.0,
+                width: double.infinity,
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    CookiePage(),
+                    CookiePage(),
+                    CookiePage(),
+                  ],
+                ),
+              )
             ],
           ),
+      floatingActionButton: FloatingActionButton(onPressed: () {  },
+        backgroundColor: Color(0xFFF17532),
+        child: Icon(Icons.fastfood),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomBar(),
     );
   }
 
