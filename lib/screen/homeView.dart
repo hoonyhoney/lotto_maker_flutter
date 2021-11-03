@@ -89,7 +89,7 @@ class MyHomePage extends StatefulWidget {
 
               ),
               Container(
-                height: MediaQuery.of(context).size.height -100.0,
+                height: MediaQuery.of(context).size.height -20.0,
                 width: double.infinity,
                 child: TabBarView(
                   controller: _tabController,
