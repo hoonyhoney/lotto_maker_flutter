@@ -4,8 +4,8 @@ import 'package:lotto_maker_flutter/model/lottoNumbers.dart';
 import 'package:lotto_maker_flutter/screen/cookie_page.dart';
 import 'package:lotto_maker_flutter/utilities/constants.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-
 import 'bottom_bar.dart';
+import 'number.dart';
 
 class MyHomePage extends StatefulWidget {
 
@@ -18,8 +18,9 @@ class MyHomePage extends StatefulWidget {
 
   @override
   void initState() {
+    //tabController를 set함
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -50,11 +51,6 @@ class MyHomePage extends StatefulWidget {
             padding: EdgeInsets.only(left: 20.0),
             children: [
               SizedBox(height: 15.0),
-              Text('Lotto',style: TextStyle(
-                fontFamily: 'Varela',
-                fontSize: 42.0,
-                fontWeight: FontWeight.bold
-              ),),
               SizedBox(height: 15.0),
               TabBar(
                 controller: _tabController,
@@ -70,20 +66,13 @@ class MyHomePage extends StatefulWidget {
                           fontSize: 21.0,
                           fontWeight: FontWeight.bold
                       ),),
-                    ),                    Tab(
-                      child:Text('Lotto',style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 21.0,
-                          fontWeight: FontWeight.bold
-                      ),),
-                    ),                    Tab(
-                      child:Text('Lotto',style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 21.0,
-                          fontWeight: FontWeight.bold
-                      ),),
                     ),
-
+                    Tab(
+                      child:Text('Lotto',style: TextStyle(
+                          fontFamily: 'Varela',
+                          fontSize: 21.0,
+                          fontWeight: FontWeight.bold
+                      ),),),
                 ],
 
 
@@ -94,8 +83,7 @@ class MyHomePage extends StatefulWidget {
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    CookiePage(),
-                    CookiePage(),
+                    NumberPage(),
                     CookiePage(),
                   ],
                 ),
