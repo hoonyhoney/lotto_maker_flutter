@@ -48,7 +48,7 @@ class MyHomePage extends StatefulWidget {
             ],
           ),
           body: ListView(
-            padding: EdgeInsets.only(left: 20.0),
+            padding: EdgeInsets.only(left: 5.0),
             children: [
               SizedBox(height: 15.0),
               SizedBox(height: 15.0),
