@@ -14,7 +14,7 @@ class NumberPage extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text('Finger Crossed',style: TextStyle(
+/*              Text('Finger Crossed',style: TextStyle(
                   fontFamily: 'Varela',
                   fontSize: 21.0,
                   fontWeight: FontWeight.bold
@@ -29,7 +29,7 @@ class NumberPage extends StatelessWidget {
                         fit: BoxFit.contain
                     )
                 ),
-              ),
+              ),*/
             ],
           ),
           Container(
@@ -70,6 +70,7 @@ class NumberPage extends StatelessWidget {
           ),
 
           SizedBox(height: 15.0,),
+          Divider( thickness: 1, color: Colors.grey, ),
           Container(
             height: 50.0,
             width: 200.0,
@@ -169,13 +170,147 @@ class NumberPage extends StatelessWidget {
               ),
 
               height: 300,
-              color: Colors.amberAccent,
+
             ),
             ],
           ),
           ),
           Divider( thickness: 1, color: Colors.grey, ),
 
+          Row(
+            children: [
+              SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
+                ),
+              ),
+              SizedBox(
+                width: 20.0,
+              ),
+              Expanded(
+                child: Text('1등 가즈아!!!!!!!!!!!!',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+
+
+            ],
+          ),
+          Row(
+            children: [
+              SizedBox(width:75.0),
+            Text('좋아요',
+                  style: TextStyle(
+                    fontSize: 14.0,
+                  ),
+                ),
+            SizedBox(width: 10.0,),
+           Text('답글달기',
+                  style: TextStyle(
+                    fontSize: 14.0,
+                  ),
+                ),
+            ],
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
+                ),
+              ),
+              SizedBox(
+                width: 20.0,
+              ),
+              Expanded(
+                child: Text('1등 가즈아!!!!!!!!!!!!',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+
+
+            ],
+          ),
+          Row(
+            children: [
+              SizedBox(width:75.0),
+              Text('좋아요',
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+              SizedBox(width: 10.0,),
+              Text('답글달기',
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
+                ),
+              ),
+              SizedBox(
+                width: 20.0,
+              ),
+              Expanded(
+                child: Text('1등 가즈아!!!!!!!!!!!!',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+
+
+            ],
+          ),
+          Row(
+            children: [
+              SizedBox(width:75.0),
+              Text('좋아요',
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+              SizedBox(width: 10.0,),
+              Text('답글달기',
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height:20.0),
+          Row(
+            children: [
+              SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
+                ),
+              ),
+              SizedBox(
+                width: 20.0,
+              ),
+
+
+            ],
+          ),
 
         ],
       ),
