@@ -84,8 +84,8 @@ class MyHomePage extends StatefulWidget {
              unselectedLabelColor: Color(0xFFCDCDCD),
              tabs: [
                Expanded(
-                 flex:1,
                  child: Tab(
+
                    child: Icon(
                      Icons.home
                    ),
@@ -93,7 +93,6 @@ class MyHomePage extends StatefulWidget {
 
                ),
                Expanded(
-                 flex:1,
                  child: Tab(
                    child: Icon(
                        Icons.casino

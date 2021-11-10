@@ -14,22 +14,6 @@ class NumberPage extends StatelessWidget {
         children: [
           Row(
             children: [
-/*              Text('Finger Crossed',style: TextStyle(
-                  fontFamily: 'Varela',
-                  fontSize: 21.0,
-                  fontWeight: FontWeight.bold
-              ),),
-              //럭키 이미지
-              Container(
-                height: 50.0,
-                width: 50.0,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('images/finger.png'),
-                        fit: BoxFit.contain
-                    )
-                ),
-              ),*/
             ],
           ),
           Container(
@@ -50,11 +34,13 @@ class NumberPage extends StatelessWidget {
             ),
             child: TextField(
               style: TextStyle(
+                fontFamily: 'Varela',
                 fontSize: 20.0,
               ),
               decoration: InputDecoration(
                 hintText: "    Search",
                 hintStyle: TextStyle(
+                  fontFamily: 'Varela',
                   color:Colors.black87.withOpacity(0.5),
                 ),
                 enabledBorder: InputBorder.none,
@@ -76,6 +62,7 @@ class NumberPage extends StatelessWidget {
             width: 200.0,
             child: Text('November 07, 2021',
                 style:TextStyle(
+                  fontFamily: 'Varela',
                 fontSize: 20.0,
             )
             ),
@@ -90,11 +77,13 @@ class NumberPage extends StatelessWidget {
                     children: [
                       Text('1등',
                       style: TextStyle(
+                        fontFamily: 'Varela',
                         fontSize: 20.0,
                         ),
                       ),
                       Text('114475',
                       style: TextStyle(
+                        fontFamily: 'Varela',
                         fontSize: 20.0,
                         ),
                       ),
@@ -106,11 +95,13 @@ class NumberPage extends StatelessWidget {
                     children: [
                       Text('2자리',
                       style: TextStyle(
+                        fontFamily: 'Varela',
                         fontSize: 20.0,
                         ),
                       ),
                       Text('79',
                       style: TextStyle(
+                        fontFamily: 'Varela',
                         fontSize: 20.0,
                         ),
                       ),
@@ -122,6 +113,7 @@ class NumberPage extends StatelessWidget {
 
                       Text('3자리(앞)',
                       style: TextStyle(
+                        fontFamily: 'Varela',
                         fontSize: 20.0,
                         ),
                       ),
@@ -130,12 +122,14 @@ class NumberPage extends StatelessWidget {
                       children:[
                         Text('287',
                       style: TextStyle(
+                        fontFamily: 'Varela',
                         fontSize: 20.0,
                         ),
                       ),
                         SizedBox(width:10),
                       Text('302',
                       style: TextStyle(
+                        fontFamily: 'Varela',
                         fontSize: 20.0,
                         ),
                       ),
@@ -145,6 +139,7 @@ class NumberPage extends StatelessWidget {
 
                       Text('3자리(뒤)',
                         style: TextStyle(
+                          fontFamily: 'Varela',
                           fontSize: 20.0,
                         ),
                       ),
@@ -153,12 +148,14 @@ class NumberPage extends StatelessWidget {
                         children:[
                           Text('123',
                             style: TextStyle(
+                              fontFamily: 'Varela',
                               fontSize: 20.0,
                             ),
                           ),
                           SizedBox(width:10),
                           Text('456',
                             style: TextStyle(
+                              fontFamily: 'Varela',
                               fontSize: 20.0,
                             ),
                           ),
@@ -192,6 +189,7 @@ class NumberPage extends StatelessWidget {
               Expanded(
                 child: Text('1등 가즈아!!!!!!!!!!!!',
                   style: TextStyle(
+                    fontFamily: 'Varela',
                     fontSize: 20.0,
                   ),
                 ),
@@ -205,12 +203,14 @@ class NumberPage extends StatelessWidget {
               SizedBox(width:75.0),
             Text('좋아요',
                   style: TextStyle(
+                    fontFamily: 'Varela',
                     fontSize: 14.0,
                   ),
                 ),
             SizedBox(width: 10.0,),
            Text('답글달기',
                   style: TextStyle(
+                    fontFamily: 'Varela',
                     fontSize: 14.0,
                   ),
                 ),
@@ -231,6 +231,7 @@ class NumberPage extends StatelessWidget {
               Expanded(
                 child: Text('1등 가즈아!!!!!!!!!!!!',
                   style: TextStyle(
+                    fontFamily: 'Varela',
                     fontSize: 20.0,
                   ),
                 ),
@@ -244,12 +245,14 @@ class NumberPage extends StatelessWidget {
               SizedBox(width:75.0),
               Text('좋아요',
                 style: TextStyle(
+                  fontFamily: 'Varela',
                   fontSize: 14.0,
                 ),
               ),
               SizedBox(width: 10.0,),
               Text('답글달기',
                 style: TextStyle(
+                  fontFamily: 'Varela',
                   fontSize: 14.0,
                 ),
               ),
@@ -270,6 +273,7 @@ class NumberPage extends StatelessWidget {
               Expanded(
                 child: Text('1등 가즈아!!!!!!!!!!!!',
                   style: TextStyle(
+                    fontFamily: 'Varela',
                     fontSize: 20.0,
                   ),
                 ),
@@ -283,12 +287,14 @@ class NumberPage extends StatelessWidget {
               SizedBox(width:75.0),
               Text('좋아요',
                 style: TextStyle(
+                  fontFamily: 'Varela',
                   fontSize: 14.0,
                 ),
               ),
               SizedBox(width: 10.0,),
               Text('답글달기',
                 style: TextStyle(
+                  fontFamily: 'Varela',
                   fontSize: 14.0,
                 ),
               ),
