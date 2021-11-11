@@ -12,9 +12,11 @@ class NumberPage extends StatelessWidget {
       body: Column(
 
         children: [
-          Row(
-            children: [
-            ],
+          Text('Finger Crossed',
+            style: TextStyle(
+              fontFamily: 'Varela',
+              fontSize: 20.0,
+            ),
           ),
           Container(
             alignment: Alignment.center,
@@ -194,6 +196,7 @@ class NumberPage extends StatelessWidget {
                   ),
                 ),
               ),
+
 
 
             ],

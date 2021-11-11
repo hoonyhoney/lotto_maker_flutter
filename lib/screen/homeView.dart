@@ -74,7 +74,6 @@ class MyHomePage extends StatefulWidget {
          padding: EdgeInsets.only(left: 5.0),
          children: [
            SizedBox(height: 15.0),
-           SizedBox(height: 15.0),
            TabBar(
              controller: _tabController,
              indicatorColor: Colors.transparent,
@@ -87,7 +86,8 @@ class MyHomePage extends StatefulWidget {
                  child: Tab(
 
                    child: Icon(
-                     Icons.home
+                     Icons.home,
+                     size: 50,
                    ),
                  ),
 
@@ -95,7 +95,8 @@ class MyHomePage extends StatefulWidget {
                Expanded(
                  child: Tab(
                    child: Icon(
-                       Icons.casino
+                       Icons.casino,
+                     size: 50,
                    ),
                  ),
 

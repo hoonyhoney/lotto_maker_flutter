@@ -22,10 +22,10 @@ class CookiePage extends StatelessWidget {
               mainAxisSpacing: 15.0,
               childAspectRatio: 0.8,
               children: [
-                _buildCard('', '','assets/cookiemint.jpg', false, false, context),
-                _buildCard('', '','assets/cookiemint.jpg', false, false, context),
-                _buildCard('', '','assets/cookiemint.jpg', false, false, context),
-                _buildCard('', '','assets/cookiemint.jpg', false, false, context),
+                _buildCard('Random 🍀 ',"https://randomuser.me/api/portraits/men/28.jpg", context),
+                _buildCard('Zodiac 🐒','https://randomuser.me/api/portraits/men/29.jpg', context),
+                _buildCard('Name ✍ ','https://randomuser.me/api/portraits/men/30.jpg', context),
+                _buildCard('Fake 🧙‍️ ','https://randomuser.me/api/portraits/men/31.jpg', context),
               ],
             ),
           ),
@@ -34,7 +34,7 @@ class CookiePage extends StatelessWidget {
     );
   }
 
-  _buildCard(String name, String price, String imgPath, bool added, bool isFavorite, context) {
+  _buildCard(String title, String imgPath, context) {
     return Padding(
       padding: EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
       child: InkWell(
@@ -42,8 +42,7 @@ class CookiePage extends StatelessWidget {
           Navigator.of(context).push(MaterialPageRoute(
             builder:(context) => CookieDetail(
               assetPath: imgPath,
-              cookiename: name,
-              cookieprice: price,
+              cookiename: title,
             )));
         },
 
@@ -69,26 +68,22 @@ class CookiePage extends StatelessWidget {
                   ],
                 ),
               ),
+
+              //이미지
               Hero(
                 tag: imgPath,
                 child: Container(
-                  height: 75.0,
-                  width: 75.0,
+                  height: 150.0,
+                  width: 150.0,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(imgPath),
+                      image: NetworkImage(imgPath),
                         fit: BoxFit.contain
                     )
                   ),
                 ),
               ),
               SizedBox(height: 7.0,),
-              Text(name,
-                style: TextStyle(
-                  color: Color(0xFF575E67),
-                  fontFamily: 'Varela',
-                  fontSize: 14.0
-                ),),
               Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Container(
@@ -96,23 +91,20 @@ class CookiePage extends StatelessWidget {
                   height: 1.0,
                 ),
               ),
+
+              //구분선
               Padding(
                 padding: EdgeInsets.only(left: 5.0, right: 5.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                      Text('Add to Cart 🎨', style: TextStyle(fontFamily: 'Varela',color: Color(0xFFD17E50),fontSize: 12.0),)
+                      Text( title,
+                        style: TextStyle(fontFamily: 'Varela',color: Color(0xFFD17E50), fontSize: 18.0),)
                   ],
                 ),
               ),
                 SizedBox(height: 7.0),
-              Text(
-                name,
-                  style: TextStyle(
-                    color: Color(0xFF575E67),
-                    fontFamily: 'Varela',
-                    fontSize: 14.0),
-                  ),
+
 
 
 
