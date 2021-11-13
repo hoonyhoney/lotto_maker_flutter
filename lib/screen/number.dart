@@ -4,26 +4,46 @@ import 'package:lotto_maker_flutter/utilities/pinput.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:pinput/pin_put/pin_put_state.dart';
 
+import 'bottom_bar.dart';
+
 class NumberPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-
+        children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text('Finger Crossed',
             style: TextStyle(
               fontFamily: 'Varela',
-              fontSize: 20.0,
+              fontSize: 15.0,
             ),
           ),
+
+          Container(
+                 height: 30.0,
+                 width: 30.0,
+                 decoration: BoxDecoration(
+                     image: DecorationImage(
+                         image: AssetImage('images/finger.png'),
+                         fit: BoxFit.contain
+                     )
+                 ),
+               ),
+          SizedBox(width: 30.0,)
+            ]
+          ),
+
+
           Container(
             alignment: Alignment.center,
             margin: const EdgeInsets.only(right: 25.0),
-            height: 54.0,
+            height: 50.0,
             decoration: BoxDecoration(
-              color: Colors.amber,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
@@ -40,7 +60,7 @@ class NumberPage extends StatelessWidget {
                 fontSize: 20.0,
               ),
               decoration: InputDecoration(
-                hintText: "    Search",
+                hintText: "    번호를 입력하세요",
                 hintStyle: TextStyle(
                   fontFamily: 'Varela',
                   color:Colors.black87.withOpacity(0.5),
@@ -51,7 +71,6 @@ class NumberPage extends StatelessWidget {
                   Icons.search,
                  color: Colors.black,
                   size: 36.0,
-
                 ),
               ),
             ),

@@ -11,7 +11,7 @@ class BottomBar extends StatelessWidget {
       elevation: 9.0,
       clipBehavior: Clip.antiAlias,
       child: Container(
-        height: 50.0,
+        height: 60.0,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25.0),
@@ -23,25 +23,16 @@ class BottomBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              height: 50.0,
-                width: MediaQuery.of(context).size.width /2 -40.0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.home, color: Color(0xFFEF7532),),
-                  Icon(Icons.person_outline, color:Color(0xFF676E79))
-                ],
-              ),
-            ),
-            Container(
-              height: 50.0,
-                width: MediaQuery.of(context).size.width /2 -40.0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.search, color: Color(0xFFEF7532),),
-                  Icon(Icons.shopping_basket, color:Color(0xFF676E79))
-                ],
+              child: Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(Icons.home, color: Color(0xFFEF7532),
+                    size: 40.0,),
+                    Icon(Icons.casino, color:Color(0xFF676E79),
+                    size: 40.0,),
+                  ],
+                ),
               ),
             ),
           ],

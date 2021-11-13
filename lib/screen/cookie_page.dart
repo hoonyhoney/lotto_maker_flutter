@@ -35,81 +35,79 @@ class CookiePage extends StatelessWidget {
   }
 
   _buildCard(String title, String imgPath, context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
-      child: InkWell(
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder:(context) => CookieDetail(
-              assetPath: imgPath,
-              cookiename: title,
-            )));
-        },
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
+        child: InkWell(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder:(context) => CookieDetail(
+                assetPath: imgPath,
+                cookiename: title,
+              )));
+          },
 
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.2),
-                spreadRadius: 3.0,
-                blurRadius: 5.0
-              )
-            ],
-            color: Colors.white
-          ),
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(5.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                  ],
-                ),
-              ),
-
-              //이미지
-              Hero(
-                tag: imgPath,
-                child: Container(
-                  height: 150.0,
-                  width: 150.0,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(imgPath),
-                        fit: BoxFit.contain
-                    )
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 3.0,
+                  blurRadius: 5.0
+                )
+              ],
+              color: Colors.white
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                    ],
                   ),
                 ),
-              ),
-              SizedBox(height: 7.0,),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  color: Color(0xFFEBEBEB),
-                  height: 1.0,
-                ),
-              ),
 
-              //구분선
-              Padding(
-                padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                      Text( title,
-                        style: TextStyle(fontFamily: 'Varela',color: Color(0xFFD17E50), fontSize: 18.0),)
-                  ],
+                //이미지
+                Hero(
+                  tag: imgPath,
+                  child: Container(
+                    height: 150.0,
+                    width: 150.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(imgPath),
+                          fit: BoxFit.contain
+                      )
+                    ),
+                  ),
                 ),
-              ),
+                SizedBox(height: 7.0,),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Color(0xFFEBEBEB),
+                    height: 1.0,
+                  ),
+                ),
+
+                //구분선
+                Padding(
+                  padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                        Text( title,
+                          style: TextStyle(fontFamily: 'Varela',color: Color(0xFFD17E50), fontSize: 18.0),)
+                    ],
+                  ),
+                ),
                 SizedBox(height: 7.0),
 
-
-
-
-
-            ],
+              ],
+            ),
           ),
         ),
       ),

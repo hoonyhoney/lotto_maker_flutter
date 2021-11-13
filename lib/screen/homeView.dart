@@ -38,7 +38,7 @@ class MyHomePage extends StatefulWidget {
              mainAxisAlignment: MainAxisAlignment.center,
              children :[ AnimatedTextKit(
                animatedTexts: [
-                 WavyAnimatedText('Finger Crossed',
+                 WavyAnimatedText('Lotto Maker',
                      textStyle: TextStyle(
                        fontSize: 30.0, color: Colors.black,
                        fontWeight: FontWeight.bold,
@@ -49,7 +49,7 @@ class MyHomePage extends StatefulWidget {
                onTap: () {
                },
              ),
-               Container(
+/*               Container(
                  height: 50.0,
                  width: 50.0,
                  decoration: BoxDecoration(
@@ -58,7 +58,7 @@ class MyHomePage extends StatefulWidget {
                          fit: BoxFit.contain
                      )
                  ),
-               ),
+               ),*/
              ],
            ),
 
@@ -74,7 +74,7 @@ class MyHomePage extends StatefulWidget {
          padding: EdgeInsets.only(left: 5.0),
          children: [
            SizedBox(height: 15.0),
-           TabBar(
+           /*TabBar(
              controller: _tabController,
              indicatorColor: Colors.transparent,
              labelColor: Color(0xFFC88D67),
@@ -104,7 +104,7 @@ class MyHomePage extends StatefulWidget {
              ],
 
 
-           ),
+           ),*/
            Container(
              height: MediaQuery
                  .of(context)
@@ -121,8 +121,7 @@ class MyHomePage extends StatefulWidget {
            )
          ],
        ),
-
-       /*  bottomNavigationBar: BottomBar(),*/
+       bottomNavigationBar: BottomBar(),
      );
    }
  }
