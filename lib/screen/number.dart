@@ -43,15 +43,15 @@ class NumberPage extends StatelessWidget {
             margin: const EdgeInsets.only(right: 25.0),
             height: 50.0,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Colors.amberAccent,
               borderRadius: BorderRadius.circular(20),
-              boxShadow: [
+/*              boxShadow: [
                 BoxShadow(
                 offset: Offset(0, 10),
                 blurRadius: 50,
                   color: Colors.black.withOpacity(0.18),
                 ),
-              ],
+              ],*/
 
             ),
             child: TextField(
@@ -207,17 +207,22 @@ class NumberPage extends StatelessWidget {
               SizedBox(
                 width: 20.0,
               ),
-              Expanded(
-                child: Text('1등 가즈아!!!!!!!!!!!!',
-                  style: TextStyle(
-                    fontFamily: 'Varela',
-                    fontSize: 20.0,
+              Container(
+                height: 30.0,
+                decoration: BoxDecoration(
+                  color: Colors.grey[350],
+                  borderRadius: BorderRadius.circular(10),),
+                child: Expanded(
+
+                  child: Text('1등 가즈아!!!!!!!!!!!!!!!!!!!!!!!!',
+                    style: TextStyle(
+                      height: 1.2,
+                      fontFamily: 'Varela',
+                      fontSize: 18.0,
+                    ),
                   ),
                 ),
               ),
-
-
-
             ],
           ),
           Row(
@@ -250,11 +255,19 @@ class NumberPage extends StatelessWidget {
               SizedBox(
                 width: 20.0,
               ),
-              Expanded(
-                child: Text('1등 가즈아!!!!!!!!!!!!',
-                  style: TextStyle(
-                    fontFamily: 'Varela',
-                    fontSize: 20.0,
+              Container(
+                height: 30.0,
+                decoration: BoxDecoration(
+                  color: Colors.grey[350],
+                  borderRadius: BorderRadius.circular(10),),
+                child: Expanded(
+
+                  child: Text('1등 가즈아!!!!!!!!!!!!!!!!!!!!!!!!',
+                    style: TextStyle(
+                      height: 1.2,
+                      fontFamily: 'Varela',
+                      fontSize: 18.0,
+                    ),
                   ),
                 ),
               ),
@@ -292,11 +305,19 @@ class NumberPage extends StatelessWidget {
               SizedBox(
                 width: 20.0,
               ),
-              Expanded(
-                child: Text('1등 가즈아!!!!!!!!!!!!',
-                  style: TextStyle(
-                    fontFamily: 'Varela',
-                    fontSize: 20.0,
+              Container(
+                height: 30.0,
+                decoration: BoxDecoration(
+                  color: Colors.grey[350],
+                  borderRadius: BorderRadius.circular(10),),
+                child: Expanded(
+
+                  child: Text('1등 가즈아!!!!!!!!!!!!!!!!!!!!!!!!',
+                    style: TextStyle(
+                      height: 1.2,
+                      fontFamily: 'Varela',
+                      fontSize: 18.0,
+                    ),
                   ),
                 ),
               ),

@@ -42,8 +42,6 @@ class CookiePage extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
               builder:(context) => CookieDetail(
-                assetPath: imgPath,
-                cookiename: title,
               )));
           },
 
