@@ -21,6 +21,7 @@ class GenerateNumber {
 
 
 
+
 //    fun getRandomLottoNumberHashDate(): Int {
 //        val targetString = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(Date())
 //        return kotlin.random.Random(targetString.hashCode().toLong()).nextInt(10)

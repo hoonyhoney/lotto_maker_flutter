@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'cookie_detail.dart';
+import 'loading_screen.dart';
 
 class CookiePage extends StatelessWidget {
 
@@ -41,8 +42,10 @@ class CookiePage extends StatelessWidget {
         child: InkWell(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder:(context) => CookieDetail(
-              )));
+              builder:(context) => LoadingScreen(
+              ),
+            ),
+            );
           },
 
           child: Container(

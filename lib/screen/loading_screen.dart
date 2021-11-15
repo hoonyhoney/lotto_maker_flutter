@@ -18,16 +18,17 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
-
     getNumber();
   }
-  void getNumber() {
-    int seed=0;
-    int times=0;
+  void getNumber() async{
+    int seed=2;
+    int times=7;
 
-    var weatherData = GenerateNumber().getRandomLottoNumber(seed,times);
+    var luckyNumber = await GenerateNumber().getRandomLottoNumber(seed,times);
     Navigator.push(context, MaterialPageRoute(builder: (context){
-      return CookieDetail();
+      return CookieDetail(
+        luckylist: luckyNumber,
+      );
     }));
 
   }
@@ -37,15 +38,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:Center(
-        child:spinkit,
+        child:SpinKitDoubleBounce(
+          color: Colors.white,
+          size: 100.0,
+        ),
       ),
     );
   }
 
 }
-final spinkit = SpinKitPouringHourGlassRefined(
-  color: Colors.white,
-  size: 50.0,
-);
 
 
