@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'cookie_detail.dart';
+import 'number_detail.dart';
 import 'loading_screen.dart';
 
-class CookiePage extends StatelessWidget {
+class GenerateScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

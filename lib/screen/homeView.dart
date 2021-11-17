@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lotto_maker_flutter/model/lottoNumbers.dart';
-import 'package:lotto_maker_flutter/screen/cookie_page.dart';
+import 'package:lotto_maker_flutter/screen/generate_screen.dart';
 import 'package:lotto_maker_flutter/utilities/constants.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'bottom_bar.dart';
@@ -115,7 +115,7 @@ class MyHomePage extends StatefulWidget {
                controller: _tabController,
                children: [
                  NumberPage(),
-                 CookiePage(),
+                 GenerateScreen(),
                ],
              ),
            )

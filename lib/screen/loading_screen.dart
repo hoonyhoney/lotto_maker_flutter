@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:lotto_maker_flutter/services/generateNumber.dart';
 
-import 'cookie_detail.dart';
+import 'number_detail.dart';
 
 
 
@@ -24,9 +24,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
     int seed=2;
     int times=7;
 
-    var luckyNumber = await GenerateNumber().getRandomLottoNumber(seed,times);
+    dynamic luckyNumber = await GenerateNumber().getRandomLottoNumber(seed,times);
     Navigator.push(context, MaterialPageRoute(builder: (context){
-      return CookieDetail(
+      return NumberDetail(
         luckylist: luckyNumber,
       );
     }));
