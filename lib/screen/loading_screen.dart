@@ -21,15 +21,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
     getNumber();
   }
   void getNumber() async{
-    int seed=2;
-    int times=7;
+    int seed=3;
+    int times=2;
+
 
     dynamic luckyNumber = await GenerateNumber().getRandomLottoNumber(seed,times);
-    Navigator.push(context, MaterialPageRoute(builder: (context){
-      return NumberDetail(
-        luckylist: luckyNumber,
-      );
-    }));
+    Navigator.push(context, MaterialPageRoute(
+        builder: (context) => NumberDetail(luckynumber:luckyNumber),
+     ));
 
   }
 

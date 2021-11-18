@@ -6,8 +6,8 @@ class GenerateNumber {
 
 
 // 로또번호 생성 함수, seed:씨드값, times 횟수
-  List<int> getRandomLottoNumber(int seed, int times) {
-    List<int> luckylist = [];
+  List<dynamic> getRandomLottoNumber(int seed, int times) {
+    List<dynamic> luckylist = [];
     for (int i = 0; i < times; i++) {
       int number = Random(seed).nextInt(10);
       luckylist.add(number);

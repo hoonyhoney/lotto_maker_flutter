@@ -6,21 +6,16 @@ import 'bottom_bar.dart';
 
 class NumberDetail extends StatefulWidget {
   //numberDetail의 파라미터는 loadingscreen으로 부터 넘어온 luckylist
-  final luckylist;
-  NumberDetail({this.luckylist});
+  dynamic luckynumber;
+  NumberDetail({this.luckynumber});
 
   @override
-  _NumberDetailState createState() => _NumberDetailState();
+  _NumberDetailState createState() => _NumberDetailState(luckynumber);
 }
 
 class _NumberDetailState extends State<NumberDetail> {
-
-  dynamic luckynumberlist = NumberDetail().luckylist;
-
-  void main() {
-    print(luckynumberlist);
-  }
-
+  dynamic luckynumber;
+  _NumberDetailState(this.luckynumber);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,18 +49,16 @@ class _NumberDetailState extends State<NumberDetail> {
           children: [
           SizedBox(height: 15.0,),
 
-          ListView.builder(
-            itemCount: luckynumberlist.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(luckynumberlist[index],
-                  style:TextStyle(
-                      fontFamily: 'Varela', fontSize:20.0, color:Color(0xFF545D68)
+          Container(
+            height: 200.0,
+            width: 200.0,
+            child: Text('$luckynumber',
+                    style:TextStyle(
+                        fontFamily: 'Varela', fontSize:20.0, color:Color(0xFF545D68)
+                    ),
                   ),
-                ),
-              );
-            },
-          ),
+            ),
+
           //7분 20초부터
         ],
         ),
