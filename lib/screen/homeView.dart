@@ -23,6 +23,12 @@ class MyHomePage extends StatefulWidget {
      _tabController = TabController(length: 2, vsync: this);
    }
 
+   void onTabTapped(int index) {
+     setState(() {
+       _tabController.index = index;
+     });
+   }
+
    @override
    Widget build(BuildContext context) {
      return Scaffold(
@@ -74,37 +80,6 @@ class MyHomePage extends StatefulWidget {
          padding: EdgeInsets.only(left: 5.0),
          children: [
            SizedBox(height: 15.0),
-           /*TabBar(
-             controller: _tabController,
-             indicatorColor: Colors.transparent,
-             labelColor: Color(0xFFC88D67),
-             isScrollable: true,
-             labelPadding: EdgeInsets.only(right: 45.0),
-             unselectedLabelColor: Color(0xFFCDCDCD),
-             tabs: [
-               Expanded(
-                 child: Tab(
-
-                   child: Icon(
-                     Icons.home,
-                     size: 50,
-                   ),
-                 ),
-
-               ),
-               Expanded(
-                 child: Tab(
-                   child: Icon(
-                       Icons.casino,
-                     size: 50,
-                   ),
-                 ),
-
-               ),
-             ],
-
-
-           ),*/
            Container(
              height: MediaQuery
                  .of(context)
@@ -121,7 +96,24 @@ class MyHomePage extends StatefulWidget {
            )
          ],
        ),
-       bottomNavigationBar: BottomBar(),
+       bottomNavigationBar:BottomNavigationBar(
+         onTap: onTabTapped,
+         currentIndex: _tabController.index,
+         selectedItemColor: Colors.amber[900],
+         unselectedItemColor: Colors.grey[800],
+         showUnselectedLabels: true,
+         items: [
+           BottomNavigationBarItem(
+             icon: new Icon(Icons.home),
+             title: new Text('Home'),
+           ),
+           BottomNavigationBarItem(
+             icon: new Icon(Icons.casino),
+             title: new Text('Lucky'),
+           ),
+         ],
+       ),
      );
    }
  }
+

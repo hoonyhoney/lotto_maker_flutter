@@ -1,12 +1,24 @@
+import 'dart:core';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lotto_maker_flutter/screen/writePost.dart';
 import 'package:lotto_maker_flutter/utilities/pinput.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:pinput/pin_put/pin_put_state.dart';
 
 import 'bottom_bar.dart';
 
-class NumberPage extends StatelessWidget {
+
+class NumberPage extends StatefulWidget {
+
+  @override
+  State<NumberPage> createState() => _NumberPageState();
+}
+
+class _NumberPageState extends State<NumberPage> {
+  void _writePost() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => WritePost()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +52,7 @@ class NumberPage extends StatelessWidget {
 
           Container(
             alignment: Alignment.center,
-            margin: const EdgeInsets.only(right: 25.0),
+            margin: const EdgeInsets.only(right: 25.0, left:10.0),
             height: 50.0,
             decoration: BoxDecoration(
               color: Colors.amberAccent,
@@ -195,6 +207,8 @@ class NumberPage extends StatelessWidget {
           ),
           Divider( thickness: 1, color: Colors.grey, ),
 
+
+          //댓글기능
           Row(
             children: [
               SizedBox(
@@ -223,6 +237,8 @@ class NumberPage extends StatelessWidget {
                   ),
                 ),
               ),
+
+
             ],
           ),
           Row(
@@ -234,6 +250,7 @@ class NumberPage extends StatelessWidget {
                     fontSize: 14.0,
                   ),
                 ),
+            Icon(Icons.thumb_up),
             SizedBox(width: 10.0,),
            Text('답글달기',
                   style: TextStyle(
@@ -241,6 +258,7 @@ class NumberPage extends StatelessWidget {
                     fontSize: 14.0,
                   ),
                 ),
+              Icon(Icons.mode_comment),
             ],
           ),
           Row(
@@ -275,6 +293,7 @@ class NumberPage extends StatelessWidget {
 
             ],
           ),
+
           Row(
             children: [
               SizedBox(width:75.0),
@@ -356,16 +375,17 @@ class NumberPage extends StatelessWidget {
               SizedBox(
                 width: 20.0,
               ),
-
-
             ],
           ),
-
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _writePost,
+        tooltip: 'Increment',
+        child: Icon(Icons.create),
       ),
     );
   }
 }
-
 
 
