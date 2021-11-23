@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lotto_maker_flutter/screen/homeView.dart';
 import 'package:lotto_maker_flutter/utilities/constants.dart';
 
+import 'screen/splash_screen.dart';
+
 
 //push test
 void main() {
@@ -17,8 +19,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: MyHomePage(),
+      home: FirstPage(),
     );
   }
 }
 
+class FirstPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return SplashScreen();
+  }
+}
