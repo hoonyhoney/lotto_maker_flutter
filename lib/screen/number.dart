@@ -20,6 +20,8 @@ class _NumberPageState extends State<NumberPage> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => WritePost()));
   }
 
+  bool isVisible =false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +75,7 @@ class _NumberPageState extends State<NumberPage> {
                   fontSize: 20.0,
                 ),
                 decoration: InputDecoration(
-                  hintText: "    번호를 입력하세요",
+                  //hintText: "    번호를 입력하세요",
                   hintStyle: TextStyle(
                     fontFamily: 'Varela',
                     color:Colors.black87.withOpacity(0.5),
@@ -251,78 +253,85 @@ class _NumberPageState extends State<NumberPage> {
                             ),
                           ],
                         ),
-                      ],
+                        ],
                     ),
-                    Column(
-                      children: [
+                    Visibility(
+                      visible: isVisible,
+                      child: Column(
+                        children: [
 
-                        Text('3자리(앞)',
-                          style: TextStyle(
-                            fontFamily: 'Varela',
-                            fontSize: 20.0,
+                          Text('3자리(앞)',
+                            style: TextStyle(
+                              fontFamily: 'Varela',
+                              fontSize: 20.0,
+                            ),
                           ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children:[
-                            Text('287',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 20.0,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children:[
+                              Text('287',
+                                style: TextStyle(
+                                  fontFamily: 'Varela',
+                                  fontSize: 20.0,
+                                ),
                               ),
-                            ),
-                            SizedBox(width:10),
-                            Text('302',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 20.0,
+                              SizedBox(width:10),
+                              Text('302',
+                                style: TextStyle(
+                                  fontFamily: 'Varela',
+                                  fontSize: 20.0,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 15.0,),
+                            ],
+                          ),
+                          SizedBox(height: 15.0,),
 
-                        Text('3자리(뒤)',
-                          style: TextStyle(
-                            fontFamily: 'Varela',
-                            fontSize: 20.0,
+                          Text('3자리(뒤)',
+                            style: TextStyle(
+                              fontFamily: 'Varela',
+                              fontSize: 20.0,
+                            ),
                           ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children:[
-                            Text('123',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 20.0,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children:[
+                              Text('123',
+                                style: TextStyle(
+                                  fontFamily: 'Varela',
+                                  fontSize: 20.0,
+                                ),
                               ),
-                            ),
-                            SizedBox(width:10),
-                            Text('456',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 20.0,
+                              SizedBox(width:10),
+                              Text('456',
+                                style: TextStyle(
+                                  fontFamily: 'Varela',
+                                  fontSize: 20.0,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-
-
-
               ),
-              ],
+             RaisedButton(
+               child: Text('Show/Hide'),
+                 onPressed: () {
+                  setState(() {
+                    isVisible = !isVisible;
+                  });
+                 },)
+              ],//로또번호 컬럼
             ),
             ),
             Divider( thickness: 1, color: Colors.grey, ),
 
             //댓글리스트
-            ListView(
-              children:replyList,
-            ),
+/*            ListView(
+              children:replyList
+            ),*/
             SizedBox(height:20.0),
             Row(
               children: [
@@ -352,6 +361,9 @@ class _NumberPageState extends State<NumberPage> {
 //댓글
 class replyList extends StatelessWidget {
 
+  //생성자
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -377,7 +389,7 @@ class replyList extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),),
             child: Expanded(
 
-              child: Text('1등 가즈아!!!!!!!!!!!!!!!!!!!!!!!!',
+              child: Text('쩐다',
                 style: TextStyle(
                   height: 1.2,
                   fontFamily: 'Varela',
@@ -392,7 +404,7 @@ class replyList extends StatelessWidget {
       ),
 
           //좋아요와 댓글
-          Row(
+      Row(
             children: [
               SizedBox(width:75.0),
               Text('좋아요',
@@ -417,4 +429,5 @@ class replyList extends StatelessWidget {
     );
   }
 }
+
 
