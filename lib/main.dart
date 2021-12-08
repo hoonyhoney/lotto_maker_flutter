@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lotto_maker_flutter/screen/homeView.dart';
 import 'package:lotto_maker_flutter/utilities/constants.dart';
+import 'package:lotto_maker_flutter/utilities/routes.dart';
 
 import 'screen/splash_screen.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'LottoMaker',
+      routes: Routes.routes,
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),

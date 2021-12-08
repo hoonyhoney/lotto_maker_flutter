@@ -363,7 +363,6 @@ class replyList extends StatelessWidget {
 
   //생성자
 
-
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lotto_maker_flutter/utilities/routes.dart';
 
 import 'number_detail.dart';
 import 'loading_screen.dart';
 
 class GenerateScreen extends StatelessWidget {
+
+  LoadingScreen _loadingScreen = new LoadingScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +17,14 @@ class GenerateScreen extends StatelessWidget {
           SizedBox(height: 15.0),
           Container(
             padding: EdgeInsets.only(right: 15.0),
-            width: MediaQuery.of(context).size.width -30.0,
-            height: MediaQuery.of(context).size.height -50.0,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width - 30.0,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height - 50.0,
             child: GridView.count(
               crossAxisCount: 2,
               primary: false,
@@ -23,10 +32,18 @@ class GenerateScreen extends StatelessWidget {
               mainAxisSpacing: 15.0,
               childAspectRatio: 0.8,
               children: [
-                _buildCard('Random 🍀 ',"https://randomuser.me/api/portraits/men/28.jpg", context),
-                _buildCard('Zodiac 🐒','https://randomuser.me/api/portraits/men/29.jpg', context),
-                _buildCard('Name ✍ ','https://randomuser.me/api/portraits/men/30.jpg', context),
-                _buildCard('Fake 🧙‍️ ','https://randomuser.me/api/portraits/men/31.jpg', context),
+                _buildCard('Random 🍀 ',
+                    "https://randomuser.me/api/portraits/men/28.jpg",
+                    Routes.loadingScreen, context),
+                _buildCard('Zodiac 🐒',
+                    'https://randomuser.me/api/portraits/men/29.jpg',
+                    Routes.loadingScreen, context),
+                _buildCard(
+                    'Name ✍ ', 'https://randomuser.me/api/portraits/men/30.jpg',
+                    Routes.loadingScreen, context),
+                _buildCard('Fake 🧙‍️ ',
+                    'https://randomuser.me/api/portraits/men/31.jpg',
+                    Routes.fakeLottery, context),
               ],
             ),
           ),
@@ -35,30 +52,30 @@ class GenerateScreen extends StatelessWidget {
     );
   }
 
-  _buildCard(String title, String imgPath, context) {
+  _buildCard(String title, String imgPath, dynamic routes, context) {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
         child: InkWell(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder:(context) => LoadingScreen(
-              ),
-            ),
-            );
+            Navigator.of(context).pushNamed(Routes.fakeLottery);
+/*              push(MaterialPageRoute(
+                builder:(context) => LoadingScreen()
+              )
+            );*/
           },
 
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
-                  spreadRadius: 3.0,
-                  blurRadius: 5.0
-                )
-              ],
-              color: Colors.white
+                borderRadius: BorderRadius.circular(15.0),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 3.0,
+                      blurRadius: 5.0
+                  )
+                ],
+                color: Colors.white
             ),
             child: Column(
               children: [
@@ -78,10 +95,10 @@ class GenerateScreen extends StatelessWidget {
                     height: 150.0,
                     width: 150.0,
                     decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(imgPath),
-                          fit: BoxFit.contain
-                      )
+                        image: DecorationImage(
+                            image: NetworkImage(imgPath),
+                            fit: BoxFit.contain
+                        )
                     ),
                   ),
                 ),
@@ -100,8 +117,9 @@ class GenerateScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                        Text( title,
-                          style: TextStyle(fontFamily: 'Varela',color: Color(0xFFD17E50), fontSize: 18.0),)
+                      Text(title,
+                        style: TextStyle(fontFamily: 'Varela', color: Color(
+                            0xFFD17E50), fontSize: 18.0),)
                     ],
                   ),
                 ),
@@ -113,6 +131,5 @@ class GenerateScreen extends StatelessWidget {
         ),
       ),
     );
-
   }
 }
