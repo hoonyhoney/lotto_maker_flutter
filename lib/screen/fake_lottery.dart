@@ -4,25 +4,52 @@ class FakeLottery extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Stack(
+    return Scaffold(
+      body: Center(
+        child: Container(
+          child: Column(
             children: [
-              Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage('image/fake_lottery.jpg'),
-                      fit: BoxFit.contain
-                  )
+              Stack(
+                children: [
+                  Container(
+
+                    width:350,
+                    height:350,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('images/fake_lottery.jpg'),
+                          fit: BoxFit.contain
+                      )
+                  ),
+                  ),
+                  Positioned(
+                    top:100,
+                    left:230,
+                    child: Container(
+                      child: Text('송 의 주 바 보'),
+                    ),
+                  ),
+                  Positioned(
+                    top:130,
+                    left:230,
+                    child: Container(
+                      child: Text('송 의 주 바 보'),
+                    ),
+                  ),
+                ],
               ),
-              ),
-              Container(
-                child: Text('123456'),
+
+              TextField(
+                decoration: new InputDecoration(
+                  suffixIcon: Icon(Icons.search),
+                  contentPadding: EdgeInsets.only(left: 20, right: 5, top: 20, bottom: 5),
+                  hintText: '힌트'
+
+                ),
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }

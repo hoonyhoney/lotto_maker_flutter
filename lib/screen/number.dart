@@ -82,6 +82,7 @@ class _NumberPageState extends State<NumberPage> {
                   ),
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
+                  contentPadding: EdgeInsets.only(left: 20, right: 5, top: 20, bottom: 5),
                   suffixIcon: Icon(
                     Icons.search,
                    color: Colors.black,
