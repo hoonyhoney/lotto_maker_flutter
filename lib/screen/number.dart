@@ -2,6 +2,7 @@ import 'dart:core';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lotto_maker_flutter/screen/writePost.dart';
+import 'package:lotto_maker_flutter/subViews/reply.dart';
 import 'package:lotto_maker_flutter/utilities/pinput.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:pinput/pin_put/pin_put_state.dart';
@@ -334,17 +335,7 @@ class _NumberPageState extends State<NumberPage> {
               children:replyList
             ),*/
             SizedBox(height:20.0),
-            Row(
-              children: [
-                SizedBox(
-                  width: 50.0,
-                  height: 50.0,
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
-                  ),
-                ),
-              ],
-            ),
+            ReplyScreen(),
           ],
         ),
       ),
@@ -359,75 +350,5 @@ class _NumberPageState extends State<NumberPage> {
   }
 }
 
-//댓글
-class replyList extends StatelessWidget {
-
-  //생성자
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child:Column(
-        children:[
-          //사진과 댓글내용
-      Row(
-        children: [
-          SizedBox(
-            width: 50.0,
-            height: 50.0,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
-            ),
-          ),
-          SizedBox(
-            width: 20.0,
-          ),
-          Container(
-            height: 30.0,
-            decoration: BoxDecoration(
-              color: Colors.grey[350],
-              borderRadius: BorderRadius.circular(10),),
-            child: Expanded(
-
-              child: Text('쩐다',
-                style: TextStyle(
-                  height: 1.2,
-                  fontFamily: 'Varela',
-                  fontSize: 18.0,
-                ),
-              ),
-            ),
-          ),
-
-
-        ],
-      ),
-
-          //좋아요와 댓글
-      Row(
-            children: [
-              SizedBox(width:75.0),
-              Text('좋아요',
-                style: TextStyle(
-                  fontFamily: 'Varela',
-                  fontSize: 14.0,
-                ),
-              ),
-              Icon(Icons.thumb_up),
-              SizedBox(width: 10.0,),
-              Text('답글달기',
-                style: TextStyle(
-                  fontFamily: 'Varela',
-                  fontSize: 14.0,
-                ),
-              ),
-              Icon(Icons.mode_comment),
-            ],
-          ),
-      ],
-      ),
-    );
-  }
-}
 
 

@@ -39,12 +39,14 @@ class FakeLottery extends StatelessWidget {
                 ],
               ),
 
-              TextField(
-                decoration: new InputDecoration(
-                  suffixIcon: Icon(Icons.search),
-                  contentPadding: EdgeInsets.only(left: 20, right: 5, top: 20, bottom: 5),
-                  hintText: '힌트'
-
+              Container(
+                padding: EdgeInsets.only(left:30.0,right: 30.0),
+                child: TextField(
+                  decoration: new InputDecoration(
+                    suffixIcon: Icon(Icons.search),
+                    contentPadding: EdgeInsets.only(left: 20, right: 5, top: 20, bottom: 5),
+                    hintText: '숫자를 입력하세요'
+                  ),
                 ),
               ),
             ],
