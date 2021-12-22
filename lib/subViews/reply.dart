@@ -26,26 +26,25 @@ class _ReplyScreenState extends State<ReplyScreen> {
                 width: 20.0,
               ),
               Container(
+                padding: EdgeInsets.all(5.0),
                 height: 30.0,
                 decoration: BoxDecoration(
                   color: Colors.grey[350],
-                  borderRadius: BorderRadius.circular(10),),
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Expanded(
 
-                  child: Text('쩐다',
+                  child: Text('쩐다ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ',
                     style: TextStyle(
                       height: 1.2,
                       fontFamily: 'Varela',
-                      fontSize: 18.0,
+                      fontSize: 15.0,
                     ),
                   ),
                 ),
               ),
-
-
             ],
           ),
-
           //좋아요와 댓글
           Row(
             children: [
@@ -56,7 +55,8 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   fontSize: 14.0,
                 ),
               ),
-              Icon(Icons.thumb_up),
+              Icon(Icons.thumb_up,
+              size: 15.0,),
               SizedBox(width: 10.0,),
               Text('답글달기',
                 style: TextStyle(
@@ -64,7 +64,8 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   fontSize: 14.0,
                 ),
               ),
-              Icon(Icons.mode_comment),
+              Icon(Icons.mode_comment,
+              size: 15.0,),
             ],
           ),
         ],

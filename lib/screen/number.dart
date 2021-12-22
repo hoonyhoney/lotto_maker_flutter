@@ -2,6 +2,7 @@ import 'dart:core';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lotto_maker_flutter/screen/writePost.dart';
+import 'package:lotto_maker_flutter/screen/writeReply.dart';
 import 'package:lotto_maker_flutter/subViews/reply.dart';
 import 'package:lotto_maker_flutter/utilities/pinput.dart';
 import 'package:pinput/pin_put/pin_put.dart';
@@ -29,7 +30,7 @@ class _NumberPageState extends State<NumberPage> {
       body: Container(
         child: Column(
           children: [
-          Row(
+/*          Row(
             mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text('Finger Crossed',
@@ -51,26 +52,21 @@ class _NumberPageState extends State<NumberPage> {
                  ),
             SizedBox(width: 30.0,)
               ]
-            ),
+            ),*/
 
 
             Container(
               alignment: Alignment.center,
-              margin: const EdgeInsets.only(right: 25.0, left:10.0),
+              margin: const EdgeInsets.only(right: 10.0, left:10.0),
               height: 50.0,
               decoration: BoxDecoration(
                 color: Colors.amberAccent,
                 borderRadius: BorderRadius.circular(20),
-/*              boxShadow: [
-                  BoxShadow(
-                  offset: Offset(0, 10),
-                  blurRadius: 50,
-                    color: Colors.black.withOpacity(0.18),
-                  ),
-                ],*/
 
               ),
               child: TextField(
+                autofocus: true,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Varela',
                   fontSize: 20.0,
@@ -81,9 +77,8 @@ class _NumberPageState extends State<NumberPage> {
                     fontFamily: 'Varela',
                     color:Colors.black87.withOpacity(0.5),
                   ),
-                  enabledBorder: InputBorder.none,
+                  //enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
-                  contentPadding: EdgeInsets.only(left: 20, right: 5, top: 20, bottom: 5),
                   suffixIcon: Icon(
                     Icons.search,
                    color: Colors.black,
@@ -117,13 +112,13 @@ class _NumberPageState extends State<NumberPage> {
                         Text('1등',
                         style: TextStyle(
                           fontFamily: 'Varela',
-                          fontSize: 20.0,
+                          fontSize: 15.0,
                           ),
                         ),
                         Text('114475',
                         style: TextStyle(
                           fontFamily: 'Varela',
-                          fontSize: 20.0,
+                          fontSize: 15.0,
                           ),
                         ),
                         SizedBox(height: 15.0,),
@@ -135,13 +130,13 @@ class _NumberPageState extends State<NumberPage> {
                         Text('2자리',
                         style: TextStyle(
                           fontFamily: 'Varela',
-                          fontSize: 20.0,
+                          fontSize: 15.0,
                           ),
                         ),
                         Text('79',
                         style: TextStyle(
                           fontFamily: 'Varela',
-                          fontSize: 20.0,
+                          fontSize: 15.0,
                           ),
                         ),
                         SizedBox(height: 15.0,),
@@ -153,7 +148,7 @@ class _NumberPageState extends State<NumberPage> {
                         Text('3자리(앞)',
                         style: TextStyle(
                           fontFamily: 'Varela',
-                          fontSize: 20.0,
+                          fontSize: 15.0,
                           ),
                         ),
                         Row(
@@ -162,14 +157,14 @@ class _NumberPageState extends State<NumberPage> {
                           Text('287',
                         style: TextStyle(
                           fontFamily: 'Varela',
-                          fontSize: 20.0,
+                          fontSize: 15.0,
                           ),
                         ),
                           SizedBox(width:10),
                         Text('302',
                         style: TextStyle(
                           fontFamily: 'Varela',
-                          fontSize: 20.0,
+                          fontSize: 15.0,
                           ),
                         ),
                           ],
@@ -179,7 +174,7 @@ class _NumberPageState extends State<NumberPage> {
                         Text('3자리(뒤)',
                           style: TextStyle(
                             fontFamily: 'Varela',
-                            fontSize: 20.0,
+                            fontSize: 15.0,
                           ),
                         ),
                         Row(
@@ -188,14 +183,14 @@ class _NumberPageState extends State<NumberPage> {
                             Text('123',
                               style: TextStyle(
                                 fontFamily: 'Varela',
-                                fontSize: 20.0,
+                                fontSize: 15.0,
                               ),
                             ),
                             SizedBox(width:10),
                             Text('456',
                               style: TextStyle(
                                 fontFamily: 'Varela',
-                                fontSize: 20.0,
+                                fontSize: 15.0,
                               ),
                             ),
                           ],
@@ -208,7 +203,7 @@ class _NumberPageState extends State<NumberPage> {
                         Text('3자리(앞)',
                           style: TextStyle(
                             fontFamily: 'Varela',
-                            fontSize: 20.0,
+                            fontSize: 15.0,
                           ),
                         ),
                         Row(
@@ -217,14 +212,14 @@ class _NumberPageState extends State<NumberPage> {
                             Text('287',
                               style: TextStyle(
                                 fontFamily: 'Varela',
-                                fontSize: 20.0,
+                                fontSize: 15.0,
                               ),
                             ),
                             SizedBox(width:10),
                             Text('302',
                               style: TextStyle(
                                 fontFamily: 'Varela',
-                                fontSize: 20.0,
+                                fontSize: 15.0,
                               ),
                             ),
                           ],
@@ -234,7 +229,7 @@ class _NumberPageState extends State<NumberPage> {
                         Text('3자리(뒤)',
                           style: TextStyle(
                             fontFamily: 'Varela',
-                            fontSize: 20.0,
+                            fontSize: 15.0,
                           ),
                         ),
                         Row(
@@ -243,14 +238,14 @@ class _NumberPageState extends State<NumberPage> {
                             Text('123',
                               style: TextStyle(
                                 fontFamily: 'Varela',
-                                fontSize: 20.0,
+                                fontSize: 15.0,
                               ),
                             ),
                             SizedBox(width:10),
                             Text('456',
                               style: TextStyle(
                                 fontFamily: 'Varela',
-                                fontSize: 20.0,
+                                fontSize: 15.0,
                               ),
                             ),
                           ],
@@ -341,7 +336,17 @@ class _NumberPageState extends State<NumberPage> {
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: _writePost,
+        onPressed: () {
+          showModalBottomSheet(context: context,
+            isScrollControlled: true,
+            builder: (context) =>SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: writeReply(),
+              ),
+            ),
+          );
+        },
         tooltip: 'Increment',
         child: Icon(Icons.create),
       ),
