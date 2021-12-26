@@ -65,7 +65,7 @@ class _NumberPageState extends State<NumberPage> {
 
               ),
               child: TextField(
-                autofocus: true,
+                //autofocus: true,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Varela',

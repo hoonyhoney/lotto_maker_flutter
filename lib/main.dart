@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lotto_maker_flutter/screen/homeView.dart';
 import 'package:lotto_maker_flutter/utilities/constants.dart';
 import 'package:lotto_maker_flutter/utilities/routes.dart';
+import 'package:provider/provider.dart';
 
+import 'screen/fake_lottery.dart';
 import 'screen/splash_screen.dart';
 
 

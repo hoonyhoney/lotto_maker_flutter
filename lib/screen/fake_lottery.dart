@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class FakeLottery extends StatelessWidget {
+class FakeLottery extends StatefulWidget {
+
+  @override
+  State<FakeLottery> createState() => _FakeLotteryState();
+}
+
+class _FakeLotteryState extends State<FakeLottery> {
+  String fakeNumber='123456';
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +34,15 @@ class FakeLottery extends StatelessWidget {
                     top:100,
                     left:230,
                     child: Container(
-                      child: Text('송 의 주 바 보'),
+                      child: Text(
+                       '$fakeNumber'),
                     ),
                   ),
                   Positioned(
                     top:130,
                     left:230,
                     child: Container(
-                      child: Text('송 의 주 바 보'),
+                      child: Text('$fakeNumber'),
                     ),
                   ),
                 ],
@@ -42,6 +51,11 @@ class FakeLottery extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(left:30.0,right: 30.0),
                 child: TextField(
+                  onChanged: (newText) {
+                    setState(() {
+                      fakeNumber = newText;
+                    });
+                  },
                   decoration: new InputDecoration(
                     suffixIcon: Icon(Icons.search),
                     contentPadding: EdgeInsets.only(left: 20, right: 5, top: 20, bottom: 5),
@@ -57,3 +71,12 @@ class FakeLottery extends StatelessWidget {
   }
 }
 
+/*
+class Data extends ChangeNotifier{
+  String fakeNumber = '';
+  void changeString(String newString) {
+    fakeNumber = newString;
+    notifyListeners();
+  }
+  }
+*/
