@@ -57,7 +57,7 @@ class _NumberPageState extends State<NumberPage> {
 
             Container(
               alignment: Alignment.center,
-              margin: const EdgeInsets.only(right: 10.0, left:10.0),
+              margin: const EdgeInsets.only(right: 10.0),
               height: 50.0,
               decoration: BoxDecoration(
                 color: Colors.amberAccent,
@@ -65,6 +65,7 @@ class _NumberPageState extends State<NumberPage> {
 
               ),
               child: TextField(
+                cursorColor: Colors.black87,
                 //autofocus: true,
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -77,7 +78,7 @@ class _NumberPageState extends State<NumberPage> {
                     fontFamily: 'Varela',
                     color:Colors.black87.withOpacity(0.5),
                   ),
-                  //enabledBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   suffixIcon: Icon(
                     Icons.search,

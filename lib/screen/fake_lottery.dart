@@ -8,7 +8,7 @@ class FakeLottery extends StatefulWidget {
 }
 
 class _FakeLotteryState extends State<FakeLottery> {
-  String fakeNumber='123456';
+  String fakeNumber='';
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class _FakeLotteryState extends State<FakeLottery> {
                     top:130,
                     left:230,
                     child: Container(
-                      child: Text('$fakeNumber'),
+                      child: Text(''),
                     ),
                   ),
                 ],
