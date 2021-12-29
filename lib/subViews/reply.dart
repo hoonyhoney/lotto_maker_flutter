@@ -57,6 +57,12 @@ class _ReplyScreenState extends State<ReplyScreen> {
               ),
               Icon(Icons.thumb_up,
               size: 15.0,),
+              Text('123',
+                style: TextStyle(
+                  fontFamily: 'Varela',
+                  fontSize: 10.0,
+                ),
+              ),
               SizedBox(width: 10.0,),
               Text('답글달기',
                 style: TextStyle(
@@ -66,6 +72,12 @@ class _ReplyScreenState extends State<ReplyScreen> {
               ),
               Icon(Icons.mode_comment,
               size: 15.0,),
+              Text('12',
+                style: TextStyle(
+                  fontFamily: 'Varela',
+                  fontSize: 10.0,
+                ),
+              ),
             ],
           ), Row(
             children: [
@@ -190,7 +202,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width*0.7,
-                padding: EdgeInsets.all(5.0),
+                padding: EdgeInsets.only(left: 5.0,top: 5.0),
                 height: 30.0,
                 decoration: BoxDecoration(
                   color: Colors.grey[350],
@@ -198,11 +210,20 @@ class _ReplyScreenState extends State<ReplyScreen> {
                 ),
                 child: Expanded(
 
-                  child: Text('댓글을 입력하세요...',
+                  child: TextField(
+                    cursorColor: Colors.black87,
                     style: TextStyle(
-                      height: 1.2,
                       fontFamily: 'Varela',
                       fontSize: 15.0,
+                    ),
+                    decoration: InputDecoration(
+                      hintText: "댓글을 입력하세요...",
+                      hintStyle: TextStyle(
+                        fontFamily: 'Varela',
+                        color:Colors.black87.withOpacity(0.5),
+                      ),
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
                     ),
                   ),
                 ),

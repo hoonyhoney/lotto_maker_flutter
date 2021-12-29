@@ -325,7 +325,6 @@ class _NumberPageState extends State<NumberPage> {
             ),
             ),
             Divider( thickness: 1, color: Colors.grey, ),
-
             //댓글리스트
 /*            ListView(
               children:replyList
