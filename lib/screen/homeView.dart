@@ -15,12 +15,20 @@ class MyHomePage extends StatefulWidget {
  class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
 
    late TabController _tabController;
-
+    int _selectedIndex =0;
    @override
    void initState() {
      //tabController를 set함
      super.initState();
-     _tabController = TabController(length: 2, vsync: this);
+     _tabController = TabController(length: 2, vsync: this,
+     );
+     _tabController.addListener(_handleSelection);
+   }
+
+   void _handleSelection() {
+     setState(() {
+       _selectedIndex = _tabController.index;
+     });
    }
 
    void onTabTapped(int index) {
@@ -99,12 +107,12 @@ class MyHomePage extends StatefulWidget {
        bottomNavigationBar:BottomNavigationBar(
          onTap: onTabTapped,
          currentIndex: _tabController.index,
-         selectedItemColor: Colors.amber[900],
+         selectedItemColor: Colors.amberAccent[900],
          unselectedItemColor: Colors.grey[800],
          showUnselectedLabels: true,
          items: [
            BottomNavigationBarItem(
-             icon: new Icon(Icons.home),
+             icon:  new Icon(Icons.home),
              title: new Text('Home'),
            ),
            BottomNavigationBarItem(

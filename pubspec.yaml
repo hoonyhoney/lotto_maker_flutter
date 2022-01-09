@@ -36,6 +36,10 @@ dependencies:
   keyboard_actions: ^3.3.0+1
   provider: ^6.0.1
   lottie: ^1.2.1
+  comment_box: ^0.0.16
+  cloud_firestore: ^3.1.6
+  firebase_storage: ^10.2.5
+  image_picker: ^0.8.4+4
 
 dev_dependencies:
   flutter_test:

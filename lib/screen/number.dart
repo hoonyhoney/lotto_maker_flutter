@@ -1,8 +1,10 @@
 import 'dart:core';
+import 'package:comment_box/comment/comment.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lotto_maker_flutter/screen/writePost.dart';
 import 'package:lotto_maker_flutter/screen/writeReply.dart';
+import 'package:lotto_maker_flutter/subViews/commentBox.dart';
 import 'package:lotto_maker_flutter/subViews/reply.dart';
 import 'package:lotto_maker_flutter/utilities/pinput.dart';
 import 'package:pinput/pin_put/pin_put.dart';
@@ -26,7 +28,7 @@ class _NumberPageState extends State<NumberPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( 
       body: Container(
         child: Column(
           children: [
@@ -337,19 +339,11 @@ class _NumberPageState extends State<NumberPage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showModalBottomSheet(context: context,
-            isScrollControlled: true,
-            builder: (context) =>SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: writeReply(),
-              ),
-            ),
-          );
+          Navigator.push(context, MaterialPageRoute(builder: (context) => CmmtBox()));
         },
-        tooltip: 'Increment',
         child: Icon(Icons.create),
       ),
+
 
     );
   }

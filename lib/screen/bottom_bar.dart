@@ -28,7 +28,7 @@ class BottomBar extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Icon(Icons.home, color: Color(0xFFEF7532),
+                    Icon(Icons.home, color: Colors.amberAccent,
                     size: 40.0,),
                     Icon(Icons.casino, color:Color(0xFF676E79),
                     size: 40.0,),
