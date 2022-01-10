@@ -104,7 +104,7 @@ class _CmmtBoxState extends State<CmmtBox> {
           errorText: 'Comment cannot be blank',
           withBorder: false,
           sendButtonMethod: () {
-            /*final firebaseStorageRef = FirebaseStorage.instance
+            final firebaseStorageRef = FirebaseStorage.instance
                 .ref()
                 .child('post')
                 .child('${DateTime.now().millisecondsSinceEpoch}.png');
@@ -118,14 +118,18 @@ class _CmmtBoxState extends State<CmmtBox> {
               var downloadUrl=snapshot.ref.getDownloadURL();
 
               downloadUrl.then((uri){
+                //post라는 컬렉션을 만들겠다라는 뜻
                 var doc = FirebaseFirestore.instance.collection('post').doc();
+                //Map형식
                 doc.set({
                   'id': doc.id,
                   'photoUrl': uri.toString(),
+                  'contents': commentController.text,
                 });
               });
-            }).then((value) => Navigator.pop(context));*/
-            if (formKey.currentState!.validate()) {
+            }).then((value) => Navigator.pop(context));
+
+
               print(commentController.text);
               setState(() {
                 var value = {
@@ -138,11 +142,7 @@ class _CmmtBoxState extends State<CmmtBox> {
               });
               commentController.clear();
               FocusScope.of(context).unfocus();
-            } else {
-              print("Not validated");
-            }
           },
-          formKey: formKey,
           commentController: commentController,
           backgroundColor: Colors.white,
           textColor: Colors.black,

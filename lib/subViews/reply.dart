@@ -32,15 +32,19 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   color: Colors.grey[350],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Expanded(
+                child: Column(
+                  children: [
+                    Expanded(
 
-                  child: Text('쩐다ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ',
-                    style: TextStyle(
-                      height: 1.2,
-                      fontFamily: 'Varela',
-                      fontSize: 15.0,
+                      child: Text('쩐다ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ',
+                        style: TextStyle(
+                          height: 1.2,
+                          fontFamily: 'Varela',
+                          fontSize: 15.0,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ],
@@ -98,15 +102,19 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   color: Colors.grey[350],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Expanded(
+                child: Column(
+                  children: [
+                    Expanded(
 
-                  child: Text('쩐다ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ',
-                    style: TextStyle(
-                      height: 1.2,
-                      fontFamily: 'Varela',
-                      fontSize: 15.0,
+                      child: Text('쩐다ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ',
+                        style: TextStyle(
+                          height: 1.2,
+                          fontFamily: 'Varela',
+                          fontSize: 15.0,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ],
@@ -152,15 +160,19 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   color: Colors.grey[350],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Expanded(
+                child: Column(
+                  children: [
+                    Expanded(
 
-                  child: Text('쩐다ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ',
-                    style: TextStyle(
-                      height: 1.2,
-                      fontFamily: 'Varela',
-                      fontSize: 15.0,
+                      child: Text('쩐다ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ',
+                        style: TextStyle(
+                          height: 1.2,
+                          fontFamily: 'Varela',
+                          fontSize: 15.0,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ],
@@ -208,24 +220,28 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   color: Colors.grey[350],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Expanded(
+                child: Column(
+                  children: [
+                    Expanded(
 
-                  child: TextField(
-                    cursorColor: Colors.black87,
-                    style: TextStyle(
-                      fontFamily: 'Varela',
-                      fontSize: 15.0,
-                    ),
-                    decoration: InputDecoration(
-                      hintText: "댓글을 입력하세요...",
-                      hintStyle: TextStyle(
-                        fontFamily: 'Varela',
-                        color:Colors.black87.withOpacity(0.5),
+                      child: TextField(
+                        cursorColor: Colors.black87,
+                        style: TextStyle(
+                          fontFamily: 'Varela',
+                          fontSize: 15.0,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: "댓글을 입력하세요...",
+                          hintStyle: TextStyle(
+                            fontFamily: 'Varela',
+                            color:Colors.black87.withOpacity(0.5),
+                          ),
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                        ),
                       ),
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
                     ),
-                  ),
+                  ],
                 ),
               ),
             ],

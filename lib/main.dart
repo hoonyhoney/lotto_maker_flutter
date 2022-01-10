@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lotto_maker_flutter/screen/homeView.dart';
 import 'package:lotto_maker_flutter/utilities/constants.dart';
@@ -9,7 +10,9 @@ import 'screen/splash_screen.dart';
 
 
 //push test
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
