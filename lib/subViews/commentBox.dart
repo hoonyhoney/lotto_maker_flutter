@@ -103,6 +103,7 @@ class _CmmtBoxState extends State<CmmtBox> {
           labelText: 'Write a comment...',
           errorText: 'Comment cannot be blank',
           withBorder: false,
+          commentController: commentController,
           sendButtonMethod: () {
             final firebaseStorageRef = FirebaseStorage.instance
                 .ref()
@@ -130,8 +131,7 @@ class _CmmtBoxState extends State<CmmtBox> {
             }).then((value) => Navigator.pop(context));
 
 
-              print(commentController.text);
-              setState(() {
+   /*           setState(() {
                 var value = {
                   'name': 'New User',
                   'pic':
@@ -139,11 +139,11 @@ class _CmmtBoxState extends State<CmmtBox> {
                   'message': commentController.text
                 };
                 filedata.insert(0, value);
-              });
-              commentController.clear();
+              });*/
+           /*   commentController.clear();*/
               FocusScope.of(context).unfocus();
           },
-          commentController: commentController,
+
           backgroundColor: Colors.white,
           textColor: Colors.black,
           sendWidget: Icon(Icons.send_sharp, size: 30, color: Colors.black),
