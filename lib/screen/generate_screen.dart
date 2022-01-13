@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lotto_maker_flutter/screen/random.dart';
 import 'package:lotto_maker_flutter/utilities/routes.dart';
 
 import 'number_detail.dart';
@@ -34,16 +35,16 @@ class GenerateScreen extends StatelessWidget {
               children: [
                 _buildCard('Random 🍀 ',
                     "https://randomuser.me/api/portraits/men/28.jpg",
-                    Routes.loadingScreen, context),
+                    Routes.randomScreen, context,1),
                 _buildCard('Zodiac 🐒',
                     'https://randomuser.me/api/portraits/men/29.jpg',
-                    Routes.loadingScreen, context),
+                    Routes.birthdayScreen, context,2),
                 _buildCard(
                     'Name ✍ ', 'https://randomuser.me/api/portraits/men/30.jpg',
-                    Routes.loadingScreen, context),
+                    Routes.loadingScreen, context,3),
                 _buildCard('Fake 🧙‍️ ',
                     'https://randomuser.me/api/portraits/men/31.jpg',
-                    Routes.fakeLottery, context),
+                    Routes.fakeLottery, context,4),
               ],
             ),
           ),
@@ -52,17 +53,24 @@ class GenerateScreen extends StatelessWidget {
     );
   }
 
-  _buildCard(String title, String imgPath, dynamic routes, context) {
+  _buildCard(String title, String imgPath, dynamic routes, context, index) {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
         child: InkWell(
           onTap: () {
-            Navigator.of(context).pushNamed(Routes.fakeLottery);
-/*              push(MaterialPageRoute(
-                builder:(context) => LoadingScreen()
-              )
-            );*/
+            if(index==1){
+              Navigator.of(context).pushNamed(Routes.randomScreen);
+            }
+            if(index==2){
+              Navigator.of(context).pushNamed(Routes.birthdayScreen);
+            }
+            if(index==3){
+              Navigator.of(context).pushNamed(Routes.loadingScreen);
+            }
+            if(index==4){
+              Navigator.of(context).pushNamed(Routes.fakeLottery);
+            }
           },
 
           child: Container(
