@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ReplyScreen extends StatefulWidget {
@@ -6,7 +7,11 @@ class ReplyScreen extends StatefulWidget {
   _ReplyScreenState createState() => _ReplyScreenState();
 }
 
+
 class _ReplyScreenState extends State<ReplyScreen> {
+
+  final _firestore = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,6 +20,25 @@ class _ReplyScreenState extends State<ReplyScreen> {
           //사진과 댓글내용
           Row(
             children: [
+              StreamBuilder<QuerySnapshot>(
+                stream: _firestore.collection('post').snapshots(),
+                //builder는 context와 리턴받을 것을 parameter로 가짐
+                builder: (context, snapshot){
+                    final messages = snapshot.data!.docs;
+                    List<Text> messageWidgets = [];
+                    for(var message in messages){
+                      final messageText = message.get('contents');
+                      final photoUrl = message.get('photoUrl');
+                      final messageWidget =
+                      Text('$messageText  $photoUrl');
+                     messageWidgets.add(messageWidget);
+                    }
+                    return Column(
+                      children:messageWidgets,
+                    );
+                },
+              ),
+
               SizedBox(
                 width: 50.0,
                 height: 50.0,
@@ -82,122 +106,6 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   fontSize: 10.0,
                 ),
               ),
-            ],
-          ), Row(
-            children: [
-              SizedBox(
-                width: 50.0,
-                height: 50.0,
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
-                ),
-              ),
-              SizedBox(
-                width: 20.0,
-              ),
-              Container(
-                padding: EdgeInsets.all(5.0),
-                height: 30.0,
-                decoration: BoxDecoration(
-                  color: Colors.grey[350],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  children: [
-                    Expanded(
-
-                      child: Text('쩐다ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ',
-                        style: TextStyle(
-                          height: 1.2,
-                          fontFamily: 'Varela',
-                          fontSize: 15.0,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          //좋아요와 댓글
-          Row(
-            children: [
-              SizedBox(width:75.0),
-              Text('좋아요',
-                style: TextStyle(
-                  fontFamily: 'Varela',
-                  fontSize: 14.0,
-                ),
-              ),
-              Icon(Icons.thumb_up,
-              size: 15.0,),
-              SizedBox(width: 10.0,),
-              Text('답글달기',
-                style: TextStyle(
-                  fontFamily: 'Varela',
-                  fontSize: 14.0,
-                ),
-              ),
-              Icon(Icons.mode_comment,
-              size: 15.0,),
-            ],
-          ),Row(
-            children: [
-              SizedBox(
-                width: 50.0,
-                height: 50.0,
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
-                ),
-              ),
-              SizedBox(
-                width: 20.0,
-              ),
-              Container(
-                padding: EdgeInsets.all(5.0),
-                height: 30.0,
-                decoration: BoxDecoration(
-                  color: Colors.grey[350],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  children: [
-                    Expanded(
-
-                      child: Text('쩐다ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ',
-                        style: TextStyle(
-                          height: 1.2,
-                          fontFamily: 'Varela',
-                          fontSize: 15.0,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          //좋아요와 댓글
-          Row(
-            children: [
-              SizedBox(width:75.0),
-              Text('좋아요',
-                style: TextStyle(
-                  fontFamily: 'Varela',
-                  fontSize: 14.0,
-                ),
-              ),
-              Icon(Icons.thumb_up,
-              size: 15.0,),
-              SizedBox(width: 10.0,),
-              Text('답글달기',
-                style: TextStyle(
-                  fontFamily: 'Varela',
-                  fontSize: 14.0,
-                ),
-              ),
-              Icon(Icons.mode_comment,
-              size: 15.0,),
             ],
           ),
           Row(

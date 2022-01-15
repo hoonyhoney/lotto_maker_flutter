@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:comment_box/comment/comment.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,6 @@ import 'package:lotto_maker_flutter/screen/writeReply.dart';
 import 'package:lotto_maker_flutter/subViews/commentBox.dart';
 import 'package:lotto_maker_flutter/subViews/reply.dart';
 import 'package:lotto_maker_flutter/utilities/pinput.dart';
-import 'package:pinput/pin_put/pin_put.dart';
-import 'package:pinput/pin_put/pin_put_state.dart';
 
 import 'bottom_bar.dart';
 
@@ -20,11 +19,32 @@ class NumberPage extends StatefulWidget {
 }
 
 class _NumberPageState extends State<NumberPage> {
+
+
   void _writePost() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => WritePost()));
   }
-
+  final _firestore = FirebaseFirestore.instance;
   bool isVisible =false;
+
+ void getMessages() async{
+   final messages = await _firestore.collection('post').get();
+   for (var message in messages.docs) {
+     print(message.data());
+   }
+ }
+
+ //메시지 구독 , 메시지가 업데이트되면 전체 내용을 다시 불러옴
+ void messagesStream() async {
+   //bunch of 스냅샷 중 snap을 하나 꺼냄
+   await for (var snapshot in _firestore.collection('post').snapshots()) {
+     // 그 snapshot 에서 메시지를 하나 꺼냄
+     for (var message in snapshot.docs) {
+       print(message.data);
+     }
+   }
+
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -331,6 +351,11 @@ class _NumberPageState extends State<NumberPage> {
 /*            ListView(
               children:replyList
             ),*/
+            RaisedButton(
+              child: Text('Show/Hide'),
+              onPressed: () {
+              getMessages();
+              },),
             SizedBox(height:20.0),
             ReplyScreen(),
           ],
