@@ -351,11 +351,6 @@ class _NumberPageState extends State<NumberPage> {
 /*            ListView(
               children:replyList
             ),*/
-            RaisedButton(
-              child: Text('Show/Hide'),
-              onPressed: () {
-              getMessages();
-              },),
             SizedBox(height:20.0),
             ReplyScreen(),
           ],

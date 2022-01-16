@@ -24,18 +24,33 @@ class _ReplyScreenState extends State<ReplyScreen> {
                 stream: _firestore.collection('post').snapshots(),
                 //builder는 context와 리턴받을 것을 parameter로 가짐
                 builder: (context, snapshot){
+                  //스냅샷이 없는 경우 스피너
+                  if(!snapshot.hasData){
+                    return Center(
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.lightBlueAccent,
+                      ),
+                    );
+                  }
+
                     final messages = snapshot.data!.docs;
-                    List<Text> messageWidgets = [];
+                    List<String> messageWidgets = [];
                     for(var message in messages){
                       final messageText = message.get('contents');
-                      final photoUrl = message.get('photoUrl');
-                      final messageWidget =
-                      Text('$messageText  $photoUrl');
-                     messageWidgets.add(messageWidget);
+                      final messageWidget = messageWidgets.add(messageText);
                     }
-                    return Column(
-                      children:messageWidgets,
-                    );
+                    int messageCount = messageWidgets.length;
+                    return ListView.builder(
+
+                      itemCount:messageCount,
+                      itemBuilder: (BuildContext context, int position) {
+                        return Column(
+                          children: [
+                           Text(messageWidgets[position].y),
+                          ],
+                        );
+
+                      });
                 },
               ),
 
