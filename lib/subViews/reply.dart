@@ -32,97 +32,81 @@ class _ReplyScreenState extends State<ReplyScreen> {
                       ),
                     );
                   }
-
                     final messages = snapshot.data!.docs;
-                    List<String> messageWidgets = [];
+                    List<Column> messageWidgets = [];
                     for(var message in messages){
                       final messageText = message.get('contents');
-                      final messageWidget = messageWidgets.add(messageText);
-                    }
-                    int messageCount = messageWidgets.length;
-                    return ListView.builder(
-
-                      itemCount:messageCount,
-                      itemBuilder: (BuildContext context, int position) {
-                        return Column(
-                          children: [
-                           Text(messageWidgets[position].y),
-                          ],
-                        );
-
-                      });
-                },
-              ),
-
-              SizedBox(
-                width: 50.0,
-                height: 50.0,
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
-                ),
-              ),
-              SizedBox(
-                width: 20.0,
-              ),
-              Container(
-                padding: EdgeInsets.all(5.0),
-                height: 30.0,
-                decoration: BoxDecoration(
-                  color: Colors.grey[350],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  children: [
-                    Expanded(
-
-                      child: Text('쩐다ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ',
-                        style: TextStyle(
-                          height: 1.2,
-                          fontFamily: 'Varela',
-                          fontSize: 15.0,
-                        ),
+                      final messageWidget =
+                      Column(
+                      children: [Row(
+                          children:[
+                            CircleAvatar(
+                              backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            Container(
+                                  padding: EdgeInsets.all(5.0),
+                                  height: 30.0,
+                                  decoration: BoxDecoration(
+                                  color: Colors.grey[350],
+                                  borderRadius: BorderRadius.circular(10),
+                                  ),
+                                child: Text('$messageText'),
+                            ),
+                          ]
                       ),
-                    ),
+                  //bunch of reply
+                  Row(
+                          children: [
+                          SizedBox(width:75.0),
+                  Text('좋아요',
+                  style: TextStyle(
+                  fontFamily: 'Varela',
+                  fontSize: 14.0,
+                  ),
+                  ),
+                  Icon(Icons.thumb_up,
+                  size: 15.0,),
+                  Text('123',
+                  style: TextStyle(
+                  fontFamily: 'Varela',
+                  fontSize: 10.0,
+                  ),
+                  ),
+                  SizedBox(width: 10.0,),
+                  Text('답글달기',
+                  style: TextStyle(
+                  fontFamily: 'Varela',
+                  fontSize: 14.0,
+                  ),
+                  ),
+                  Icon(Icons.mode_comment,
+                  size: 15.0,),
+                  Text('12',
+                  style: TextStyle(
+                  fontFamily: 'Varela',
+                  fontSize: 10.0,
+                  ),
+                  ),
                   ],
-                ),
+                  ),
+                    ]
+                      );
+                      messageWidgets.add(messageWidget);
+                    }
+                    return Expanded(
+                      child: Column(
+                        children: messageWidgets,
+                      ),
+                    );
+                },
               ),
             ],
           ),
           //좋아요와 댓글
-          Row(
-            children: [
-              SizedBox(width:75.0),
-              Text('좋아요',
-                style: TextStyle(
-                  fontFamily: 'Varela',
-                  fontSize: 14.0,
-                ),
-              ),
-              Icon(Icons.thumb_up,
-              size: 15.0,),
-              Text('123',
-                style: TextStyle(
-                  fontFamily: 'Varela',
-                  fontSize: 10.0,
-                ),
-              ),
-              SizedBox(width: 10.0,),
-              Text('답글달기',
-                style: TextStyle(
-                  fontFamily: 'Varela',
-                  fontSize: 14.0,
-                ),
-              ),
-              Icon(Icons.mode_comment,
-              size: 15.0,),
-              Text('12',
-                style: TextStyle(
-                  fontFamily: 'Varela',
-                  fontSize: 10.0,
-                ),
-              ),
-            ],
-          ),
+          
           Row(
             children: [
               SizedBox(
@@ -174,4 +158,5 @@ class _ReplyScreenState extends State<ReplyScreen> {
     );
   }
 }
+
 
