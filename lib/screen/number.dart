@@ -3,11 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:comment_box/comment/comment.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:html/parser.dart';
 import 'package:lotto_maker_flutter/screen/writePost.dart';
 import 'package:lotto_maker_flutter/screen/writeReply.dart';
 import 'package:lotto_maker_flutter/subViews/commentBox.dart';
 import 'package:lotto_maker_flutter/subViews/reply.dart';
 import 'package:lotto_maker_flutter/utilities/pinput.dart';
+import 'package:http/http.dart' as http;
 
 import 'bottom_bar.dart';
 
@@ -20,6 +22,25 @@ class NumberPage extends StatefulWidget {
 
 class _NumberPageState extends State<NumberPage> {
 
+  @override
+  void initState() {
+        getData();
+    super.initState();
+  }
+
+/*  void getData() async{
+    final response = await http.Client().get(Uri.parse('https://lotto.mthai.com/'));
+    if(response.statusCode ==200) {
+      var document = parse(response.body);
+      var elements = document.getElementsByClassName(); //클래스 이름
+      var elements = document.getElementsByTagName(); //TagName
+      var elements = document.getElementById() // id
+
+      print(document.getElementsByTagName("span"));
+    }else {
+      throw Exception();
+    }
+  }*/
 
   void _writePost() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => WritePost()));
@@ -43,40 +64,16 @@ class _NumberPageState extends State<NumberPage> {
        print(message.data);
      }
    }
-
  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold( 
       body: Container(
+        height: 3000,
         child: Column(
           children: [
-/*          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text('Finger Crossed',
-              style: TextStyle(
-                fontFamily: 'Varela',
-                fontSize: 15.0,
-              ),
-            ),
-
-            Container(
-                   height: 30.0,
-                   width: 30.0,
-                   decoration: BoxDecoration(
-                       image: DecorationImage(
-                           image: AssetImage('images/finger.png'),
-                           fit: BoxFit.contain
-                       )
-                   ),
-                 ),
-            SizedBox(width: 30.0,)
-              ]
-            ),*/
-
-
             Container(
               alignment: Alignment.center,
               margin: const EdgeInsets.only(right: 10.0),
@@ -342,16 +339,14 @@ class _NumberPageState extends State<NumberPage> {
                   setState(() {
                     isVisible = !isVisible;
                   });
-                 },)
+                 },),
               ],//로또번호 컬럼
             ),
             ),
             Divider( thickness: 1, color: Colors.grey, ),
-            //댓글리스트
-/*            ListView(
-              children:replyList
-            ),*/
             SizedBox(height:20.0),
+
+            //댓글리스트
             ReplyScreen(),
           ],
         ),

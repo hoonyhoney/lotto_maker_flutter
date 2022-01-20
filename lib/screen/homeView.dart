@@ -63,16 +63,6 @@ class MyHomePage extends StatefulWidget {
                onTap: () {
                },
              ),
-/*               Container(
-                 height: 50.0,
-                 width: 50.0,
-                 decoration: BoxDecoration(
-                     image: DecorationImage(
-                         image: AssetImage('images/finger.png'),
-                         fit: BoxFit.contain
-                     )
-                 ),
-               ),*/
              ],
            ),
 
