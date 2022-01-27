@@ -1,14 +1,11 @@
 import 'dart:core';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:comment_box/comment/comment.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
 import 'package:lotto_maker_flutter/screen/writePost.dart';
-import 'package:lotto_maker_flutter/screen/writeReply.dart';
 import 'package:lotto_maker_flutter/subViews/commentBox.dart';
 import 'package:lotto_maker_flutter/subViews/reply.dart';
-import 'package:lotto_maker_flutter/utilities/pinput.dart';
 import 'package:http/http.dart' as http;
 
 import 'bottom_bar.dart';
@@ -16,31 +13,40 @@ import 'bottom_bar.dart';
 
 class NumberPage extends StatefulWidget {
 
+
+
   @override
   State<NumberPage> createState() => _NumberPageState();
 }
 
 class _NumberPageState extends State<NumberPage> {
 
+  var prize_1;
+  var prize_12;
+  var prize_f3;
+  var prize_l3;
+
   @override
   void initState() {
-        getData();
     super.initState();
+    getData();
   }
 
-/*  void getData() async{
+  void getData() async{
     final response = await http.Client().get(Uri.parse('https://lotto.mthai.com/'));
     if(response.statusCode ==200) {
       var document = parse(response.body);
-      var elements = document.getElementsByClassName(); //클래스 이름
-      var elements = document.getElementsByTagName(); //TagName
-      var elements = document.getElementById() // id
+      //var elements = document.getElementsByClassName(); //클래스 이름
+      //var elementsByTagName = document.getElementsByTagName(); //TagName
+      prize_1 = document.getElementsByClassName("prize-1")[0].children[1].children[0].children[0].text;
+      prize_12= document.getElementsByClassName("prize-l2")[0].children[1].children[0].children[0].text;
+      prize_f3 = document.getElementsByClassName("prize-f3")[0].children[1].children[0].children[0].text;
+      prize_l3 = document.getElementsByClassName("prize-l3")[0].children[1].children[0].children[0].text;
 
-      print(document.getElementsByTagName("span"));
     }else {
       throw Exception();
     }
-  }*/
+  }
 
   void _writePost() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => WritePost()));
@@ -69,7 +75,7 @@ class _NumberPageState extends State<NumberPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
+    return Scaffold(
       body: Container(
         height: 3000,
         child: Column(
@@ -135,7 +141,7 @@ class _NumberPageState extends State<NumberPage> {
                           fontSize: 15.0,
                           ),
                         ),
-                        Text('114475',
+                        Text('$prize_1',
                         style: TextStyle(
                           fontFamily: 'Varela',
                           fontSize: 15.0,
@@ -153,7 +159,7 @@ class _NumberPageState extends State<NumberPage> {
                           fontSize: 15.0,
                           ),
                         ),
-                        Text('79',
+                        Text('$prize_12',
                         style: TextStyle(
                           fontFamily: 'Varela',
                           fontSize: 15.0,
@@ -174,19 +180,13 @@ class _NumberPageState extends State<NumberPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                         children:[
-                          Text('287',
+                          Text('$prize_f3',
                         style: TextStyle(
                           fontFamily: 'Varela',
                           fontSize: 15.0,
                           ),
                         ),
                           SizedBox(width:10),
-                        Text('302',
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 15.0,
-                          ),
-                        ),
                           ],
                         ),
                         SizedBox(height: 15.0,),
@@ -200,19 +200,13 @@ class _NumberPageState extends State<NumberPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children:[
-                            Text('123',
+                            Text('$prize_l3',
                               style: TextStyle(
                                 fontFamily: 'Varela',
                                 fontSize: 15.0,
                               ),
                             ),
                             SizedBox(width:10),
-                            Text('456',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 15.0,
-                              ),
-                            ),
                           ],
                         ),
                       ],
