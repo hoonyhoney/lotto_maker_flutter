@@ -25,6 +25,12 @@ class _NumberPageState extends State<NumberPage> {
   var prize_12;
   var prize_f3;
   var prize_l3;
+  var title;
+  var prize_n1;
+  List<dynamic> prize_2 = [];
+  List<dynamic> prize_3 = [];
+  List<dynamic> prize_4 = [];
+  List<dynamic> prize_5 = [];
 
   @override
   void initState() {
@@ -38,10 +44,43 @@ class _NumberPageState extends State<NumberPage> {
       var document = parse(response.body);
       //var elements = document.getElementsByClassName(); //클래스 이름
       //var elementsByTagName = document.getElementsByTagName(); //TagName
-      prize_1 = document.getElementsByClassName("prize-1")[0].children[1].children[0].children[0].text;
-      prize_12= document.getElementsByClassName("prize-l2")[0].children[1].children[0].children[0].text;
-      prize_f3 = document.getElementsByClassName("prize-f3")[0].children[1].children[0].children[0].text;
-      prize_l3 = document.getElementsByClassName("prize-l3")[0].children[1].children[0].children[0].text;
+
+
+      setState(() {
+        prize_1 = document.getElementsByClassName("prize-1")[0].children[1].children[0].children[0].text;
+        prize_12= document.getElementsByClassName("prize-l2")[0].children[1].children[0].children[0].text;
+        prize_f3 = document.getElementsByClassName("prize-f3")[0].children[1].children[0].children[0].text;
+        prize_l3 = document.getElementsByClassName("prize-l3")[0].children[1].children[0].children[0].text;
+        title = document.getElementById("site-head-title")?.getElementsByTagName('h2').first.text;
+        prize_n1 = document.getElementsByClassName("prize-n1")[0].children[1].children[0].children[0].text;
+
+        //step 1. 클래스에서 text를 가져온다.
+
+        for (int i=0; i< 5; i++) {
+          var prizeNo = document.getElementById("prize-2")?.getElementsByTagName("span")[i].text;
+          print(prizeNo);
+          prize_2.add(prizeNo);
+        }
+        for (int i=0; i< 10; i++) {
+          var prizeNo = document.getElementById("prize-3")?.getElementsByTagName("span")[i].text;
+          print(prizeNo);
+          prize_3.add(prizeNo);
+        }
+        for (int i=0; i< 50; i++) {
+          var prizeNo = document.getElementById("prize-4")?.getElementsByTagName("span")[i].text;
+          print(prizeNo);
+          prize_4.add(prizeNo);
+        }
+        for (int i=0; i< 100; i++) {
+          var prizeNo = document.getElementById("prize-5")?.getElementsByTagName("span")[i].text;
+          print(prizeNo);
+          prize_5.add(prizeNo);
+        }
+        print(prize_3);
+        print(prize_4);
+        print(prize_5);
+      });
+
 
     }else {
       throw Exception();
@@ -76,223 +115,121 @@ class _NumberPageState extends State<NumberPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: 3000,
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(right: 10.0),
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: Colors.amberAccent,
-                borderRadius: BorderRadius.circular(20),
-
-              ),
-              child: TextField(
-                cursorColor: Colors.black87,
-                //autofocus: true,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Varela',
-                  fontSize: 20.0,
-                ),
-                decoration: InputDecoration(
-                  //hintText: "    번호를 입력하세요",
-                  hintStyle: TextStyle(
-                    fontFamily: 'Varela',
-                    color:Colors.black87.withOpacity(0.5),
-                  ),
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  suffixIcon: Icon(
-                    Icons.search,
-                   color: Colors.black,
-                    size: 36.0,
-                  ),
-                ),
-              ),
-            ),
-
-            SizedBox(height: 15.0,),
-            Divider( thickness: 1, color: Colors.grey, ),
-            Container(
-              height: 50.0,
-              width: 200.0,
-              child: Text('November 07, 2021',
-                  style:TextStyle(
-                    fontFamily: 'Varela',
-                  fontSize: 20.0,
-              )
-              ),
-            ),
-            //당첨 리스트
-            SingleChildScrollView(
-              child: Column(
+      body: SingleChildScrollView(
+        child: Expanded(
+          child: Container(
+            height: 1000,
+            child: Column(
               children: [
-              Container(
+                Container(
+                  alignment: Alignment.center,
+                  margin: const EdgeInsets.only(right: 10.0),
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    color: Colors.amberAccent,
+                    borderRadius: BorderRadius.circular(20),
+
+                  ),
+                  child: TextField(
+                    cursorColor: Colors.black87,
+                    //autofocus: true,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Varela',
+                      fontSize: 20.0,
+                    ),
+                    decoration: InputDecoration(
+                      //hintText: "    번호를 입력하세요",
+                      hintStyle: TextStyle(
+                        fontFamily: 'Varela',
+                        color:Colors.black87.withOpacity(0.5),
+                      ),
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      suffixIcon: Icon(
+                        Icons.search,
+                       color: Colors.black,
+                        size: 36.0,
+                      ),
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: 15.0,),
+                Divider( thickness: 1, color: Colors.grey, ),
+                Container(
+
+                  width: 300.0,
+                  child: Center(
+                    child: Text('$title',
+                        style:TextStyle(
+                          fontFamily: 'Varela',
+                        fontSize: 20.0,
+                    )
+                    ),
+                  ),
+                ),
+                //당첨 리스트
+                Container(
                 child: Column(
-                  children: [
-                    Column(
-                      children: [
-                        Text('1등',
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 15.0,
-                          ),
-                        ),
-                        Text('$prize_1',
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 15.0,
-                          ),
-                        ),
-                        SizedBox(height: 15.0,),
-
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text('2자리',
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 15.0,
-                          ),
-                        ),
-                        Text('$prize_12',
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 15.0,
-                          ),
-                        ),
-                        SizedBox(height: 15.0,),
-                      ],
-                    ),
-                    Column(
-                      children: [
-
-                        Text('3자리(앞)',
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 15.0,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                        children:[
-                          Text('$prize_f3',
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 15.0,
-                          ),
-                        ),
-                          SizedBox(width:10),
-                          ],
-                        ),
-                        SizedBox(height: 15.0,),
-
-                        Text('3자리(뒤)',
+                children: [
+                Container(
+                  child: Column(
+                    children: [
+                      Column(
+                        children: [
+                          Text('1등',
                           style: TextStyle(
                             fontFamily: 'Varela',
                             fontSize: 15.0,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children:[
-                            Text('$prize_l3',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 15.0,
-                              ),
                             ),
-                            SizedBox(width:10),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-
-                        Text('3자리(앞)',
+                          ),
+                          Text('$prize_1',
                           style: TextStyle(
                             fontFamily: 'Varela',
                             fontSize: 15.0,
+                            ),
                           ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children:[
-                            Text('287',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 15.0,
-                              ),
-                            ),
-                            SizedBox(width:10),
-                            Text('302',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 15.0,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 15.0,),
+                          SizedBox(height: 15.0,),
 
-                        Text('3자리(뒤)',
-                          style: TextStyle(
-                            fontFamily: 'Varela',
-                            fontSize: 15.0,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children:[
-                            Text('123',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 15.0,
-                              ),
-                            ),
-                            SizedBox(width:10),
-                            Text('456',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 15.0,
-                              ),
-                            ),
-                          ],
-                        ),
                         ],
-                    ),
-                    Visibility(
-                      visible: isVisible,
-                      child: Column(
+                      ),
+                      Column(
+                        children: [
+                          Text('2자리',
+                          style: TextStyle(
+                            fontFamily: 'Varela',
+                            fontSize: 15.0,
+                            ),
+                          ),
+                          Text('$prize_12',
+                          style: TextStyle(
+                            fontFamily: 'Varela',
+                            fontSize: 15.0,
+                            ),
+                          ),
+                          SizedBox(height: 15.0,),
+                        ],
+                      ),
+                      Column(
                         children: [
 
                           Text('3자리(앞)',
-                            style: TextStyle(
-                              fontFamily: 'Varela',
-                              fontSize: 20.0,
+                          style: TextStyle(
+                            fontFamily: 'Varela',
+                            fontSize: 15.0,
                             ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children:[
-                              Text('287',
-                                style: TextStyle(
-                                  fontFamily: 'Varela',
-                                  fontSize: 20.0,
-                                ),
-                              ),
-                              SizedBox(width:10),
-                              Text('302',
-                                style: TextStyle(
-                                  fontFamily: 'Varela',
-                                  fontSize: 20.0,
-                                ),
-                              ),
+                          children:[
+                            Text('$prize_f3',
+                          style: TextStyle(
+                            fontFamily: 'Varela',
+                            fontSize: 15.0,
+                            ),
+                          ),
+                            SizedBox(width:10),
                             ],
                           ),
                           SizedBox(height: 15.0,),
@@ -300,52 +237,184 @@ class _NumberPageState extends State<NumberPage> {
                           Text('3자리(뒤)',
                             style: TextStyle(
                               fontFamily: 'Varela',
-                              fontSize: 20.0,
+                              fontSize: 15.0,
                             ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children:[
-                              Text('123',
+                              Text('$prize_l3',
                                 style: TextStyle(
                                   fontFamily: 'Varela',
-                                  fontSize: 20.0,
+                                  fontSize: 15.0,
                                 ),
                               ),
                               SizedBox(width:10),
-                              Text('456',
-                                style: TextStyle(
-                                  fontFamily: 'Varela',
-                                  fontSize: 20.0,
-                                ),
-                              ),
                             ],
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-              ),
-             RaisedButton(
-               child: Text('Show/Hide'),
-                 onPressed: () {
-                  setState(() {
-                    isVisible = !isVisible;
-                  });
-                 },),
-              ],//로또번호 컬럼
-            ),
-            ),
-            Divider( thickness: 1, color: Colors.grey, ),
-            SizedBox(height:20.0),
+                      SizedBox(height: 15,),
+                      Column(
+                        children: [
 
-            //댓글리스트
-            ReplyScreen(),
-          ],
+                          Text('아차상',
+                          style: TextStyle(
+                            fontFamily: 'Varela',
+                            fontSize: 15.0,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                          children:[
+                            Text('$prize_n1',
+                          style: TextStyle(
+                            fontFamily: 'Varela',
+                            fontSize: 15.0,
+                            ),
+                          ),
+                            SizedBox(width:10),
+                            ],
+                          ),
+                          SizedBox(height: 15.0,),
+                        ],
+                      ),
+
+                      //숨김부분
+                      Visibility(
+                        visible: isVisible,
+                        child: Column(
+                          children: [
+
+                            Text('2등',
+                              style: TextStyle(
+                                fontFamily: 'Varela',
+                                fontSize: 20.0,
+                              ),
+                            ),
+                            Container(
+                              height: 50,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: prize_2.length,
+                                itemBuilder: (context, index){
+                                  return Row(
+                                    children:[ Text(
+                                        prize_2[index]
+                                    ),
+                                      SizedBox(width: 10,)
+                                    ],
+                                  );
+
+                                }
+
+                              ),
+                            ),
+                            SizedBox(width:10),
+                            SizedBox(height: 15.0,),Text('3등',
+                              style: TextStyle(
+                                fontFamily: 'Varela',
+                                fontSize: 20.0,
+                              ),
+                            ),
+                            Container(
+                              height: 50,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: prize_3.length,
+                                itemBuilder: (context, index){
+                                  return Row(
+                                    children:[ Text(
+                                        prize_3[index]
+                                    ),
+                                      SizedBox(width: 10,)
+                                    ],
+                                  );
+
+                                }
+
+                              ),
+                            ),
+                            SizedBox(width:10),
+                            SizedBox(height: 15.0,),Text('4등',
+                              style: TextStyle(
+                                fontFamily: 'Varela',
+                                fontSize: 20.0,
+                              ),
+                            ),
+                            Container(
+                              height: 50,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: prize_4.length,
+                                itemBuilder: (context, index){
+                                  return Row(
+                                    children:[ Text(
+                                        prize_4[index]
+                                    ),
+                                      SizedBox(width: 10,)
+                                    ],
+                                  );
+
+                                }
+
+                              ),
+                            ),
+                            SizedBox(width:10),
+                            SizedBox(height: 15.0,),Text('5등',
+                              style: TextStyle(
+                                fontFamily: 'Varela',
+                                fontSize: 20.0,
+                              ),
+                            ),
+                            Container(
+                              height: 50,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: prize_5.length,
+                                itemBuilder: (context, index){
+                                  return Row(
+                                    children:[ Text(
+                                        prize_5[index]
+                                    ),
+                                      SizedBox(width: 10,)
+                                    ],
+                                  );
+
+                                }
+
+                              ),
+                            ),
+                            SizedBox(width:10),
+                            SizedBox(height: 15.0,),
+
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                 RaisedButton(
+                 child: Text('Show/Hide'),
+                   onPressed: () {
+                    setState(() {
+                      isVisible = !isVisible;
+                    });
+                   },),
+                ],//로또번호 컬럼
+                ),
+                ),
+                Divider( thickness: 1, color: Colors.grey, ),
+                SizedBox(height:20.0),
+
+                //댓글리스트
+                ReplyScreen(),
+              ],
+            ),
+          ),
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => CmmtBox()));
