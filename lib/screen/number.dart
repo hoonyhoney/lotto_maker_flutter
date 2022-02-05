@@ -115,11 +115,13 @@ class _NumberPageState extends State<NumberPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Expanded(
           child: Container(
-            height: 1000,
+            height: 2000,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
                   alignment: Alignment.center,
@@ -169,11 +171,12 @@ class _NumberPageState extends State<NumberPage> {
                     ),
                   ),
                 ),
+                SizedBox(height: 20,),
                 //당첨 리스트
                 Container(
                 child: Column(
                 children: [
-                Container(
+                  Container(
                   child: Column(
                     children: [
                       Column(
@@ -181,7 +184,7 @@ class _NumberPageState extends State<NumberPage> {
                           Text('1등',
                           style: TextStyle(
                             fontFamily: 'Varela',
-                            fontSize: 15.0,
+                            fontSize: 20.0,
                             ),
                           ),
                           Text('$prize_1',
@@ -199,7 +202,7 @@ class _NumberPageState extends State<NumberPage> {
                           Text('2자리',
                           style: TextStyle(
                             fontFamily: 'Varela',
-                            fontSize: 15.0,
+                            fontSize: 20.0,
                             ),
                           ),
                           Text('$prize_12',
@@ -217,7 +220,7 @@ class _NumberPageState extends State<NumberPage> {
                           Text('3자리(앞)',
                           style: TextStyle(
                             fontFamily: 'Varela',
-                            fontSize: 15.0,
+                            fontSize: 20.0,
                             ),
                           ),
                           Row(
@@ -237,7 +240,7 @@ class _NumberPageState extends State<NumberPage> {
                           Text('3자리(뒤)',
                             style: TextStyle(
                               fontFamily: 'Varela',
-                              fontSize: 15.0,
+                              fontSize: 20.0,
                             ),
                           ),
                           Row(
@@ -261,7 +264,7 @@ class _NumberPageState extends State<NumberPage> {
                           Text('아차상',
                           style: TextStyle(
                             fontFamily: 'Varela',
-                            fontSize: 15.0,
+                            fontSize: 20.0,
                             ),
                           ),
                           Row(
@@ -281,114 +284,112 @@ class _NumberPageState extends State<NumberPage> {
                       ),
 
                       //숨김부분
-                      Visibility(
-                        visible: isVisible,
-                        child: Column(
-                          children: [
+                      SingleChildScrollView(
+                        child: Visibility(
+                          visible: isVisible,
+                          child: Container(
+                            height: 1050,
+                            child: Column(
+                              children: [
 
-                            Text('2등',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 20.0,
-                              ),
-                            ),
-                            Container(
-                              height: 50,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: prize_2.length,
-                                itemBuilder: (context, index){
-                                  return Row(
-                                    children:[ Text(
-                                        prize_2[index]
+                                Text('2등',
+                                  style: TextStyle(
+                                    fontFamily: 'Varela',
+                                    fontSize: 20.0,
+                                  ),
+                                ),
+                                SizedBox(height: 10,),
+                                Container(
+                                  height: 50,
+                                  child: GridView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: prize_2.length,
+                                    itemBuilder: (context, index) => Text(prize_2[index]
+                                    ,style: TextStyle(fontSize: 15),),
+                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 5,
+                                      //가로세로 비율
+                                      childAspectRatio: (10/2),
                                     ),
-                                      SizedBox(width: 10,)
-                                    ],
-                                  );
 
-                                }
+                                  ),
+                                ),
+                                SizedBox(width:10),
+                                SizedBox(height: 15.0,),
+                                Text('3등',
+                                  style: TextStyle(
+                                    fontFamily: 'Varela',
+                                    fontSize: 20.0,
+                                  ),
+                                ),
+                                SizedBox(height: 10,),
+                                Container(
+                                  height: 50,
+                                  child: GridView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: prize_3.length,
+                                    itemBuilder: (context, index) => Text(prize_3[index],style: TextStyle(fontSize: 15),),
 
-                              ),
-                            ),
-                            SizedBox(width:10),
-                            SizedBox(height: 15.0,),Text('3등',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 20.0,
-                              ),
-                            ),
-                            Container(
-                              height: 50,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: prize_3.length,
-                                itemBuilder: (context, index){
-                                  return Row(
-                                    children:[ Text(
-                                        prize_3[index]
+                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 5,
+                                      childAspectRatio: (10/2),
                                     ),
-                                      SizedBox(width: 10,)
-                                    ],
-                                  );
 
-                                }
-
-                              ),
-                            ),
-                            SizedBox(width:10),
-                            SizedBox(height: 15.0,),Text('4등',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 20.0,
-                              ),
-                            ),
-                            Container(
-                              height: 50,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: prize_4.length,
-                                itemBuilder: (context, index){
-                                  return Row(
-                                    children:[ Text(
-                                        prize_4[index]
+                                  ),
+                                ),
+                                SizedBox(width:10),
+                                SizedBox(height: 15.0,),Text('4등',
+                                  style: TextStyle(
+                                    fontFamily: 'Varela',
+                                    fontSize: 20.0,
+                                  ),
+                                ),
+                                SizedBox(height: 10,),
+                                Container(
+                                  height: 200,
+                                  child: GridView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: prize_4.length,
+                                    itemBuilder: (context, index) => Text(prize_4[index],style: TextStyle(fontSize: 15),),
+                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 5,
+                                      childAspectRatio: (10/2),
                                     ),
-                                      SizedBox(width: 10,)
-                                    ],
-                                  );
 
-                                }
+                                  ),
+                                ),
 
-                              ),
-                            ),
-                            SizedBox(width:10),
-                            SizedBox(height: 15.0,),Text('5등',
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 20.0,
-                              ),
-                            ),
-                            Container(
-                              height: 50,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: prize_5.length,
-                                itemBuilder: (context, index){
-                                  return Row(
-                                    children:[ Text(
-                                        prize_5[index]
+                                SizedBox(width:10),
+                                SizedBox(height: 15.0,),Text('5등',
+                                  style: TextStyle(
+                                    fontFamily: 'Varela',
+                                    fontSize: 20.0,
+                                  ),
+                                ),
+                                SizedBox(height: 10,),
+                                Container(
+                                  height: 500,
+                                  child: GridView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: prize_5.length,
+                                    itemBuilder: (context, index) =>
+                                        Text(prize_5[index],style: TextStyle(fontSize: 15),),
+                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 5,
+                                      childAspectRatio: (10/2),
                                     ),
-                                      SizedBox(width: 10,)
-                                    ],
-                                  );
 
-                                }
+                                  ),
+                                ),
+                                SizedBox(width:10),
+                                SizedBox(height: 15.0,),
 
-                              ),
+                              ],
                             ),
-                            SizedBox(width:10),
-                            SizedBox(height: 15.0,),
-
-                          ],
+                          ),
                         ),
                       ),
                     ],
