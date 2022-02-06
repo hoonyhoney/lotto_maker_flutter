@@ -14,6 +14,8 @@ class _ReplyScreenState extends State<ReplyScreen> {
   final _firestore = FirebaseFirestore.instance;
   final messageTextController = TextEditingController();
   String inputText ='';
+  int likey=0;
+  int rereply =0;
 
   @override
   Widget build(BuildContext context) {

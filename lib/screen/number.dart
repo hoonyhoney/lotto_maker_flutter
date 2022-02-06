@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
+import 'package:lotto_maker_flutter/DB/database_helper.dart';
 import 'package:lotto_maker_flutter/screen/writePost.dart';
 import 'package:lotto_maker_flutter/subViews/commentBox.dart';
 import 'package:lotto_maker_flutter/subViews/reply.dart';
@@ -31,6 +32,7 @@ class _NumberPageState extends State<NumberPage> {
   List<dynamic> prize_3 = [];
   List<dynamic> prize_4 = [];
   List<dynamic> prize_5 = [];
+  final textController = TextEditingController();
 
   @override
   void initState() {
@@ -133,6 +135,7 @@ class _NumberPageState extends State<NumberPage> {
 
                   ),
                   child: TextField(
+                    controller: textController,
                     cursorColor: Colors.black87,
                     //autofocus: true,
                     textAlign: TextAlign.center,
@@ -155,6 +158,16 @@ class _NumberPageState extends State<NumberPage> {
                       ),
                     ),
                   ),
+                ),
+                RaisedButton(
+                  onPressed: () async{
+                    await DatabaseHelper.instance.add(
+                      Grocery(name: textController.text),
+                    );
+                    setState(() {
+                      textController.clear();
+                    });
+                  },
                 ),
 
                 SizedBox(height: 15.0,),
@@ -411,6 +424,39 @@ class _NumberPageState extends State<NumberPage> {
 
                 //댓글리스트
                 ReplyScreen(),
+
+                Container(
+                  height: 500,
+                  child: Center(
+                    child: FutureBuilder<List<Grocery>>(
+                        future: DatabaseHelper.instance.getGroceries(),
+                        builder: (BuildContext context, AsyncSnapshot<List<Grocery>> snapshot) {
+                          if(!snapshot.hasData) {
+                            return Center(child: Text('Loading...'));
+                          }
+                          return snapshot.data!.isEmpty
+                              ? Center(child: Text('No List'))
+                              : ListView(
+                            children: snapshot.data!.map((grocery){
+                              return Center(
+                                child: Card(
+                                  child: ListTile(
+                                    title:Text(grocery.name),
+                                    onLongPress: () {
+                                      setState(() {
+                                        DatabaseHelper.instance.remove(grocery.id!);
+                                      });
+                                    },
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          );
+                        }
+                    ),
+                  ),
+                ),
+
               ],
             ),
           ),
@@ -422,11 +468,32 @@ class _NumberPageState extends State<NumberPage> {
         },
         child: Icon(Icons.create),
       ),
-
-
     );
+
   }
+
+
 }
 
+class Grocery {
+  final int? id;
+  final String name;
+
+  //생성자처리
+  Grocery({this.id, required this.name});
+
+  factory Grocery.fromMap(Map<String, dynamic> json) => new Grocery(
+  id:json['id'],
+  name: json['name'],
+  );
+
+  Map<String, dynamic> toMap() {
+    return{
+      'id':id,
+      'name':name,
+    };
+  }
+
+}
 
 
