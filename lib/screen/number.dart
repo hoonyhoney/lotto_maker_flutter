@@ -113,6 +113,27 @@ class _NumberPageState extends State<NumberPage> {
    }
  }
 
+  void _showDialog(){
+   showDialog(
+     context: context,
+     builder: (BuildContext context){
+       return AlertDialog(
+         title: new Text("Alert title"),
+         content: Container(
+           child: Text('content')
+         ),
+         actions: [
+           new FlatButton(
+             child: new Text("CLose"),
+             onPressed: (){
+               Navigator.pop(context);
+             },
+           )
+         ],
+       );
+     }
+   );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -415,6 +436,7 @@ class _NumberPageState extends State<NumberPage> {
                     setState(() {
                       isVisible = !isVisible;
                     });
+                    _showDialog();
                    },),
                 ],//로또번호 컬럼
                 ),
@@ -468,6 +490,8 @@ class _NumberPageState extends State<NumberPage> {
         },
         child: Icon(Icons.create),
       ),
+
+
     );
 
   }
@@ -495,5 +519,4 @@ class Grocery {
   }
 
 }
-
 
