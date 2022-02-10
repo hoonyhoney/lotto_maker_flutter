@@ -78,9 +78,6 @@ class _NumberPageState extends State<NumberPage> {
           print(prizeNo);
           prize_5.add(prizeNo);
         }
-        print(prize_3);
-        print(prize_4);
-        print(prize_5);
       });
 
 
@@ -113,14 +110,15 @@ class _NumberPageState extends State<NumberPage> {
    }
  }
 
-  void _showDialog(){
+  void _showDialog(var value){
    showDialog(
      context: context,
      builder: (BuildContext context){
        return AlertDialog(
          title: new Text("Alert title"),
          content: Container(
-           child: Text('content')
+           child: Text('1등'
+           )
          ),
          actions: [
            new FlatButton(
@@ -172,15 +170,14 @@ class _NumberPageState extends State<NumberPage> {
                       ),
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
-                      suffixIcon: Icon(
-                        Icons.search,
-                       color: Colors.black,
-                        size: 36.0,
-                      ),
+
                     ),
+                    onSubmitted: (value) {
+                      _showDialog(value);
+                    },
                   ),
                 ),
-                RaisedButton(
+/*                RaisedButton(
                   onPressed: () async{
                     await DatabaseHelper.instance.add(
                       Grocery(name: textController.text),
@@ -189,7 +186,7 @@ class _NumberPageState extends State<NumberPage> {
                       textController.clear();
                     });
                   },
-                ),
+                ),*/
 
                 SizedBox(height: 15.0,),
                 Divider( thickness: 1, color: Colors.grey, ),
@@ -436,7 +433,6 @@ class _NumberPageState extends State<NumberPage> {
                     setState(() {
                       isVisible = !isVisible;
                     });
-                    _showDialog();
                    },),
                 ],//로또번호 컬럼
                 ),
@@ -447,7 +443,7 @@ class _NumberPageState extends State<NumberPage> {
                 //댓글리스트
                 ReplyScreen(),
 
-                Container(
+                /*Container(
                   height: 500,
                   child: Center(
                     child: FutureBuilder<List<Grocery>>(
@@ -477,7 +473,7 @@ class _NumberPageState extends State<NumberPage> {
                         }
                     ),
                   ),
-                ),
+                ),*/
 
               ],
             ),
@@ -499,7 +495,8 @@ class _NumberPageState extends State<NumberPage> {
 
 }
 
-class Grocery {
+//SQFLITE
+/*class Grocery {
   final int? id;
   final String name;
 
@@ -518,5 +515,5 @@ class Grocery {
     };
   }
 
-}
+}*/
 

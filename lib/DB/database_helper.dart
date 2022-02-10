@@ -32,7 +32,7 @@ class DatabaseHelper {
     ''');
   }
 
-  Future<List<Grocery>> getGroceries() async {
+  /*Future<List<Grocery>> getGroceries() async {
     Database db = await instance.database;
     var groceries = await db.query('groceries', orderBy: 'name');
     List<Grocery> groceryList = groceries.isNotEmpty
@@ -49,6 +49,6 @@ class DatabaseHelper {
     Database db = await instance.database;
     return await db.delete('groceries', where: 'id=?', whereArgs: [id]);
   }
-
+*/
 
 }

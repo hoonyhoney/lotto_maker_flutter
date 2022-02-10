@@ -6,7 +6,7 @@ class Dialogs extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: new Text("타이틀"),
-      content: new Text(""),
+      content: new Text("테스트야요"),
     );
   }
 }
