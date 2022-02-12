@@ -2,10 +2,12 @@ import 'dart:core';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:html/parser.dart';
 import 'package:lotto_maker_flutter/DB/database_helper.dart';
 import 'package:lotto_maker_flutter/screen/writePost.dart';
 import 'package:lotto_maker_flutter/subViews/commentBox.dart';
+import 'package:lotto_maker_flutter/subViews/dialogs.dart';
 import 'package:lotto_maker_flutter/subViews/reply.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,7 +25,7 @@ class NumberPage extends StatefulWidget {
 class _NumberPageState extends State<NumberPage> {
 
   var prize_1;
-  var prize_12;
+  var prize_l2;
   var prize_f3;
   var prize_l3;
   var title;
@@ -50,7 +52,7 @@ class _NumberPageState extends State<NumberPage> {
 
       setState(() {
         prize_1 = document.getElementsByClassName("prize-1")[0].children[1].children[0].children[0].text;
-        prize_12= document.getElementsByClassName("prize-l2")[0].children[1].children[0].children[0].text;
+        prize_l2= document.getElementsByClassName("prize-l2")[0].children[1].children[0].children[0].text;
         prize_f3 = document.getElementsByClassName("prize-f3")[0].children[1].children[0].children[0].text;
         prize_l3 = document.getElementsByClassName("prize-l3")[0].children[1].children[0].children[0].text;
         title = document.getElementById("site-head-title")?.getElementsByTagName('h2').first.text;
@@ -110,25 +112,46 @@ class _NumberPageState extends State<NumberPage> {
    }
  }
 
-  void _showDialog(var value){
+ //결과확인
+ dynamic getResult(var value) {
+  var f3 = '';
+  var l3 = '';
+  var l2 = '';
+
+   if(value.length==6) {
+      f3 = value.substring(0, 3);
+      l3 = value.substring(3, 6);
+      l2 = value.substring(4, 6);
+   }else {
+     return '숫자를 제대로 입력해주세요';
+   }
+
+   if(value==prize_1) {
+     return '1등';
+   } else if(prize_2.contains(value)){
+     return '2등';
+   } else if(prize_3.contains(value)) {
+     return '3등';
+   }else if(prize_4.contains(value)) {
+     return '4등';
+   }else if(prize_5.contains(value)) {
+     return '5등';
+   }else if(prize_f3.contains(f3)) {
+     return '앞 세자리';
+   }else if(prize_l3.contains(l3)) {
+     return '뒤 세자리';
+   }else if(prize_l2.contains(l2)) {
+     return '뒤 2자리';
+   }else {
+     return '노당첨스';
+   }
+ }
+
+  void _showDialog(dynamic result){
    showDialog(
      context: context,
      builder: (BuildContext context){
-       return AlertDialog(
-         title: new Text("Alert title"),
-         content: Container(
-           child: Text('1등'
-           )
-         ),
-         actions: [
-           new FlatButton(
-             child: new Text("CLose"),
-             onPressed: (){
-               Navigator.pop(context);
-             },
-           )
-         ],
-       );
+       return Dialogs(result: result);
      }
    );
   }
@@ -155,6 +178,8 @@ class _NumberPageState extends State<NumberPage> {
                   ),
                   child: TextField(
                     controller: textController,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
                     cursorColor: Colors.black87,
                     //autofocus: true,
                     textAlign: TextAlign.center,
@@ -163,7 +188,7 @@ class _NumberPageState extends State<NumberPage> {
                       fontSize: 20.0,
                     ),
                     decoration: InputDecoration(
-                      //hintText: "    번호를 입력하세요",
+                      hintText: "    번호를 입력하세요",
                       hintStyle: TextStyle(
                         fontFamily: 'Varela',
                         color:Colors.black87.withOpacity(0.5),
@@ -173,7 +198,10 @@ class _NumberPageState extends State<NumberPage> {
 
                     ),
                     onSubmitted: (value) {
-                      _showDialog(value);
+                      var result = getResult(value);
+                      textController.clear();
+                      _showDialog(result);
+
                     },
                   ),
                 ),
@@ -236,7 +264,7 @@ class _NumberPageState extends State<NumberPage> {
                             fontSize: 20.0,
                             ),
                           ),
-                          Text('$prize_12',
+                          Text('$prize_l2',
                           style: TextStyle(
                             fontFamily: 'Varela',
                             fontSize: 15.0,
