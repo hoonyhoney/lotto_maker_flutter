@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
 
 
 class ReplyScreen extends StatefulWidget {
@@ -125,15 +126,10 @@ class _ReplyScreenState extends State<ReplyScreen> {
                     //bunch of reply
                           Row(
                                   children: [
-                                  SizedBox(width:75.0),
-                          Text('좋아요',
-                          style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 14.0,
+                                    SizedBox(width:75.0),
+                          LikeButton(
+                            size: 20.0,
                           ),
-                          ),
-                          Icon(Icons.thumb_up,
-                          size: 15.0,),
                           Text('123',
                           style: TextStyle(
                           fontFamily: 'Varela',

@@ -67,11 +67,11 @@ class MyHomePage extends StatefulWidget {
            ),
 
        actions: [
-           IconButton(
+/*           IconButton(
              icon: Icon(Icons.notifications_none, color: Color(0xFF545D68),
              ),
              onPressed: () {},
-           ),
+           ),*/
          ],
        ),
        body: ListView(

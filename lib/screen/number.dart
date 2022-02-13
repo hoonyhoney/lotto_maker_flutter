@@ -10,6 +10,7 @@ import 'package:lotto_maker_flutter/subViews/commentBox.dart';
 import 'package:lotto_maker_flutter/subViews/dialogs.dart';
 import 'package:lotto_maker_flutter/subViews/reply.dart';
 import 'package:http/http.dart' as http;
+import 'package:share/share.dart';
 
 import 'bottom_bar.dart';
 
@@ -35,6 +36,9 @@ class _NumberPageState extends State<NumberPage> {
   List<dynamic> prize_4 = [];
   List<dynamic> prize_5 = [];
   final textController = TextEditingController();
+
+  String text='https://www.youtube.com/channel/UCNoxvMsaslxo1Jga8jKPFRw';
+  String subject='앱핥기 채널';
 
   @override
   void initState() {
@@ -461,7 +465,27 @@ class _NumberPageState extends State<NumberPage> {
                     setState(() {
                       isVisible = !isVisible;
                     });
-                   },),
+                   },
+                 ),
+                  RaisedButton(
+
+                    child: Wrap(
+                      children:
+                      [
+                      Icon(Icons.share
+                      ),
+                      Text('Share'),
+                      ]
+                    ),
+                    onPressed: () {
+                      final RenderObject? box = context.findRenderObject();
+                      Share.share(
+                        text,
+                        subject: subject,
+
+                      );
+                    }
+                  ),
                 ],//로또번호 컬럼
                 ),
                 ),
@@ -502,6 +526,7 @@ class _NumberPageState extends State<NumberPage> {
                     ),
                   ),
                 ),*/
+
 
               ],
             ),
