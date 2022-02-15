@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
+import 'package:intl/intl.dart';
+
 
 
 class ReplyScreen extends StatefulWidget {
@@ -17,6 +19,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
   String inputText ='';
   int likey=0;
   int rereply =0;
+  String formatDate = DateFormat('yy/MM/dd - HH:mm:ss').format(DateTime.now()); //format변경
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,9 @@ class _ReplyScreenState extends State<ReplyScreen> {
                             inputText=value;
                             messageTextController.clear();
                             _firestore.collection('post').add({ //post라는 컬렉션에 contents컬럼으로 입력
-                              'contents':inputText
+                              'contents':inputText,
+                              'time' : DateFormat('yy/MM/dd - HH:mm:ss').format(DateTime.now()),
+                              'likey': likey,
                             });
                           },
                           cursorColor: Colors.black87,
@@ -83,7 +88,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
             Row(
               children: [
                 StreamBuilder<QuerySnapshot>(
-                  stream: _firestore.collection('post').snapshots(),
+                  stream: _firestore.collection('post').orderBy('time',descending: true).snapshots(),
                   //builder는 context와 리턴받을 것을 parameter로 가짐
                   builder: (context, snapshot){
                     //스냅샷이 없는 경우 스피너
@@ -100,6 +105,10 @@ class _ReplyScreenState extends State<ReplyScreen> {
                       List<Column> messageWidgets = [];
                       for(var message in messages){
                         final messageText = message.get('contents');
+                        final time = message.get('time');
+                        final likey = message.get('likey');
+                        var doc_id =  message.id;
+                        print("doc_id"+doc_id);
                         //messageWidget 한개
                         print(messageText);
                         final messageWidget =
@@ -128,9 +137,10 @@ class _ReplyScreenState extends State<ReplyScreen> {
                                   children: [
                                     SizedBox(width:75.0),
                           LikeButton(
+                            onTap: onLikeButtonTapped,
                             size: 20.0,
                           ),
-                          Text('123',
+                          Text('$likey',
                           style: TextStyle(
                           fontFamily: 'Varela',
                           fontSize: 10.0,
@@ -174,6 +184,19 @@ class _ReplyScreenState extends State<ReplyScreen> {
         ),
       ),
     );
+  }
+
+  Future<bool> onLikeButtonTapped(bool isLiked) async{
+
+    //해당 doc.id를 가져온다.
+
+
+    print("프린트 테세트");
+
+
+     //return success? !isLiked:isLiked;
+
+    return !isLiked;
   }
 }
 

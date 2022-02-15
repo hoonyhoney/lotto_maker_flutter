@@ -48,23 +48,31 @@ class MyHomePage extends StatefulWidget {
               icon: Icon(Icons.arrow_back, color: Color(0xFF545D68)),
               onPressed: () {  },
             ),*/
-           title:Row(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children :[ AnimatedTextKit(
-               animatedTexts: [
-                 WavyAnimatedText('Lotto Maker',
-                     textStyle: TextStyle(
-                       fontSize: 30.0, color: Colors.black,
-                       fontWeight: FontWeight.bold,
-                     ),
-                     speed: Duration(milliseconds: 300)),
+           title:Container(
+             child: Row(
+               mainAxisAlignment: MainAxisAlignment.center,
+               children :[
+                 AnimatedTextKit(
+                 animatedTexts: [
+                   WavyAnimatedText('หวย 로또 Lotto',
+                       textStyle: TextStyle(
+                         fontSize: 30.0, color: Colors.black,
+                         fontWeight: FontWeight.bold,
+                       ),
+                       speed: Duration(milliseconds: 300)),
+                 ],
+                 isRepeatingAnimation: true,
+                 onTap: () {
+                 },
+               ),
+                 SizedBox(width: 20.0,),
+                 Image.asset('images/th.png', width: 40,height: 40,),
+                 SizedBox(width: 5.0,),
+                 Image.asset('images/kr.png', width: 40,height: 40,),
                ],
-               isRepeatingAnimation: true,
-               onTap: () {
-               },
              ),
-             ],
            ),
+
 
        actions: [
 /*           IconButton(

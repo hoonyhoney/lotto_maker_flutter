@@ -495,6 +495,7 @@ class _NumberPageState extends State<NumberPage> {
                 //댓글리스트
                 ReplyScreen(),
 
+
                 /*Container(
                   height: 500,
                   child: Center(
@@ -533,12 +534,12 @@ class _NumberPageState extends State<NumberPage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+/*      floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => CmmtBox()));
         },
         child: Icon(Icons.create),
-      ),
+      ),*/
 
 
     );
