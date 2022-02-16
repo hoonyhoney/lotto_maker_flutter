@@ -20,6 +20,11 @@ class _ReplyScreenState extends State<ReplyScreen> {
   int likey=0;
   int rereply =0;
   String formatDate = DateFormat('yy/MM/dd - HH:mm:ss').format(DateTime.now()); //format변경
+  bool isMoreRequesting =false; //추가 데이터 가져올때 하단 인디케이터 표시
+  int nextPage=0; //다음데이터 위치파악하기 위함
+  List<String> serverItems= [];  //서버에 저장되어 있는 데이타들
+  List<String> items = []; //실제 데이타를 서버에 가져와 저장되는 데이터(리스트에 표시할때 사용)
+  double _dragDistance=0; //드레그 거리를 체크하기 위함 , 해당 값을 평균내서 50%이상 움직였을때 데이터를 불러오는 작업을 하게됨
 
   @override
   Widget build(BuildContext context) {
@@ -103,12 +108,12 @@ class _ReplyScreenState extends State<ReplyScreen> {
                       final messages = snapshot.data!.docs;
                     // messageWidgets 컬럼형식의 리스트 선언
                       List<Column> messageWidgets = [];
+
                       for(var message in messages){
                         final messageText = message.get('contents');
                         final time = message.get('time');
                         final likey = message.get('likey');
-                        var doc_id =  message.id;
-                        print("doc_id"+doc_id);
+                        final doc_id =  message.id;
                         //messageWidget 한개
                         print(messageText);
                         final messageWidget =
@@ -179,25 +184,24 @@ class _ReplyScreenState extends State<ReplyScreen> {
             //좋아요와 댓글
 
             //댓글을 입력하세요
-
           ],
         ),
       ),
     );
   }
-
   Future<bool> onLikeButtonTapped(bool isLiked) async{
+    /// send your request here 클릭된 doc_id를 가져와서
+    // final bool success= await sendRequest();
 
-    //해당 doc.id를 가져온다.
-
-
-    print("프린트 테세트");
-
-
-     //return success? !isLiked:isLiked;
-
+    //필드값 가져오기
+    dynamic likeyCnt = FirebaseFirestore.instance.collection('post').doc("1wGpuEAWT1D0U1dAUK11").get().then((DocumentSnapshot ds){
+      print(ds["likey"]);
+    });
+    /// if failed, you can do nothing
+    // return success? !isLiked:isLiked;
+    print(likeyCnt);
     return !isLiked;
   }
-}
 
+}
 
