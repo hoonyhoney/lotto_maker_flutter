@@ -118,7 +118,8 @@ class _ReplyScreenState extends State<ReplyScreen> {
                         print(messageText);
                         final messageWidget =
                         Column(
-                        children: [Row(
+                        children: [
+                          Row(
                             children:[
                               CircleAvatar(
                                 backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/28.jpg"),
@@ -135,6 +136,10 @@ class _ReplyScreenState extends State<ReplyScreen> {
                                     ),
                                   child: Text('$messageText'),
                               ),
+                              Visibility(
+                                  child: Text('$doc_id'),
+                                  visible: false,
+                              ),
                             ]
                         ),
                     //bunch of reply
@@ -146,16 +151,16 @@ class _ReplyScreenState extends State<ReplyScreen> {
                             size: 20.0,
                           ),
                           Text('$likey',
-                          style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 10.0,
+                            style: TextStyle(
+                            fontFamily: 'Varela',
+                            fontSize: 10.0,
                           ),
                           ),
                           SizedBox(width: 10.0,),
                           Text('답글달기',
-                          style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 14.0,
+                            style: TextStyle(
+                            fontFamily: 'Varela',
+                            fontSize: 14.0,
                           ),
                           ),
                           Icon(Icons.mode_comment,
@@ -169,14 +174,15 @@ class _ReplyScreenState extends State<ReplyScreen> {
                           ],
                           ),
                       ]
-                        );
+                        );//메시지위젯 -끝-
                         messageWidgets.add(messageWidget);
                       }
-                      return Expanded(
+
+                    return Expanded(
                         child: Column(
-                          children: messageWidgets,
-                        ),
-                      );
+                        children: messageWidgets,
+                    ),
+                    );
                   },
                 ),
               ],
@@ -194,7 +200,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
     // final bool success= await sendRequest();
 
     //필드값 가져오기
-    dynamic likeyCnt = FirebaseFirestore.instance.collection('post').doc("1wGpuEAWT1D0U1dAUK11").get().then((DocumentSnapshot ds){
+    dynamic likeyCnt = FirebaseFirestore.instance.collection('post').doc().get().then((DocumentSnapshot ds){
       print(ds["likey"]);
     });
     /// if failed, you can do nothing
@@ -204,4 +210,3 @@ class _ReplyScreenState extends State<ReplyScreen> {
   }
 
 }
-
