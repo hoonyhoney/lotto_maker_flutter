@@ -2,6 +2,7 @@ import 'dart:core';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:html/parser.dart';
 import 'package:lotto_maker_flutter/DB/database_helper.dart';
@@ -36,6 +37,7 @@ class _NumberPageState extends State<NumberPage> {
   List<dynamic> prize_4 = [];
   List<dynamic> prize_5 = [];
   final textController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
   String text='https://www.youtube.com/channel/UCNoxvMsaslxo1Jga8jKPFRw';
   String subject='앱핥기 채널';
@@ -160,11 +162,13 @@ class _NumberPageState extends State<NumberPage> {
    );
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Expanded(
           child: Container(
             height: 2000,
@@ -458,13 +462,16 @@ class _NumberPageState extends State<NumberPage> {
                     ],
                   ),
                 ),
-
                  RaisedButton(
-                 child: Text('Show/Hide'),
+                 child: Icon(Icons.more_horiz_outlined),
                    onPressed: () {
                     setState(() {
                       isVisible = !isVisible;
                     });
+                      _scrollController.animateTo(
+                          0, // 가고자하는 높이
+                        duration: const Duration(milliseconds: 1), //시간
+                        curve: Curves.fastOutSlowIn);  //효과
                    },
                  ),
                   RaisedButton(

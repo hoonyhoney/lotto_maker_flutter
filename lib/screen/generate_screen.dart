@@ -7,6 +7,7 @@ import 'loading_screen.dart';
 
 class GenerateScreen extends StatelessWidget {
 
+  var prize_1;
   LoadingScreen _loadingScreen = new LoadingScreen();
 
   @override
@@ -41,7 +42,7 @@ class GenerateScreen extends StatelessWidget {
                     Routes.birthdayScreen, context,2),
                 _buildCard(
                     'Name ✍ ', 'https://randomuser.me/api/portraits/men/30.jpg',
-                    Routes.loadingScreen, context,3),
+                    Routes.nameScreen, context,3),
                 _buildCard('Fake 🧙‍️ ',
                     'https://randomuser.me/api/portraits/men/31.jpg',
                     Routes.fakeLottery, context,4),
@@ -66,10 +67,10 @@ class GenerateScreen extends StatelessWidget {
               Navigator.of(context).pushNamed(Routes.birthdayScreen);
             }
             if(index==3){
-              Navigator.of(context).pushNamed(Routes.loadingScreen);
+              Navigator.of(context).pushNamed(Routes.nameScreen);
             }
             if(index==4){
-              Navigator.of(context).pushNamed(Routes.fakeLottery);
+              Navigator.of(context).pushNamed(Routes.fakeLottery,arguments: prize_1);
             }
           },
 
