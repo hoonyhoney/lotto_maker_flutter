@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class Dialogs extends StatefulWidget {
 
@@ -10,29 +11,70 @@ class Dialogs extends StatefulWidget {
   _DialogsState createState() => _DialogsState(result);
 }
 
-class _DialogsState extends State<Dialogs> {
+class _DialogsState extends State<Dialogs> with SingleTickerProviderStateMixin{
   dynamic result;
+  late  AnimationController _controller;
   _DialogsState(this.result);
+  void initState() {
+    super.initState();
+    _controller= AnimationController(
+      vsync:this,)
+      ..addListener(() {
+        setState(() {
+        });
+      });
+
+  }
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+  dynamic lottiePath () { //당첨결과에 따라 로띠화면 분기
+    if (result == "노당첨스") {
+        return "assets/angry-dog.json";
+    } else if(result=="숫자를 제대로 입력해주세요") {
+      return "assets/error-state-dog.json";
+    }
+    else{
+      return "assets/congratulation.json";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: new Text("당첨결과"),
-      content: Container(
-        child: Column(
-          children: [
-            Text(result),
+    return Center(
+      child: Container(
+        child: AlertDialog(
+          title: Center(child: new Text("당첨결과")),
+          content: Column(
+            children: [
+              SizedBox(height: 20.0,),
+              Text(result),
+              Lottie.asset(lottiePath(),
+                  controller: _controller,
+                  height: 300,
+                  width: 300,
+                  fit: BoxFit.fill,
+                  animate: true,
+                  onLoaded: (composition) {
+                    _controller.duration = composition.duration;
+                    _controller.repeat();
+                  }
+              ),
 
-          ],
+            ],
+          ),
+          actions: [
+            new FlatButton(
+            child: new Text("CLose"),
+        onPressed: (){
+        Navigator.pop(context);
+        },
+        )
+        ],
         ),
       ),
-      actions: [
-        new FlatButton(
-        child: new Text("CLose"),
-    onPressed: (){
-    Navigator.pop(context);
-    },
-    )
-    ],
     );
   }
 }

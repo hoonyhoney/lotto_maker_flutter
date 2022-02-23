@@ -189,6 +189,7 @@ class _NumberPageState extends State<NumberPage> {
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
                     cursorColor: Colors.black87,
+
                     //autofocus: true,
                     textAlign: TextAlign.center,
                     style: TextStyle(
