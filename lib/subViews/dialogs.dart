@@ -43,38 +43,39 @@ class _DialogsState extends State<Dialogs> with SingleTickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: AlertDialog(
-          title: Center(child: new Text("당첨결과")),
-          content: Column(
-            children: [
-              SizedBox(height: 20.0,),
-              Text(result),
-              Lottie.asset(lottiePath(),
-                  controller: _controller,
-                  height: 300,
-                  width: 300,
-                  fit: BoxFit.fill,
-                  animate: true,
-                  onLoaded: (composition) {
-                    _controller.duration = composition.duration;
-                    _controller.repeat();
-                  }
-              ),
+    return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0)
+      ),
+      title: Center(child: new Text("당첨결과")),
+      content: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 20.0,),
+            Text(result),
+            Lottie.asset(lottiePath(),
+                controller: _controller,
+                height: 300,
+                width: 300,
+                fit: BoxFit.fill,
+                animate: true,
+                onLoaded: (composition) {
+                  _controller.duration = composition.duration;
+                  _controller.repeat();
+                }
+            ),
 
-            ],
-          ),
-          actions: [
-            new FlatButton(
-            child: new Text("CLose"),
-        onPressed: (){
-        Navigator.pop(context);
-        },
-        )
-        ],
+          ],
         ),
       ),
+      actions: [
+        new FlatButton(
+        child: new Text("CLose"),
+    onPressed: (){
+    Navigator.pop(context);
+    },
+    )
+    ],
     );
   }
 }

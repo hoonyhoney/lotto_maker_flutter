@@ -50,6 +50,7 @@ dependencies:
   share: ^2.0.4
   like_button: ^2.0.4
   intl: ^0.17.0
+  jiffy: ^5.0.0
 
 
 

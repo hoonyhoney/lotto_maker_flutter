@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:like_button/like_button.dart';
 import 'package:intl/intl.dart';
 
@@ -64,7 +65,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                             messageTextController.clear();
                             _firestore.collection('post').add({ //post라는 컬렉션에 contents컬럼으로 입력
                               'contents':inputText,
-                              'time' : DateFormat('yy/MM/dd - HH:mm:ss').format(DateTime.now()),
+                              'time' : DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
                               'likey': likey,
                             });
                           },
@@ -112,10 +113,11 @@ class _ReplyScreenState extends State<ReplyScreen> {
                       for(var message in messages){
                         final messageText = message.get('contents');
                         final time = message.get('time');
+                        DateTime? newMillennium = DateTime.tryParse(time);
+                        String timesAgo = Jiffy(time).fromNow();
                         final likey = message.get('likey');
                         final doc_id =  message.id;
                         //messageWidget 한개
-                        print(messageText);
                         final messageWidget =
                         Column(
                         children: [
@@ -156,21 +158,19 @@ class _ReplyScreenState extends State<ReplyScreen> {
                             fontSize: 10.0,
                           ),
                           ),
+                          SizedBox(width:10.0),
+                          Text('$timesAgo',style: TextStyle(
+                            fontSize: 10.0
+                          ),),
                           SizedBox(width: 10.0,),
-                          Text('답글달기',
+                          /*Text('답글달기',
                             style: TextStyle(
                             fontFamily: 'Varela',
                             fontSize: 14.0,
                           ),
                           ),
                           Icon(Icons.mode_comment,
-                          size: 15.0,),
-                          Text('12',
-                          style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 10.0,
-                          ),
-                          ),
+                          size: 15.0,), */
                           ],
                           ),
                       ]
