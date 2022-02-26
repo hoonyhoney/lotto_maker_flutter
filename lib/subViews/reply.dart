@@ -20,7 +20,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
   String inputText ='';
   int likey=0;
   int rereply =0;
-  String formatDate = DateFormat('yy/MM/dd - HH:mm:ss').format(DateTime.now()); //format변경
+  DateTime formatDate =DateTime.now().toLocal(); //format변경
   bool isMoreRequesting =false; //추가 데이터 가져올때 하단 인디케이터 표시
   int nextPage=0; //다음데이터 위치파악하기 위함
   List<String> serverItems= [];  //서버에 저장되어 있는 데이타들
@@ -65,7 +65,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                             messageTextController.clear();
                             _firestore.collection('post').add({ //post라는 컬렉션에 contents컬럼으로 입력
                               'contents':inputText,
-                              'time' : DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()),
+                              'time' : DateFormat('yyyy-MM-dd kk:mm:ss').format(DateTime.now().toLocal()),
                               'likey': likey,
                             });
                           },
@@ -113,8 +113,11 @@ class _ReplyScreenState extends State<ReplyScreen> {
                       for(var message in messages){
                         final messageText = message.get('contents');
                         final time = message.get('time');
+                        print("time"+time);
                         DateTime? newMillennium = DateTime.tryParse(time);
+                        print(newMillennium);
                         String timesAgo = Jiffy(time).fromNow();
+                        print("timesAgo"+timesAgo);
                         final likey = message.get('likey');
                         final doc_id =  message.id;
                         //messageWidget 한개

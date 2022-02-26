@@ -226,7 +226,6 @@ class _NumberPageState extends State<NumberPage> {
                 ),*/
 
                 SizedBox(height: 15.0,),
-                Divider( thickness: 1, color: Colors.grey, ),
                 Container(
 
                   width: 300.0,
@@ -464,6 +463,11 @@ class _NumberPageState extends State<NumberPage> {
                   ),
                 ),
                  RaisedButton(
+                   textColor: Colors.black87,
+                   color: Colors.amberAccent,
+                   shape: RoundedRectangleBorder(
+                     borderRadius: BorderRadius.circular((10)),
+                   ),
                  child: Icon(Icons.more_horiz_outlined),
                    onPressed: () {
                     setState(() {
@@ -476,7 +480,11 @@ class _NumberPageState extends State<NumberPage> {
                    },
                  ),
                   RaisedButton(
-
+                      textColor: Colors.black87,
+                      color: Colors.amberAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular((10)),
+                      ),
                     child: Wrap(
                       children:
                       [
