@@ -71,7 +71,7 @@ class MyHomePage extends StatefulWidget {
                  Image.asset('images/kr.png', width: 40,height: 40,),
                ],
              ),
-           ),
+           ), //앱바
 
 
        actions: [
