@@ -111,11 +111,11 @@ class MyHomePage extends StatefulWidget {
          items: [
            BottomNavigationBarItem(
              icon:  new Icon(Icons.home),
-             title: new Text('Home'),
+             label: 'Home',
            ),
            BottomNavigationBarItem(
              icon: new Icon(Icons.casino),
-             title: new Text('Lucky'),
+             label:'Lucky',
            ),
          ],
        ),
