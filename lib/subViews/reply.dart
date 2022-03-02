@@ -142,7 +142,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                         children: [
                           Container(
                             color: Colors.white,
-                            height: 1000.0,
+                            height: 300.0,
                             //스크롤 할때 발생되는 이벤트 40%이상 스크롤 했을때 서버에서 데이터를 추가로 가져오는 루틴
                             child: NotificationListener<ScrollNotification>(
                               onNotification: (ScrollNotification notification) {
@@ -265,6 +265,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
 scrollNotification(notification) {
     //스크롤 최대 범위
    var containerExtent = notification.metrics.viewportDimension;
+   print("containerExtent"+containerExtent);
     if (notification is ScrollStartNotification) {
       //스크롤을 시작하면
       //스크롤 거리값을 0으로 초기화함
