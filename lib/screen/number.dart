@@ -88,7 +88,6 @@ class _NumberPageState extends State<NumberPage> {
         }
       });
 
-
     }else {
       throw Exception();
     }

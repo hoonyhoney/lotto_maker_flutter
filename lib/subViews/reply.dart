@@ -8,17 +8,12 @@ import 'package:like_button/like_button.dart';
 import 'package:intl/intl.dart';
 import 'package:lotto_maker_flutter/model/messageVO.dart';
 
-
-
 class ReplyScreen extends StatefulWidget {
-
   @override
   _ReplyScreenState createState() => _ReplyScreenState();
 }
 
-
 class _ReplyScreenState extends State<ReplyScreen> {
-
   final _firestore = FirebaseFirestore.instance;
   final messageTextController = TextEditingController();
   String inputText = '';
@@ -26,7 +21,8 @@ class _ReplyScreenState extends State<ReplyScreen> {
   DateTime formatDate = DateTime.now().toLocal(); //format변경
   bool isMoreRequesting = false; //추가 데이터 가져올때 하단 인디케이터 표시
   int nextPage = 0; //다음데이터 위치파악하기 위함
-  double _dragDistance = 0; //드레그 거리를 체크하기 위함 , 해당 값을 평균내서 50%이상 움직였을때 데이터를 불러오는 작업을 하게됨
+  double _dragDistance =
+  0; //드레그 거리를 체크하기 위함 , 해당 값을 평균내서 50%이상 움직였을때 데이터를 불러오는 작업을 하게됨
   List<dynamic> messageList = []; //서버데이타를 담은것(Snapshot에서 string 추출)
   List<dynamic> items = []; //실제 데이타를 서버에 가져와 저장되는 데이터(리스트에 표시할때 사용)
 
@@ -63,20 +59,19 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   child: Column(
                     children: [
                       Expanded(
-
                         child: TextField(
                           //textInputAction: TextInputAction.go, //엔터키 치면 제출되게 설정
                           controller: messageTextController,
                           onSubmitted: (value) {
                             inputText = value;
                             messageTextController.clear();
-                            _firestore.collection('post').add(
-                                { //post라는 컬렉션에 contents컬럼으로 입력
-                                  'contents': inputText,
-                                  'time': DateFormat('yyyy-MM-dd kk:mm:ss')
-                                      .format(DateTime.now().toLocal()),
-                                  'likey': likey,
-                                });
+                            _firestore.collection('post').add({
+                              //post라는 컬렉션에 contents컬럼으로 입력
+                              'contents': inputText,
+                              'time': DateFormat('yyyy-MM-dd kk:mm:ss')
+                                  .format(DateTime.now().toLocal()),
+                              'likey': likey,
+                            });
                           },
                           cursorColor: Colors.black87,
                           style: TextStyle(
@@ -100,13 +95,14 @@ class _ReplyScreenState extends State<ReplyScreen> {
               ],
             ),
 
-
             //================================사진과 댓글내용 GET====================================
             Row(
               children: [
                 StreamBuilder<QuerySnapshot>(
-                  stream: _firestore.collection('post').orderBy(
-                      'time', descending: true).snapshots(),
+                  stream: _firestore
+                      .collection('post')
+                      .orderBy('time', descending: true)
+                      .snapshots(),
                   //builder는 context와 리턴받을 것을 parameter로 가짐
                   builder: (context, snapshot) {
                     //스냅샷이 없는 경우 스피너
@@ -127,12 +123,18 @@ class _ReplyScreenState extends State<ReplyScreen> {
                       DateTime? newMillennium = DateTime.tryParse(time);
                       String timesAgo = Jiffy(time).fromNow();
                       final likey = message.get('likey');
-                      final doc_id = message.id;
-                      MessageVO msgVO = new MessageVO(messageText: messageText, time: time, timesAgo: timesAgo, likey: likey);
-                      msgVO.messageText=messageText;
-                      msgVO.time=time;
-                      msgVO.timesAgo=timesAgo;
-                      msgVO.likey=likey;
+                      final docId = message.id;
+                      MessageVO msgVO = new MessageVO(
+                          messageText: messageText,
+                          time: time,
+                          timesAgo: timesAgo,
+                          likey: likey,
+                          docId: docId);
+                      msgVO.messageText = messageText;
+                      msgVO.time = time;
+                      msgVO.timesAgo = timesAgo;
+                      msgVO.likey = likey;
+                      msgVO.docId = docId;
                       messageList.add(msgVO); //messageList에 msgVO 객체 추가
                     }
                     requestNew();
@@ -145,7 +147,8 @@ class _ReplyScreenState extends State<ReplyScreen> {
                             height: 300.0,
                             //스크롤 할때 발생되는 이벤트 40%이상 스크롤 했을때 서버에서 데이터를 추가로 가져오는 루틴
                             child: NotificationListener<ScrollNotification>(
-                              onNotification: (ScrollNotification notification) {
+                              onNotification:
+                                  (ScrollNotification notification) {
                                 print("ScrollNotification?");
                                 scrollNotification(notification);
                                 return false;
@@ -157,50 +160,51 @@ class _ReplyScreenState extends State<ReplyScreen> {
                                   // 리스트의 데이터가 적어 스크롤이 생성되지 않을경우 옵션
                                   itemCount: items.length,
                                   itemBuilder: (context, index) {
-                                    return
-                                        Column(
-                                            children: [
-                                              Row(
-                                                  children: [
-                                                    CircleAvatar(
-                                                      backgroundImage: NetworkImage(
-                                                          "https://randomuser.me/api/portraits/men/28.jpg"),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 20.0,
-                                                    ),
-                                                    Container(
-                                                      padding: EdgeInsets.all(5.0),
-                                                      height: 30.0,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.grey[350],
-                                                        borderRadius: BorderRadius.circular(
-                                                            10),
-                                                      ),
-                                                      child: Text('${items[index].messageText}'),
-                                                    ),
-                                                  ]
-                                              ),
-                                              //bunch of reply
-                                              Row(
-                                                children: [
-                                                  SizedBox(width: 75.0),
-                                                  LikeButton(
-                                                    onTap: onLikeButtonTapped,
-                                                    size: 20.0,
-                                                  ),
-                                                  Text('${items[index].likey}',
-                                                    style: TextStyle(
-                                                      fontFamily: 'Varela',
-                                                      fontSize: 10.0,
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 10.0),
-                                                  Text('${items[index].timesAgo}', style: TextStyle(
-                                                      fontSize: 10.0
-                                                  ),),
-                                                  SizedBox(width: 10.0,),
-                                                  /*Text('답글달기',
+                                    return Column(children: [
+                                      Row(children: [
+                                        CircleAvatar(
+                                          backgroundImage: NetworkImage(
+                                              "https://randomuser.me/api/portraits/men/28.jpg"),
+                                        ),
+                                        SizedBox(
+                                          width: 20.0,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.all(5.0),
+                                          height: 30.0,
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey[350],
+                                            borderRadius:
+                                            BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                              '${items[index].messageText}'),
+                                        ),
+                                      ]),
+                                      //bunch of reply
+                                      Row(
+                                        children: [
+                                          SizedBox(width: 75.0),
+                                          LikeButton(
+                                            onTap: onLikeButtonTapped,
+                                            size: 20.0,
+                                          ),
+                                          Text(
+                                            '${items[index].likey}',
+                                            style: TextStyle(
+                                              fontFamily: 'Varela',
+                                              fontSize: 10.0,
+                                            ),
+                                          ),
+                                          SizedBox(width: 10.0),
+                                          Text(
+                                            '${items[index].timesAgo}',
+                                            style: TextStyle(fontSize: 10.0),
+                                          ),
+                                          SizedBox(
+                                            width: 10.0,
+                                          ),
+                                          /*Text('답글달기',
                             style: TextStyle(
                             fontFamily: 'Varela',
                             fontSize: 14.0,
@@ -208,10 +212,9 @@ class _ReplyScreenState extends State<ReplyScreen> {
                           ),
                           Icon(Icons.mode_comment,
                           size: 15.0,), */
-                                                ],
-                                              ),
-                                            ]
-                                        ); //메시지위젯 -끝-
+                                        ],
+                                      ),
+                                    ]); //메시지위젯 -끝-
                                   },
                                 ),
                               ),
@@ -230,7 +233,6 @@ class _ReplyScreenState extends State<ReplyScreen> {
                       ),
                     );
                     //스크롤 이벤트 처리
-
                   },
                 ),
               ],
@@ -249,7 +251,9 @@ class _ReplyScreenState extends State<ReplyScreen> {
     // final bool success= await sendRequest();
 
     //필드값 가져오기
-    dynamic likeyCnt = FirebaseFirestore.instance.collection('post').doc()
+    dynamic likeyCnt = FirebaseFirestore.instance
+        .collection('post')
+        .doc()
         .get()
         .then((DocumentSnapshot ds) {
       print(["likey"]);
@@ -262,19 +266,21 @@ class _ReplyScreenState extends State<ReplyScreen> {
   }
 
   //스크롤 이벤트 처리
-scrollNotification(notification) {
+  scrollNotification(notification) {
     //스크롤 최대 범위
-   var containerExtent = notification.metrics.viewportDimension;
-   print("containerExtent"+containerExtent);
+    var containerExtent = notification.metrics.viewportDimension;
+    print("containerExtent" + containerExtent);
     if (notification is ScrollStartNotification) {
       //스크롤을 시작하면
       //스크롤 거리값을 0으로 초기화함
       _dragDistance = 0;
-    } else if (notification is OverscrollNotification) { //안드로이드 case
+    } else if (notification is OverscrollNotification) {
+      //안드로이드 case
       //스크롤을 시작후 움직일때 발생(손가락으로 리스트를 누르고 움직일때)
       //스크롤을 움직인 만큼 빼준다. (notification.overscroll)
       _dragDistance -= notification.overscroll;
-    } else if (notification is ScrollUpdateNotification) { //IOS case
+    } else if (notification is ScrollUpdateNotification) {
+      //IOS case
       _dragDistance -= notification.scrollDelta!;
     } else if (notification is ScrollEndNotification) {
       //스크롤이 끝났을 때
@@ -337,4 +343,44 @@ scrollNotification(notification) {
       nextPage += 1;
     });
   }
+
+/*
+  //좋아요
+  void like() {
+    // 기존 좋아요 리스트를 복사
+    final List likedUsers =
+        List<String>.from(widget.document['likedUsers'] ?? []);
+    // 나를 추가
+    likedUsers.add(widget.user.email);
+
+    //업데이트할 항목을 문서로 준비
+    final updateData = {
+      'likedUsers': likedUsers,
+    };
+
+    FirebaseFirestore.instance
+        .collection('post')
+        .doc(widget.document.documentId)
+        .updateData(updateData);
+  }
+
+  //좋아요 취소
+  void unlike() {
+    // 기존 좋아요 리스트를 복사
+    final List likedUsers =
+    List<String>.from(widget.document['likedUsers'] ?? []);
+    // 나를 추가
+    likedUsers.remove(widget.user.email);
+
+    //업데이트할 항목을 문서로 준비
+    final updateData = {
+      'likedUsers': likedUsers,
+    };
+
+    FirebaseFirestore.instance
+        .collection('post')
+        .doc(widget.document.documentId)
+        .updateData(updateData);
+  }
+*/
 }

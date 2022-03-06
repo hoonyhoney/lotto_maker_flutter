@@ -94,6 +94,7 @@ class MyHomePage extends StatefulWidget {
              width: double.infinity,
              child: TabBarView(
                controller: _tabController,
+               physics: NeverScrollableScrollPhysics(), //탭바 슬라이드 안되게 설정
                children: [
                  NumberPage(),
                  GenerateScreen(),
