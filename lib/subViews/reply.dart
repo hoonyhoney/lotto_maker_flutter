@@ -67,9 +67,6 @@ class _ReplyScreenState extends State<ReplyScreen> {
                                   .format(DateTime.now().toLocal()),
                               'likey': likey,
                             });
-                            setState(() {
-                              _replayStream();
-                            });
                           },
                           cursorColor: Colors.black87,
                           style: TextStyle(
@@ -115,6 +112,8 @@ class _ReplyScreenState extends State<ReplyScreen> {
                     //snapshot에 있는 데이타 추출
                     final messages = snapshot.data!.docs;
                     // messageWidgets 컬럼형식의 리스트 선언
+
+
                     for (var message in messages) {
                       final messageText = message.get('contents');
                       final time = message.get('time');
@@ -122,24 +121,26 @@ class _ReplyScreenState extends State<ReplyScreen> {
                       String timesAgo = Jiffy(time).fromNow();
                       final likey = message.get('likey');
                       final docId = message.id;
-                      MessageVO msgVO = new MessageVO(
-                          messageText: messageText,
-                          time: time,
-                          timesAgo: timesAgo,
-                          likey: likey,
-                          docId: docId);
+                      MessageVO msgVO = new MessageVO(likey: 0,time: '',timesAgo: '',docId: '', messageText: '');
+
                       msgVO.messageText = messageText;
+                      print(msgVO.messageText);
                       msgVO.time = time;
+                      print(msgVO.time);
                       msgVO.timesAgo = timesAgo;
+                      print(msgVO.timesAgo);
                       msgVO.likey = likey;
+                      print(msgVO.likey);
                       msgVO.docId = docId;
-                      messageList.add(msgVO); //messageList에 msgVO 객체 추가
+                      print(msgVO.docId);
+                      messageList.add(msgVO);
                     }
+
                     return Expanded(
                       child: Column(
                         children: [
                           Container(
-                            height: 1000.0,
+                            height: 300,
                             color: Colors.white,
                               child: ListView.builder(
                                 itemCount: messageList.length,
@@ -207,6 +208,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                     );
                     //스크롤 이벤트 처리
                   },
+
                 ),
               ],
             ),
