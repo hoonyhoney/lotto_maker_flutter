@@ -32,123 +32,123 @@ class _ReplyScreenState extends State<ReplyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              SizedBox(
-                width: 50.0,
-                height: 50.0,
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://randomuser.me/api/portraits/men/28.jpg"),
+    return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
+      child: Container(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                SizedBox(
+                  width: 50.0,
+                  height: 50.0,
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://randomuser.me/api/portraits/men/28.jpg"),
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: 20.0,
-              ),
-              Container(
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width * 0.7,
-                padding: EdgeInsets.only(left: 5.0, top: 5.0),
-                height: 30.0,
-                decoration: BoxDecoration(
-                  color: Colors.grey[350],
-                  borderRadius: BorderRadius.circular(10),
+                SizedBox(
+                  width: 20.0,
                 ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        //textInputAction: TextInputAction.go, //엔터키 치면 제출되게 설정
-                        controller: messageTextController,
-                        onSubmitted: (value) {
-                          inputText = value;
-                          messageTextController.clear();
-                          _firestore.collection('post').add({
-                            //post라는 컬렉션에 contents컬럼으로 입력
-                            'contents': inputText,
-                            'time': DateFormat('yyyy-MM-dd kk:mm:ss')
-                                .format(DateTime.now().toLocal()),
-                            'likey': likey,
-                          });
-                        },
-                        cursorColor: Colors.black87,
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 15.0,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: "댓글을 입력하세요...",
-                          hintStyle: TextStyle(
+                Container(
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width * 0.7,
+                  padding: EdgeInsets.only(left: 5.0, top: 5.0),
+                  height: 30.0,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[350],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          //textInputAction: TextInputAction.go, //엔터키 치면 제출되게 설정
+                          controller: messageTextController,
+                          onSubmitted: (value) {
+                            inputText = value;
+                            messageTextController.clear();
+                            _firestore.collection('post').add({
+                              //post라는 컬렉션에 contents컬럼으로 입력
+                              'contents': inputText,
+                              'time': DateFormat('yyyy-MM-dd kk:mm:ss')
+                                  .format(DateTime.now().toLocal()),
+                              'likey': likey,
+                            });
+                          },
+                          cursorColor: Colors.black87,
+                          style: TextStyle(
                             fontFamily: 'Varela',
-                            color: Colors.black87.withOpacity(0.5),
+                            fontSize: 15.0,
                           ),
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
+                          decoration: InputDecoration(
+                            hintText: "댓글을 입력하세요...",
+                            hintStyle: TextStyle(
+                              fontFamily: 'Varela',
+                              color: Colors.black87.withOpacity(0.5),
+                            ),
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
 
-          //================================사진과 댓글내용 GET====================================
-          Container(
-            height: 500,
-            child: StreamBuilder<
-                QuerySnapshot>( //이 안에 있는 데이타가 변경되야 스트림이 발동됨) ㅅㅂ
-              stream: _firestore
-                  .collection('post')
-                  .orderBy('time', descending: true)
-                  .limit(200)
-                  .snapshots(),
-              //builder는 context와 리턴받을 것을 parameter로 가짐
-              builder: (context, snapshot) {
-                //스냅샷이 없는 경우 스피너
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      backgroundColor: Colors.lightBlueAccent,
-                    ),
-                  );
-                }
-                //messages는 post' 컬렉션 안에있는 데이터 내용
-                //snapshot에 있는 데이타 추출
-                final messages = snapshot.data!.docs;
-                // messageWidgets 컬럼형식의 리스트 선언
-                messageList = [];
-                for (var message in messages) {
-                  String messageText = message.get('contents');
-                  String time = message.get('time');
-                  DateTime? newMillennium = DateTime.tryParse(time);
-                  String timesAgo = Jiffy(time).fromNow();
-                  int likey = message.get('likey');
-                  String docId = message.id;
-                  MessageVO msgVO = new MessageVO(docId: '',
-                      messageText: '',
-                      time: '',
-                      timesAgo: '',
-                      likey: 0);
-                  msgVO.messageText = messageText;
-                  msgVO.time = time;
-                  msgVO.timesAgo = timesAgo;
-                  msgVO.likey = likey;
-                  msgVO.docId = docId;
-                  messageList.add(msgVO);
-                }
+            //================================사진과 댓글내용 GET====================================
+            Container(
+              height: 2000,
+              child: StreamBuilder<QuerySnapshot>( //이 안에 있는 데이타가 변경되야 스트림이 발동됨) ㅅㅂ
+                stream: _firestore
+                    .collection('post')
+                    .orderBy('time', descending: true)
+                    .limit(200)
+                    .snapshots(),
+                //builder는 context와 리턴받을 것을 parameter로 가짐
+                builder: (context, snapshot) {
+                  //스냅샷이 없는 경우 스피너
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.lightBlueAccent,
+                      ),
+                    );
+                  }
+                  //messages는 post' 컬렉션 안에있는 데이터 내용
+                  //snapshot에 있는 데이타 추출
+                  final messages = snapshot.data!.docs;
+                  // messageWidgets 컬럼형식의 리스트 선언
+                  messageList = [];
+                  for (var message in messages) {
+                    String messageText = message.get('contents');
+                    String time = message.get('time');
+                    DateTime? newMillennium = DateTime.tryParse(time);
+                    String timesAgo = Jiffy(time).fromNow();
+                    int likey = message.get('likey');
+                    String docId = message.id;
+                    MessageVO msgVO = new MessageVO(docId: '',
+                        messageText: '',
+                        time: '',
+                        timesAgo: '',
+                        likey: 0);
+                    msgVO.messageText = messageText;
+                    msgVO.time = time;
+                    msgVO.timesAgo = timesAgo;
+                    msgVO.likey = likey;
+                    msgVO.docId = docId;
+                    messageList.add(msgVO);
+                  }
 
-                return Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        color: Colors.white,
+                  return Column(
+                    children: [
+                      Expanded(
                         child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),//스크롤 금지
                           itemCount: messageList.length,
                           itemBuilder: (context, index) {
                             return Column(children: [
@@ -200,10 +200,10 @@ class _ReplyScreenState extends State<ReplyScreen> {
                         style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 14.0,
-                      ),
-                      ),
-                      Icon(Icons.mode_comment,
-                      size: 15.0,), */
+                        ),
+                        ),
+                        Icon(Icons.mode_comment,
+                        size: 15.0,), */
                                 ],
 
                               ),
@@ -211,16 +211,16 @@ class _ReplyScreenState extends State<ReplyScreen> {
                           },
                         ),
                       ),
-                    ),
-                  ],
-                );
+                    ],
+                  );
 
-                //스크롤 이벤트 처리
-              },
+                  //스크롤 이벤트 처리
+                },
+              ),
             ),
-          ),
-          //댓글을 입력하세요
-        ],
+            //댓글을 입력하세요
+          ],
+        ),
       ),
     );
   }

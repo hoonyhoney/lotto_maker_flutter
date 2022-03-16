@@ -165,7 +165,7 @@ class _NumberPageState extends State<NumberPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false, //키보드 눌렀을 때 overflow되는것 방지
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Row(
