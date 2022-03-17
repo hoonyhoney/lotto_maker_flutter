@@ -40,6 +40,7 @@ class MyHomePage extends StatefulWidget {
    @override
    Widget build(BuildContext context) {
      return Scaffold(
+       resizeToAvoidBottomInset: false,
        appBar: AppBar(
          backgroundColor: Colors.white,
          elevation: 0.0,

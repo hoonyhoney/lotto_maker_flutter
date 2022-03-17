@@ -165,7 +165,6 @@ class _NumberPageState extends State<NumberPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false, //키보드 눌렀을 때 overflow되는것 방지
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Row(
@@ -445,11 +444,16 @@ class _NumberPageState extends State<NumberPage> {
                             borderRadius: BorderRadius.circular((10)),
                           ),
                         child: Wrap(
+                          alignment: WrapAlignment.center,
                           children:
                           [
-                          Icon(Icons.share
+                          Icon(Icons.share,size: 18.0,
                           ),
-                          Text('Share'),
+                          SizedBox(width:5.0),
+                          Text(
+                              'Please Share ❤️‍' ,
+
+                          ),
                           ]
                         ),
                         onPressed: () {
