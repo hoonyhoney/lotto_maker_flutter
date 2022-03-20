@@ -18,6 +18,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
 }
 
 class FirstPage extends StatelessWidget{
+
   @override
   Widget build(BuildContext context) {
     return SplashScreen();

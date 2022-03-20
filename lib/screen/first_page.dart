@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:html/parser.dart';
 import 'package:lotto_maker_flutter/DB/database_helper.dart';
 import 'package:lotto_maker_flutter/screen/writePost.dart';
@@ -20,11 +21,14 @@ class NumberPage extends StatefulWidget {
 
 
 
+
   @override
   State<NumberPage> createState() => _NumberPageState();
 }
 
 class _NumberPageState extends State<NumberPage> {
+
+  Map? _userData;
 
   var prize_1;
   var prize_l2;
@@ -41,6 +45,7 @@ class _NumberPageState extends State<NumberPage> {
 
   String text='https://www.youtube.com/channel/UCNoxvMsaslxo1Jga8jKPFRw';
   String subject='앱핥기 채널';
+  String url = 'sample';
 
   @override
   void initState() {
@@ -464,6 +469,48 @@ class _NumberPageState extends State<NumberPage> {
 
                           );
                         }
+                      ),
+                      Text('Facebook (Logged'+ (_userData ==null ? 'out' : 'in')),
+                      RaisedButton(child: Text("log in"),
+                        onPressed: () async {
+                          final result = await FacebookAuth.i.login(
+                            permissions: ["public_profile", "email"]
+                          );
+                          if (result.status == LoginStatus.success) {
+                            final requestData = await FacebookAuth.i.getUserData(
+                              fields: "email, name,picture"
+                            );
+
+
+                            setState(() {
+                              _userData = requestData;
+                              final picture =_userData!['picture'];
+                              final data = picture['data'];
+                              final imgUrl = data['url'];
+                              url = imgUrl;
+                              print("imgUrl"+url);
+
+                            });
+                            print("userData"+_userData.toString());
+                          }
+
+                        },),
+                      RaisedButton(child: Text("log out"),
+                        onPressed: () async {
+                          await FacebookAuth.i.logOut();
+
+                          setState(() {
+                            _userData = null;
+                          });
+                        },
+                      ),
+/*                      SizedBox(
+                        child: Text(_userData?['name'])
+                      ),*/
+                      SizedBox(
+                        height: 100,
+                        width: 100,
+                        child: Image.network(url)
                       ),
                     ],//로또번호 컬럼
                     ),

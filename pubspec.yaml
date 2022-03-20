@@ -52,6 +52,7 @@ dependencies:
   intl: ^0.17.0
   jiffy: ^5.0.0
   get: ^4.6.1
+  flutter_facebook_auth: ^4.1.2
 
 
 

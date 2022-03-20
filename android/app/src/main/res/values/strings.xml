@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="facebook_app_id">510760680487454</string>
+<string name="app_name">lottomaker_flutter</string>
+<string name="fb_login_protocol_scheme">fb510760680487454</string>
+<string name="facebook_client_token">7050d282e274571568995b1b4e4a1316</string>
+</resources>
