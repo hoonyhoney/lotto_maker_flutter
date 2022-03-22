@@ -54,12 +54,13 @@ class _NumberPageState extends State<NumberPage> {
   }
 
   void getData() async{
-    final response = await http.Client().get(Uri.parse('https://lotto.mthai.com/'));
+    var headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'};
+    final response = await http.Client().get(Uri.parse('https://lotto.mthai.com/'),headers: headers);
     if(response.statusCode ==200) {
       var document = parse(response.body);
       //var elements = document.getElementsByClassName(); //클래스 이름
       //var elementsByTagName = document.getElementsByTagName(); //TagName
-
+      print(document);
 
       setState(() {
         prize_1 = document.getElementsByClassName("prize-1")[0].children[1].children[0].children[0].text;
