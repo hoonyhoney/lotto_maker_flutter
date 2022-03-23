@@ -8,13 +8,19 @@ import 'package:jiffy/jiffy.dart';
 import 'package:like_button/like_button.dart';
 import 'package:intl/intl.dart';
 import 'package:lotto_maker_flutter/model/messageVO.dart';
+import 'package:path/path.dart';
 
 class ReplyScreen extends StatefulWidget {
+  String url;
+  ReplyScreen({required this.url});
+
+
   @override
   _ReplyScreenState createState() => _ReplyScreenState();
 }
 
 class _ReplyScreenState extends State<ReplyScreen> {
+
   final _firestore = FirebaseFirestore.instance;
   final messageTextController = TextEditingController();
   String inputText = '';
@@ -32,6 +38,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(url);
     return SingleChildScrollView(
       physics: NeverScrollableScrollPhysics(),
       child: Expanded(
@@ -43,8 +50,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   width: 50.0,
                   height: 50.0,
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://randomuser.me/api/portraits/men/28.jpg"),
+                    backgroundImage: NetworkImage("$url"),
                   ),
                 ),
                 SizedBox(
@@ -220,9 +226,9 @@ class _ReplyScreenState extends State<ReplyScreen> {
     );
   }
 
-  getData() {
+/*  getData() {
     //다큐먼트 리스트의 time값 모두 불러오기
-/*    FirebaseFirestore.instance
+    FirebaseFirestore.instance
         .collection('post')
         .get()
         .then((QuerySnapshot querySnapshot) {
@@ -244,11 +250,9 @@ class _ReplyScreenState extends State<ReplyScreen> {
         print('Document does not exist on the database');
       }
     });
-*/
-
 
   }
-
+*/
   addingData() {
     CollectionReference post = FirebaseFirestore.instance.collection('post');
     List<String> likedList = [];

@@ -45,7 +45,7 @@ class _NumberPageState extends State<NumberPage> {
 
   String text='https://www.youtube.com/channel/UCNoxvMsaslxo1Jga8jKPFRw';
   String subject='앱핥기 채널';
-  String url = 'sample';
+  dynamic url = 'sample';
 
   @override
   void initState() {
@@ -54,25 +54,35 @@ class _NumberPageState extends State<NumberPage> {
   }
 
   void getData() async{
-    var headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'};
-    final response = await http.Client().get(Uri.parse('https://lotto.mthai.com/'),headers: headers);
+    var headers = {'user-agent': 'Mozilla/5.0 (Linux; U; Android 2.1-update1; ko-kr; Nexus One Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17'};
+    final response = await http.Client().get(Uri.parse('https://lottery.kapook.com/'));
     if(response.statusCode ==200) {
       var document = parse(response.body);
       //var elements = document.getElementsByClassName(); //클래스 이름
       //var elementsByTagName = document.getElementsByTagName(); //TagName
-      print(document);
+
 
       setState(() {
-        prize_1 = document.getElementsByClassName("prize-1")[0].children[1].children[0].children[0].text;
+        /* mthai      prize_1 = document.getElementsByClassName("prize-1")[0].children[1].children[0].children[1].text;
         prize_l2= document.getElementsByClassName("prize-l2")[0].children[1].children[0].children[0].text;
         prize_f3 = document.getElementsByClassName("prize-f3")[0].children[1].children[0].children[0].text;
         prize_l3 = document.getElementsByClassName("prize-l3")[0].children[1].children[0].children[0].text;
         title = document.getElementById("site-head-title")?.getElementsByTagName('h2').first.text;
-        prize_n1 = document.getElementsByClassName("prize-n1")[0].children[1].children[0].children[0].text;
+        prize_n1 = document.getElementsByClassName("prize-n1")[0].children[1].children[0].children[0].text;*/
+
+
+        prize_1 = document.getElementsByClassName("hilight-lottery")[0].children[1].text;
+        prize_l3= document.getElementsByClassName("hilight-lottery")[0].children[3].text;
+        prize_l2 = document.getElementsByClassName("hilight-lottery")[0].children[4].text;
+        prize_f3 = document.getElementsByClassName("hilight-lottery")[0].children[5].text;
+        title = document.getElementsByClassName("hilight-lottery")[0].children[3].text;
+        prize_n1 = document.getElementsByClassName("hilight-lottery")[1].children[6].text;
+
+
 
         //step 1. 클래스에서 text를 가져온다.
 
-        for (int i=0; i< 5; i++) {
+        /*for (int i=0; i< 5; i++) {
           var prizeNo = document.getElementById("prize-2")?.getElementsByTagName("span")[i].text;
           print(prizeNo);
           prize_2.add(prizeNo);
@@ -91,7 +101,7 @@ class _NumberPageState extends State<NumberPage> {
           var prizeNo = document.getElementById("prize-5")?.getElementsByTagName("span")[i].text;
           print(prizeNo);
           prize_5.add(prizeNo);
-        }
+        }*/
       });
 
     }else {
@@ -505,14 +515,19 @@ class _NumberPageState extends State<NumberPage> {
                           });
                         },
                       ),
+                      RaisedButton(child: Text("Lotto"),
+                        onPressed: () async {
+                          getData();
+                        },
+                      ),
 /*                      SizedBox(
                         child: Text(_userData?['name'])
                       ),*/
-                      SizedBox(
+ /*                     SizedBox(
                         height: 100,
                         width: 100,
                         child: Image.network(url)
-                      ),
+                      ),*/
                     ],//로또번호 컬럼
                     ),
                     ), //1등부터 아차상
@@ -520,7 +535,7 @@ class _NumberPageState extends State<NumberPage> {
                     SizedBox(height:20.0),
 
                     //댓글리스트
-                    Expanded(child: ReplyScreen()),
+                    Expanded(child: ReplyScreen(url: url)),
 
 
                     /*Container(
