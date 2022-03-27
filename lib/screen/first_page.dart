@@ -17,7 +17,7 @@ import 'package:share/share.dart';
 import 'bottom_bar.dart';
 
 
-class NumberPage extends StatefulWidget {
+class NumberPage extends StatefulWidget with ChangeNotifier{
 
 
 
@@ -28,6 +28,7 @@ class NumberPage extends StatefulWidget {
 
 class _NumberPageState extends State<NumberPage> {
 
+
   Map? _userData;
 
   var prize_1;
@@ -36,6 +37,7 @@ class _NumberPageState extends State<NumberPage> {
   var prize_l3;
   var title;
   var prize_n1;
+  var prize_n2;
   List<dynamic> prize_2 = [];
   List<dynamic> prize_3 = [];
   List<dynamic> prize_4 = [];
@@ -55,7 +57,7 @@ class _NumberPageState extends State<NumberPage> {
 
   void getData() async{
     var headers = {'user-agent': 'Mozilla/5.0 (Linux; U; Android 2.1-update1; ko-kr; Nexus One Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17'};
-    final response = await http.Client().get(Uri.parse('https://lottery.kapook.com/'));
+    final response = await http.Client().get(Uri.parse('https://www.matichon.co.th/lottery'));
     if(response.statusCode ==200) {
       var document = parse(response.body);
       //var elements = document.getElementsByClassName(); //클래스 이름
@@ -71,12 +73,13 @@ class _NumberPageState extends State<NumberPage> {
         prize_n1 = document.getElementsByClassName("prize-n1")[0].children[1].children[0].children[0].text;*/
 
 
-        prize_1 = document.getElementsByClassName("hilight-lottery")[0].children[1].text;
-        prize_l3= document.getElementsByClassName("hilight-lottery")[0].children[3].text;
-        prize_l2 = document.getElementsByClassName("hilight-lottery")[0].children[4].text;
-        prize_f3 = document.getElementsByClassName("hilight-lottery")[0].children[5].text;
-        title = document.getElementsByClassName("hilight-lottery")[0].children[3].text;
-        prize_n1 = document.getElementsByClassName("hilight-lottery")[1].children[6].text;
+        prize_1 = document.getElementsByClassName("udlotto-section-1-0")[0].children[1].text;
+        prize_f3= document.getElementsByClassName("udlotto-section-1-1")[0].children[1].text;
+        prize_l2 = document.getElementsByClassName("udlotto-section-1-3")[0].children[1].text;
+        prize_l3 = document.getElementsByClassName("udlotto-section-1-2")[0].children[1].text;
+        title = document.getElementsByClassName("udlotto-date")[0].children[1].text;
+        prize_n1 = document.getElementsByClassName("udlotto-section-2-1")[0].children[0].text;
+        prize_n2 = document.getElementsByClassName("udlotto-section-2-2")[0].children[0].text;
 
 
 
@@ -319,7 +322,8 @@ class _NumberPageState extends State<NumberPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                       children:[
-                        Text('$prize_n1',
+                        Text('$prize_n1''$prize_n2'
+                          ,
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 15.0,
@@ -520,7 +524,7 @@ class _NumberPageState extends State<NumberPage> {
                           getData();
                         },
                       ),
-/*                      SizedBox(
+/*                      SizedBox([[[
                         child: Text(_userData?['name'])
                       ),*/
  /*                     SizedBox(

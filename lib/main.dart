@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lotto_maker_flutter/screen/homeView.dart';
+import 'package:lotto_maker_flutter/services/win_numbers.dart';
 import 'package:lotto_maker_flutter/utilities/constants.dart';
 import 'package:lotto_maker_flutter/utilities/routes.dart';
 import 'package:provider/provider.dart';
@@ -23,13 +24,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'LottoMaker',
-      routes: Routes.routes,
-      theme: ThemeData(
-        primarySwatch: Colors.amber,
+    return MultiProvider(
+      providers: [
+     ChangeNotifierProvider<WinNumbers>(create: (_) => WinNumbers()),
+
+      ],
+      child: MaterialApp(
+        title: 'LottoMaker',
+        routes: Routes.routes,
+        theme: ThemeData(
+          primarySwatch: Colors.amber,
+        ),
+        home: FirstPage(),
       ),
-      home: FirstPage(),
     );
   }
 }
