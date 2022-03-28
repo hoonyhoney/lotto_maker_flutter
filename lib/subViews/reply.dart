@@ -50,7 +50,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   width: 50.0,
                   height: 50.0,
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage("$url"),
+                    backgroundImage: NetworkImage("https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"),
                   ),
                 ),
                 SizedBox(
@@ -160,7 +160,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                                 Row(children: [
                                     CircleAvatar(
                                       backgroundImage: NetworkImage(
-                                          "https://randomuser.me/api/portraits/men/28.jpg"),
+                                          "https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"),
                                     ),
                                     SizedBox(
                                       width: 20.0,

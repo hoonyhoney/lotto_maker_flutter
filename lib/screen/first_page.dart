@@ -147,27 +147,27 @@ class _NumberPageState extends State<NumberPage> {
       l3 = value.substring(3, 6);
       l2 = value.substring(4, 6);
    }else {
-     return '숫자를 제대로 입력해주세요';
+     return 'Please enter number';
    }
 
    if(value==prize_1) {
-     return '1등';
+     return 'ที่ 1';
    } else if(prize_2.contains(value)){
-     return '2등';
+     return 'ที่ /';
    } else if(prize_3.contains(value)) {
-     return '3등';
+     return 'ที่ 3';
    }else if(prize_4.contains(value)) {
-     return '4등';
+     return 'ที่ 4';
    }else if(prize_5.contains(value)) {
-     return '5등';
+     return 'ที่ 5';
    }else if(prize_f3.contains(f3)) {
-     return '앞 세자리';
+     return 'หน้า 3ตัว';
    }else if(prize_l3.contains(l3)) {
-     return '뒤 세자리';
+     return 'หลัง 3ตัว';
    }else if(prize_l2.contains(l2)) {
-     return '뒤 2자리';
+     return 'หลัง 2ตัว';
    }else {
-     return '노당첨스';
+     return 'ไม่ถูกนะครับ  :( ';
    }
  }
 
