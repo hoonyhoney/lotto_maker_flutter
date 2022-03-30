@@ -31,9 +31,9 @@ class _DialogsState extends State<Dialogs> with SingleTickerProviderStateMixin{
     super.dispose();
   }
   dynamic lottiePath () { //당첨결과에 따라 로띠화면 분기
-    if (result == "노당첨스") {
+    if (result == "ไม่ถูกนะครับ  :(") {
         return "assets/angry-dog.json";
-    } else if(result=="숫자를 제대로 입력해주세요") {
+    } else if(result=="Please enter number") {
       return "assets/error-state-dog.json";
     }
     else{

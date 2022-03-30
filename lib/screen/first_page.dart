@@ -82,7 +82,6 @@ class _NumberPageState extends State<NumberPage> {
         prize_n2 = document.getElementsByClassName("udlotto-section-2-2")[0].children[0].text;
 
 
-
         //step 1. 클래스에서 text를 가져온다.
 
         /*for (int i=0; i< 5; i++) {
@@ -167,7 +166,7 @@ class _NumberPageState extends State<NumberPage> {
    }else if(prize_l2.contains(l2)) {
      return 'หลัง 2ตัว';
    }else {
-     return 'ไม่ถูกนะครับ  :( ';
+     return 'ไม่ถูกนะครับ  :(';
    }
  }
 
@@ -217,9 +216,10 @@ class _NumberPageState extends State<NumberPage> {
                           fontSize: 20.0,
                         ),
                         decoration: InputDecoration(
-                          hintText: "    번호를 입력하세요",
+                          hintText: "    พิมพ์หมายเลข",
                           hintStyle: TextStyle(
                             fontFamily: 'Varela',
+                            fontSize: 20,
                             color:Colors.black87.withOpacity(0.5),
                           ),
                           enabledBorder: InputBorder.none,
@@ -247,8 +247,10 @@ class _NumberPageState extends State<NumberPage> {
                     //당첨 리스트
                     Container(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('1등',
+                      Text('🏆🏆🏆 No.1 🏆🏆🏆',
+                      textAlign: TextAlign.left,
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 20.0,
@@ -258,10 +260,12 @@ class _NumberPageState extends State<NumberPage> {
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 15.0,
+
+
                         ),
                       ),
                       SizedBox(height: 15.0,),
-                      Text('2자리',
+                      Text('🏆 ====OO 🏆',
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 20.0,
@@ -274,7 +278,7 @@ class _NumberPageState extends State<NumberPage> {
                         ),
                       ),
                       SizedBox(height: 15.0,),
-                      Text('3자리(앞)',
+                      Text('🏆 OOO=== 🏆',
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 20.0,
@@ -294,7 +298,7 @@ class _NumberPageState extends State<NumberPage> {
                       ),
                       SizedBox(height: 15.0,),
 
-                      Text('3자리(뒤)',
+                      Text('🏆 ===OOO 🏆 ',
                         style: TextStyle(
                           fontFamily: 'Varela',
                           fontSize: 20.0,
@@ -313,7 +317,7 @@ class _NumberPageState extends State<NumberPage> {
                         ],
                       ),
                       SizedBox(height: 15,),
-                      Text('아차상',
+                      Text('🏆 OOOOO= 🏆',
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 20.0,
@@ -485,7 +489,9 @@ class _NumberPageState extends State<NumberPage> {
                           );
                         }
                       ),
-                      Text('Facebook (Logged'+ (_userData ==null ? 'out' : 'in')),
+
+
+/*                      Text('Facebook (Logged'+ (_userData ==null ? 'out' : 'in')),
                       RaisedButton(child: Text("log in"),
                         onPressed: () async {
                           final result = await FacebookAuth.i.login(
@@ -523,7 +529,7 @@ class _NumberPageState extends State<NumberPage> {
                         onPressed: () async {
                           getData();
                         },
-                      ),
+                      ),*/
 /*                      SizedBox([[[
                         child: Text(_userData?['name'])
                       ),*/
