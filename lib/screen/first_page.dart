@@ -1,5 +1,7 @@
 import 'dart:core';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -48,6 +50,8 @@ class _NumberPageState extends State<NumberPage> {
   String text='https://www.youtube.com/channel/UCNoxvMsaslxo1Jga8jKPFRw';
   String subject='앱핥기 채널';
   dynamic url = 'sample';
+
+
 
   @override
   void initState() {
@@ -602,6 +606,7 @@ class _NumberPageState extends State<NumberPage> {
 
 
 }
+
 
 //SQFLITE
 /*class Grocery {

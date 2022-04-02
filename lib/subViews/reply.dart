@@ -3,11 +3,13 @@ import 'dart:developer';
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:like_button/like_button.dart';
 import 'package:intl/intl.dart';
 import 'package:lotto_maker_flutter/model/messageVO.dart';
+import 'package:lotto_maker_flutter/services/auth_service.dart';
 import 'package:path/path.dart';
 
 class ReplyScreen extends StatefulWidget {
@@ -20,7 +22,6 @@ class ReplyScreen extends StatefulWidget {
 }
 
 class _ReplyScreenState extends State<ReplyScreen> {
-
   final _firestore = FirebaseFirestore.instance;
   final messageTextController = TextEditingController();
   String inputText = '';
@@ -29,12 +30,18 @@ class _ReplyScreenState extends State<ReplyScreen> {
   bool loading = false,
       allLoaded = false;
 
+  dynamic anonymousId;
   List<MessageVO> messageList = [];
-  MessageVO msgVO = new MessageVO(docId: '',
+  MessageVO msgVO = new MessageVO(
+      docId: '',
       messageText: '',
       time: '',
       timesAgo: '',
-      likey: 0);
+      likey: 0,
+      anonymousId:''
+  );
+
+  final AuthService _auth = AuthService(); //AuthService 클래스 객체 생성
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +81,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                           //textInputAction: TextInputAction.go, //엔터키 치면 제출되게 설정
                           controller: messageTextController,
                           onSubmitted: (value) {
+                             _auth.signInAnon().then((user) => anonymousId= user.uid);
                             inputText = value;
                             messageTextController.clear();
                             _firestore.collection('post').add({
@@ -82,6 +90,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                               'time': DateFormat('yyyy-MM-dd kk:mm:ss')
                                   .format(DateTime.now().toLocal()),
                               'likey': likey,
+                              'anonymousId' : anonymousId
                             });
                           },
                           cursorColor: Colors.black87,
@@ -139,7 +148,9 @@ class _ReplyScreenState extends State<ReplyScreen> {
                       messageText: '',
                       time: '',
                       timesAgo: '',
-                      likey: 0);
+                      likey: 0,
+                      anonymousId: ''
+                  );
                   msgVO.messageText = messageText;
                   msgVO.time = time;
                   msgVO.timesAgo = timesAgo;
@@ -319,3 +330,5 @@ class _ReplyScreenState extends State<ReplyScreen> {
   }*/
 
 }
+
+

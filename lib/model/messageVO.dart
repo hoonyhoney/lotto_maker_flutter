@@ -8,11 +8,12 @@ class MessageVO {
   String time;
   String timesAgo;
   int likey;
+  String anonymousId; //익명아이디
 
   MessageVO(
-      {required this.docId, required this.messageText, required this.time, required this.timesAgo, required this.likey});
+      {required this.docId, required this.messageText, required this.time, required this.timesAgo, required this.likey, required this.anonymousId});
 
-  MessageVO.fromJson(Map<String, dynamic> json)
+/*  MessageVO.fromJson(Map<String, dynamic> json)
       : docId = json['docId'],
         messageText = json['messageText'],
         time = json['time'],
@@ -25,6 +26,6 @@ class MessageVO {
     'time': time,
     'timesAgo': timesAgo,
     'likey': likey,
-  };
+  };*/
 
 }
