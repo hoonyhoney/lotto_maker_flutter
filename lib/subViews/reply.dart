@@ -17,6 +17,7 @@ class ReplyScreen extends StatefulWidget {
   ReplyScreen({required this.url});
 
 
+
   @override
   _ReplyScreenState createState() => _ReplyScreenState();
 }
@@ -25,23 +26,25 @@ class _ReplyScreenState extends State<ReplyScreen> {
   final _firestore = FirebaseFirestore.instance;
   final messageTextController = TextEditingController();
   String inputText = '';
-  int likey = 0;
+  List<String> likey = [];
   DateTime formatDate = DateTime.now().toLocal(); //format변경
   bool loading = false,
       allLoaded = false;
 
-  dynamic anonymousId;
   List<MessageVO> messageList = [];
   MessageVO msgVO = new MessageVO(
       docId: '',
       messageText: '',
       time: '',
       timesAgo: '',
-      likey: 0,
-      anonymousId:''
+      likey: [],
+      anonymousId:'',
+      likeyCnt: 0,
   );
 
   final AuthService _auth = AuthService(); //AuthService 클래스 객체 생성
+  dynamic anonymousId= AuthService().signInAnon();
+
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +84,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                           //textInputAction: TextInputAction.go, //엔터키 치면 제출되게 설정
                           controller: messageTextController,
                           onSubmitted: (value) {
-                             _auth.signInAnon().then((user) => anonymousId= user.uid);
+
                             inputText = value;
                             messageTextController.clear();
                             _firestore.collection('post').add({
@@ -142,19 +145,22 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   String time = message.get('time');
                   DateTime? newMillennium = DateTime.tryParse(time);
                   String timesAgo = Jiffy(time).fromNow();
-                  int likey = message.get('likey');
+                  List<String> likey = message.get('likey');
                   String docId = message.id;
                   MessageVO msgVO = new MessageVO(docId: '',
                       messageText: '',
                       time: '',
                       timesAgo: '',
-                      likey: 0,
-                      anonymousId: ''
+                      likey: [],
+                      anonymousId: '',
+                      likeyCnt:0
                   );
                   msgVO.messageText = messageText;
                   msgVO.time = time;
                   msgVO.timesAgo = timesAgo;
                   msgVO.likey = likey;
+                  int likeyCnt = likey.length;
+                  msgVO.likeyCnt = likeyCnt;
                   msgVO.docId = docId;
                   messageList.add(msgVO);
                 }
@@ -197,7 +203,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                                       size: 20.0,
                                     ),
                                     Text(
-                                      '${messageList[index].likey}',
+                                      '${messageList[index].likeyCnt}',
                                       style: TextStyle(
                                         fontFamily: 'Varela',
                                         fontSize: 10.0,
@@ -264,14 +270,13 @@ class _ReplyScreenState extends State<ReplyScreen> {
 
   }
 */
-  addingData() {
+  addingData(String docName, String usrId) {
     CollectionReference post = FirebaseFirestore.instance.collection('post');
-    List<String> likedList = [];
 
     return post
-        .doc('BTLQ0M5ytSLbR8atNjhN')
+        .doc('$docName')
         .update({
-      'likedUsers': "Lee"
+      'likey': '$usrId'
     })
         .then((value) => print("User Added"))
 
@@ -292,7 +297,6 @@ class _ReplyScreenState extends State<ReplyScreen> {
   }
 
   Future<bool> onLikeButtonTapped(bool isLiked) async {
-    removingData();
     return !isLiked;
   }
 

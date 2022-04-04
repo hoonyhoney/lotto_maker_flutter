@@ -7,11 +7,12 @@ class MessageVO {
   String messageText;
   String time;
   String timesAgo;
-  int likey;
+  List<String> likey;
   String anonymousId; //익명아이디
+  int likeyCnt;
 
   MessageVO(
-      {required this.docId, required this.messageText, required this.time, required this.timesAgo, required this.likey, required this.anonymousId});
+      {required this.docId, required this.messageText, required this.time, required this.timesAgo, required this.likey, required this.anonymousId, required this.likeyCnt});
 
 /*  MessageVO.fromJson(Map<String, dynamic> json)
       : docId = json['docId'],

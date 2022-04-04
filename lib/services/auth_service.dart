@@ -13,7 +13,7 @@ class AuthService {
     try {
       UserCredential result = await _auth.signInAnonymously(); //무작위 id생성
       User? user = result.user; // reusult의 user값을 user class에 set
-      return user;
+      return user?.uid;
     } catch (e) {
       print(e.toString());
       return null;
