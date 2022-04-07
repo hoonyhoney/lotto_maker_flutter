@@ -11,9 +11,9 @@ class AuthService {
   /* Sign In anon */
   Future signInAnon() async {
     try {
-      UserCredential result = await _auth.signInAnonymously(); //무작위 id생성
-      User? user = result.user; // reusult의 user값을 user class에 set
-      return user?.uid;
+      UserCredential result = await _auth.signInAnonymously(); //userCredential에는 많은 정보가 들어있음.
+      User? user = result.user; // 이중 user정보만 필요해서 user객체로 받는다.
+      return user;
     } catch (e) {
       print(e.toString());
       return null;

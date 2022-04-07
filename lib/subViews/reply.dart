@@ -26,7 +26,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
   final _firestore = FirebaseFirestore.instance;
   final messageTextController = TextEditingController();
   String inputText = '';
-  List<String> likey = [];
+  List<dynamic> likey = [];
   DateTime formatDate = DateTime.now().toLocal(); //format변경
   bool loading = false,
       allLoaded = false;
@@ -46,9 +46,9 @@ class _ReplyScreenState extends State<ReplyScreen> {
   dynamic anonymousId= AuthService().signInAnon();
 
 
+
   @override
   Widget build(BuildContext context) {
-    print(url);
     return SingleChildScrollView(
       physics: NeverScrollableScrollPhysics(),
       child: Expanded(
@@ -92,8 +92,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                               'contents': inputText,
                               'time': DateFormat('yyyy-MM-dd kk:mm:ss')
                                   .format(DateTime.now().toLocal()),
-                              'likey': likey,
-                              'anonymousId' : anonymousId
+                              'anonymousId' : anonymousId //에러남
                             });
                           },
                           cursorColor: Colors.black87,
@@ -145,7 +144,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   String time = message.get('time');
                   DateTime? newMillennium = DateTime.tryParse(time);
                   String timesAgo = Jiffy(time).fromNow();
-                  List<String> likey = message.get('likey');
+                  List<dynamic> likey = message.get('likey');
                   String docId = message.id;
                   MessageVO msgVO = new MessageVO(docId: '',
                       messageText: '',
@@ -199,15 +198,12 @@ class _ReplyScreenState extends State<ReplyScreen> {
                                   children: [
                                     SizedBox(width: 75.0),
                                     LikeButton(
-                                      onTap: onLikeButtonTapped,
+                                     /* onTap: addingData(messageList[index].docId,anonymousId,messageList[index].likey),*/
                                       size: 20.0,
                                     ),
                                     Text(
                                       '${messageList[index].likeyCnt}',
-                                      style: TextStyle(
-                                        fontFamily: 'Varela',
-                                        fontSize: 10.0,
-                                      ),
+                                      style: TextStyle(fontSize: 10.0),
                                     ),
                                     SizedBox(width: 10.0),
                                     Text(
@@ -270,13 +266,14 @@ class _ReplyScreenState extends State<ReplyScreen> {
 
   }
 */
-  addingData(String docName, String usrId) {
+  addingData(String docId, dynamic usrId, List<dynamic> likeList) {
     CollectionReference post = FirebaseFirestore.instance.collection('post');
-
+     List<dynamic> newList = likeList;
+     newList.add(usrId);
     return post
-        .doc('$docName')
+        .doc('$docId')
         .update({
-      'likey': '$usrId'
+      'likey': newList
     })
         .then((value) => print("User Added"))
 
