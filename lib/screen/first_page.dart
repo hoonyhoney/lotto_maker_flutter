@@ -60,6 +60,10 @@ class _NumberPageState extends State<NumberPage> {
   }
 
   void getData() async{
+    prize_2 = [];
+    prize_3 = [];
+    prize_4 = [];
+    prize_5 = [];
     var headers = {'user-agent': 'Mozilla/5.0 (Linux; U; Android 2.1-update1; ko-kr; Nexus One Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17'};
     final response = await http.Client().get(Uri.parse('https://www.matichon.co.th/lottery'));
     if(response.statusCode ==200) {
@@ -88,31 +92,33 @@ class _NumberPageState extends State<NumberPage> {
 
         //step 1. 클래스에서 text를 가져온다.
 
-        /*for (int i=0; i< 5; i++) {
-          var prizeNo = document.getElementById("prize-2")?.getElementsByTagName("span")[i].text;
-          print(prizeNo);
+        for (int i=0; i< 5; i++) {
+          var prizeNo = document.getElementsByClassName("udlotto-section-3-2")[i].children[0].text;
           prize_2.add(prizeNo);
         }
         for (int i=0; i< 10; i++) {
-          var prizeNo = document.getElementById("prize-3")?.getElementsByTagName("span")[i].text;
-          print(prizeNo);
-          prize_3.add(prizeNo);
+          var prizeNo3 = document.getElementsByClassName("udlotto-section-4-2")[i].children[0].text;
+          prize_3.add(prizeNo3);
         }
         for (int i=0; i< 50; i++) {
-          var prizeNo = document.getElementById("prize-4")?.getElementsByTagName("span")[i].text;
-          print(prizeNo);
-          prize_4.add(prizeNo);
+          var prizeNo4 = document.getElementsByClassName("udlotto-section-5-2")[i].children[0].text;
+          prize_4.add(prizeNo4);
         }
         for (int i=0; i< 100; i++) {
-          var prizeNo = document.getElementById("prize-5")?.getElementsByTagName("span")[i].text;
-          print(prizeNo);
-          prize_5.add(prizeNo);
-        }*/
+          var prizeNo5 = document.getElementsByClassName("udlotto-section-6-2")[i].children[0].text;
+          prize_5.add(prizeNo5);
+        }
+
       });
 
     }else {
       throw Exception();
     }
+
+    print("prize_2"+prize_2.toString());
+    print("prize_3"+prize_3.toString());
+    print("prize_4"+prize_4.toString());
+    print("prize_5"+prize_5.toString());
   }
 
   void _writePost() {
@@ -457,6 +463,7 @@ class _NumberPageState extends State<NumberPage> {
                      child: Icon(Icons.more_horiz_outlined),
                        onPressed: () {
                         setState(() {
+                          getData();
                           isVisible = !isVisible;
                         });
                           _scrollController.animateTo(
