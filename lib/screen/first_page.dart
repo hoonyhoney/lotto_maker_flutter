@@ -114,11 +114,7 @@ class _NumberPageState extends State<NumberPage> {
     }else {
       throw Exception();
     }
-
-    print("prize_2"+prize_2.toString());
-    print("prize_3"+prize_3.toString());
-    print("prize_4"+prize_4.toString());
-    print("prize_5"+prize_5.toString());
+    prize_1.trim();
   }
 
   void _writePost() {
@@ -363,7 +359,7 @@ class _NumberPageState extends State<NumberPage> {
                               ),
                               SizedBox(height: 10,),
                               Container(
-                                height: 50,
+                                height: 200,
                                 child: GridView.builder(
                                   physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
@@ -372,8 +368,8 @@ class _NumberPageState extends State<NumberPage> {
                                   ,style: TextStyle(fontSize: 15),),
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 5,
-                                    //가로세로 비율
-                                    childAspectRatio: (10/2),
+                                    mainAxisSpacing: 1.0,
+                                    crossAxisSpacing: 1.0
                                   ),
 
                                 ),
@@ -388,16 +384,16 @@ class _NumberPageState extends State<NumberPage> {
                               ),
                               SizedBox(height: 10,),
                               Container(
-                                height: 50,
+                                height: 200,
                                 child: GridView.builder(
                                   physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemCount: prize_3.length,
                                   itemBuilder: (context, index) => Text(prize_3[index],style: TextStyle(fontSize: 15),),
-
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 5,
-                                    childAspectRatio: (10/2),
+                                      mainAxisSpacing: 1.0,
+                                      crossAxisSpacing: 1.0
                                   ),
 
                                 ),
@@ -419,7 +415,8 @@ class _NumberPageState extends State<NumberPage> {
                                   itemBuilder: (context, index) => Text(prize_4[index],style: TextStyle(fontSize: 15),),
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 5,
-                                    childAspectRatio: (10/2),
+                                      mainAxisSpacing: 1.0,
+                                      crossAxisSpacing: 1.0
                                   ),
 
                                 ),
@@ -434,7 +431,7 @@ class _NumberPageState extends State<NumberPage> {
                               ),
                               SizedBox(height: 10,),
                               Container(
-                                height: 350,
+                                height: 200,
                                 child: GridView.builder(
                                   physics: NeverScrollableScrollPhysics(),
                                   itemCount: prize_5.length,
@@ -442,14 +439,15 @@ class _NumberPageState extends State<NumberPage> {
                                       Text(prize_5[index],style: TextStyle(fontSize: 15),),
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 5,
-                                    childAspectRatio: (10/2),
+                                      mainAxisSpacing: 1.0,
+                                      crossAxisSpacing: 1.0
+                                    //childAspectRatio: (10/2),
                                   ),
 
                                 ),
                               ),
                               SizedBox(width:10),
                               SizedBox(height: 15.0,),
-
                             ],
                           ),
                         ),
