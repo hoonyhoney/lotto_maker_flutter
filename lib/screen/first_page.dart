@@ -82,6 +82,7 @@ class _NumberPageState extends State<NumberPage> {
 
 
         prize_1 = document.getElementsByClassName("udlotto-section-1-0")[0].children[1].text;
+        prize_1.replaceAll(RegExp(r"\s+"), "");
         prize_f3= document.getElementsByClassName("udlotto-section-1-1")[0].children[1].text;
         prize_l2 = document.getElementsByClassName("udlotto-section-1-3")[0].children[1].text;
         prize_l3 = document.getElementsByClassName("udlotto-section-1-2")[0].children[1].text;
@@ -94,18 +95,22 @@ class _NumberPageState extends State<NumberPage> {
 
         for (int i=0; i< 5; i++) {
           var prizeNo = document.getElementsByClassName("udlotto-section-3-2")[i].children[0].text;
+          prizeNo.trim();
           prize_2.add(prizeNo);
         }
         for (int i=0; i< 10; i++) {
           var prizeNo3 = document.getElementsByClassName("udlotto-section-4-2")[i].children[0].text;
+          prizeNo3.trim();
           prize_3.add(prizeNo3);
         }
         for (int i=0; i< 50; i++) {
           var prizeNo4 = document.getElementsByClassName("udlotto-section-5-2")[i].children[0].text;
+          prizeNo4.trim();
           prize_4.add(prizeNo4);
         }
         for (int i=0; i< 100; i++) {
           var prizeNo5 = document.getElementsByClassName("udlotto-section-6-2")[i].children[0].text;
+          prizeNo5.trim();
           prize_5.add(prizeNo5);
         }
 
@@ -253,10 +258,10 @@ class _NumberPageState extends State<NumberPage> {
                     //당첨 리스트
                     Container(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+
                     children: [
                       Text('🏆🏆🏆 No.1 🏆🏆🏆',
-                      textAlign: TextAlign.left,
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 20.0,
@@ -267,10 +272,8 @@ class _NumberPageState extends State<NumberPage> {
                         fontFamily: 'Varela',
                         fontSize: 15.0,
 
-
                         ),
                       ),
-                      SizedBox(height: 15.0,),
                       Text('🏆 ====OO 🏆',
                       style: TextStyle(
                         fontFamily: 'Varela',
@@ -283,7 +286,6 @@ class _NumberPageState extends State<NumberPage> {
                         fontSize: 15.0,
                         ),
                       ),
-                      SizedBox(height: 15.0,),
                       Text('🏆 OOO=== 🏆',
                       style: TextStyle(
                         fontFamily: 'Varela',
@@ -295,14 +297,14 @@ class _NumberPageState extends State<NumberPage> {
                       children:[
                         Text('$prize_f3',
                       style: TextStyle(
+
                         fontFamily: 'Varela',
                         fontSize: 15.0,
+                        height: 1.0
                         ),
                       ),
-                        SizedBox(width:10),
                         ],
                       ),
-                      SizedBox(height: 15.0,),
 
                       Text('🏆 ===OOO 🏆 ',
                         style: TextStyle(
@@ -310,19 +312,12 @@ class _NumberPageState extends State<NumberPage> {
                           fontSize: 20.0,
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children:[
-                          Text('$prize_l3',
-                            style: TextStyle(
-                              fontFamily: 'Varela',
-                              fontSize: 15.0,
-                            ),
-                          ),
-                          SizedBox(width:10),
-                        ],
+                      Text('$prize_l3',
+                        style: TextStyle(
+                          fontFamily: 'Varela',
+                          fontSize: 15.0,
+                        ),
                       ),
-                      SizedBox(height: 15,),
                       Text('🏆 OOOOO= 🏆',
                       style: TextStyle(
                         fontFamily: 'Varela',
@@ -332,13 +327,19 @@ class _NumberPageState extends State<NumberPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                       children:[
-                        Text('$prize_n1''$prize_n2'
-                          ,
+                        Text('$prize_n1',
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 15.0,
                         ),
                       ),
+                        Text('$prize_n2',
+                      style: TextStyle(
+                        fontFamily: 'Varela',
+                        fontSize: 15.0,
+                        ),
+                      ),
+
                         SizedBox(width:10),
                         ],
                       ),
@@ -347,10 +348,11 @@ class _NumberPageState extends State<NumberPage> {
                       //숨김부분
                       Visibility(
                         visible: isVisible,
-                        child: Container(
-                          child: Column(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-
+                              Divider(thickness:2.0),
+                              SizedBox(height:30),
                               Text('2등',
                                 style: TextStyle(
                                   fontFamily: 'Varela',
@@ -359,17 +361,17 @@ class _NumberPageState extends State<NumberPage> {
                               ),
                               SizedBox(height: 10,),
                               Container(
-                                height: 200,
+                                height: 100,
                                 child: GridView.builder(
                                   physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemCount: prize_2.length,
+
                                   itemBuilder: (context, index) => Text(prize_2[index]
                                   ,style: TextStyle(fontSize: 15),),
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 5,
-                                    mainAxisSpacing: 1.0,
-                                    crossAxisSpacing: 1.0
+                                    childAspectRatio: (3/2),
                                   ),
 
                                 ),
@@ -392,8 +394,7 @@ class _NumberPageState extends State<NumberPage> {
                                   itemBuilder: (context, index) => Text(prize_3[index],style: TextStyle(fontSize: 15),),
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 5,
-                                      mainAxisSpacing: 1.0,
-                                      crossAxisSpacing: 1.0
+                                    childAspectRatio: (3/2),
                                   ),
 
                                 ),
@@ -407,7 +408,7 @@ class _NumberPageState extends State<NumberPage> {
                               ),
                               SizedBox(height: 10,),
                               Container(
-                                height: 200,
+                                height: 600,
                                 child: GridView.builder(
                                   physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
@@ -415,8 +416,7 @@ class _NumberPageState extends State<NumberPage> {
                                   itemBuilder: (context, index) => Text(prize_4[index],style: TextStyle(fontSize: 15),),
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 5,
-                                      mainAxisSpacing: 1.0,
-                                      crossAxisSpacing: 1.0
+                                    childAspectRatio: (3/2),
                                   ),
 
                                 ),
@@ -431,17 +431,15 @@ class _NumberPageState extends State<NumberPage> {
                               ),
                               SizedBox(height: 10,),
                               Container(
-                                height: 200,
+                                height: 1200,
                                 child: GridView.builder(
                                   physics: NeverScrollableScrollPhysics(),
                                   itemCount: prize_5.length,
                                   itemBuilder: (context, index) =>
-                                      Text(prize_5[index],style: TextStyle(fontSize: 15),),
+                                      Text(prize_5[index],style: TextStyle(fontSize: 15,),),
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 5,
-                                      mainAxisSpacing: 1.0,
-                                      crossAxisSpacing: 1.0
-                                    //childAspectRatio: (10/2),
+                                    childAspectRatio: (3/2),
                                   ),
 
                                 ),
@@ -451,7 +449,6 @@ class _NumberPageState extends State<NumberPage> {
                             ],
                           ),
                         ),
-                      ),
                      RaisedButton(
                        textColor: Colors.black87,
                        color: Colors.amberAccent,
@@ -461,7 +458,6 @@ class _NumberPageState extends State<NumberPage> {
                      child: Icon(Icons.more_horiz_outlined),
                        onPressed: () {
                         setState(() {
-                          getData();
                           isVisible = !isVisible;
                         });
                           _scrollController.animateTo(
