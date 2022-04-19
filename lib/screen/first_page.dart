@@ -81,13 +81,13 @@ class _NumberPageState extends State<NumberPage> {
         prize_n1 = document.getElementsByClassName("prize-n1")[0].children[1].children[0].children[0].text;*/
 
 
-        prize_1 = document.getElementsByClassName("udlotto-section-1-0")[0].children[1].text;
-        prize_1.replaceAll(RegExp(r"\s+"), "");
-        prize_f3= document.getElementsByClassName("udlotto-section-1-1")[0].children[1].text;
-        prize_l2 = document.getElementsByClassName("udlotto-section-1-3")[0].children[1].text;
-        prize_l3 = document.getElementsByClassName("udlotto-section-1-2")[0].children[1].text;
+        prize_1 = document.getElementsByClassName("udlotto-section-1-0")[0].children[1].children[0].text;
+        prize_f3= document.getElementsByClassName("udlotto-section-1-1")[0].children[1].children[0].text;
+        prize_l2 = document.getElementsByClassName("udlotto-section-1-3")[0].children[1].children[0].text;
+        prize_l3 = document.getElementsByClassName("udlotto-section-1-2")[0].children[1].children[0].text;
         title = document.getElementsByClassName("udlotto-date")[0].children[1].text;
         prize_n1 = document.getElementsByClassName("udlotto-section-2-1")[0].children[0].text;
+        prize_n1.replaceAll(new RegExp(r"\s+\b|\b\s"), "");
         prize_n2 = document.getElementsByClassName("udlotto-section-2-2")[0].children[0].text;
 
 
@@ -119,7 +119,6 @@ class _NumberPageState extends State<NumberPage> {
     }else {
       throw Exception();
     }
-    prize_1.trim();
   }
 
   void _writePost() {
@@ -274,7 +273,8 @@ class _NumberPageState extends State<NumberPage> {
 
                         ),
                       ),
-                      Text('🏆 ====OO 🏆',
+                      SizedBox(height: 15.0,),
+                      Text('🏆 ㅡㅡㅡㅡOO 🏆',
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 20.0,
@@ -286,7 +286,8 @@ class _NumberPageState extends State<NumberPage> {
                         fontSize: 15.0,
                         ),
                       ),
-                      Text('🏆 OOO=== 🏆',
+                      SizedBox(height: 15.0,),
+                      Text('🏆 OOOㅡㅡㅡ 🏆',
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 20.0,
@@ -305,8 +306,8 @@ class _NumberPageState extends State<NumberPage> {
                       ),
                         ],
                       ),
-
-                      Text('🏆 ===OOO 🏆 ',
+                      SizedBox(height: 15.0,),
+                      Text('🏆 ㅡㅡㅡOOO 🏆 ',
                         style: TextStyle(
                           fontFamily: 'Varela',
                           fontSize: 20.0,
@@ -318,7 +319,8 @@ class _NumberPageState extends State<NumberPage> {
                           fontSize: 15.0,
                         ),
                       ),
-                      Text('🏆 OOOOO= 🏆',
+                      SizedBox(height: 15.0,),
+                      Text('🏆 OOOOOㅡ 🏆',
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 20.0,
