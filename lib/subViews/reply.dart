@@ -22,11 +22,12 @@ class ReplyScreen extends StatefulWidget {
   _ReplyScreenState createState() => _ReplyScreenState();
 }
 
+
 class _ReplyScreenState extends State<ReplyScreen> {
   final _firestore = FirebaseFirestore.instance;
   final messageTextController = TextEditingController();
   String inputText = '';
-  List<dynamic> likey = [];
+  List<dynamic> likey = []; //likey는 유저아이디 리스트
   DateTime formatDate = DateTime.now().toLocal(); //format변경
   bool loading = false,
       allLoaded = false;
@@ -37,14 +38,19 @@ class _ReplyScreenState extends State<ReplyScreen> {
       messageText: '',
       time: '',
       timesAgo: '',
-      likey: [],
       anonymousId:'',
+      likey: [],
       likeyCnt: 0,
   );
 
+  dynamic anonymousId;
   final AuthService _auth = AuthService(); //AuthService 클래스 객체 생성
-  dynamic anonymousId= AuthService().signInAnon();
-
+  @override
+  void initState() {
+   anonymousId= AuthService().signInAnon(); //익명아이디생성
+   print("익명아이디"+anonymousId.toString());
+    super.initState();
+  }
 
 
   @override
@@ -84,7 +90,6 @@ class _ReplyScreenState extends State<ReplyScreen> {
                           //textInputAction: TextInputAction.go, //엔터키 치면 제출되게 설정
                           controller: messageTextController,
                           onSubmitted: (value) {
-
                             inputText = value;
                             messageTextController.clear();
                             _firestore.collection('post').add({
@@ -92,7 +97,8 @@ class _ReplyScreenState extends State<ReplyScreen> {
                               'contents': inputText,
                               'time': DateFormat('yyyy-MM-dd kk:mm:ss')
                                   .format(DateTime.now().toLocal()),
-                              'anonymousId' : anonymousId //에러남
+                              'anonymousId': anonymousId,
+
                             });
                           },
                           cursorColor: Colors.black87,
@@ -144,14 +150,15 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   String time = message.get('time');
                   DateTime? newMillennium = DateTime.tryParse(time);
                   String timesAgo = Jiffy(time).fromNow();
-                  List<dynamic> likey = message.get('likey');
+   /*               List<dynamic> likey = message.get('likey');*/
                   String docId = message.id;
-                  MessageVO msgVO = new MessageVO(docId: '',
+                  MessageVO msgVO = new MessageVO(
+                      docId: '',
                       messageText: '',
                       time: '',
                       timesAgo: '',
-                      likey: [],
                       anonymousId: '',
+                      likey: [],
                       likeyCnt:0
                   );
                   msgVO.messageText = messageText;
@@ -201,10 +208,10 @@ class _ReplyScreenState extends State<ReplyScreen> {
                                      /* onTap: addingData(messageList[index].docId,anonymousId,messageList[index].likey),*/
                                       size: 20.0,
                                     ),
-                                    Text(
+/*                                    Text(
                                       '${messageList[index].likeyCnt}',
                                       style: TextStyle(fontSize: 10.0),
-                                    ),
+                                    ),*/
                                     SizedBox(width: 10.0),
                                     Text(
                                       '${messageList[index].timesAgo}',

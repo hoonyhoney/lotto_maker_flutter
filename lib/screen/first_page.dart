@@ -87,9 +87,12 @@ class _NumberPageState extends State<NumberPage> {
         prize_l3 = document.getElementsByClassName("udlotto-section-1-2")[0].children[1].children[0].text;
         title = document.getElementsByClassName("udlotto-date")[0].children[1].text;
         prize_n1 = document.getElementsByClassName("udlotto-section-2-1")[0].children[0].text;
-        prize_n1.replaceAll(new RegExp(r"\s+\b|\b\s"), "");
+        prize_n1.replaceAll("\n", " ");
+        prize_n1.replaceAll("\xa0", " ");
+        prize_n1.replaceAll("\\s+", " ");
         prize_n2 = document.getElementsByClassName("udlotto-section-2-2")[0].children[0].text;
-
+        prize_n2.replaceAll(new RegExp(r"\s+\b|\b\s"), "");
+        prize_n2.replaceAll("\n", " ");
 
         //step 1. 클래스에서 text를 가져온다.
 
