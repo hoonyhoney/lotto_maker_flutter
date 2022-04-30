@@ -8,7 +8,7 @@ class MessageVO {
   String time;
   String timesAgo;
   dynamic anonymousId;
-  List<dynamic> likey;
+  List<String> likey;
   int likeyCnt;
 
   MessageVO(

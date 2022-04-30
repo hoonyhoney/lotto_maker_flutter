@@ -27,28 +27,26 @@ class _ReplyScreenState extends State<ReplyScreen> {
   final _firestore = FirebaseFirestore.instance;
   final messageTextController = TextEditingController();
   String inputText = '';
-  List<dynamic> likey = []; //likey는 유저아이디 리스트
+  List<String> likey = []; //likey는 유저아이디 리스트
   DateTime formatDate = DateTime.now().toLocal(); //format변경
   bool loading = false,
       allLoaded = false;
 
   List<MessageVO> messageList = [];
   MessageVO msgVO = new MessageVO(
-      docId: '',
-      messageText: '',
-      time: '',
-      timesAgo: '',
-      anonymousId:'',
-      likey: [],
-      likeyCnt: 0,
+    docId: '',
+    messageText: '',
+    time: '',
+    timesAgo: '',
+    anonymousId: '',
+    likey: [],
+    likeyCnt: 0,
   );
 
   dynamic anonymousId;
   final AuthService _auth = AuthService(); //AuthService 클래스 객체 생성
   @override
   void initState() {
-   anonymousId= AuthService().signInAnon(); //익명아이디생성
-   print("익명아이디"+anonymousId.toString());
     super.initState();
   }
 
@@ -66,7 +64,8 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   width: 50.0,
                   height: 50.0,
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage("https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"),
+                    backgroundImage: NetworkImage(
+                        "https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"),
                   ),
                 ),
                 SizedBox(
@@ -89,7 +88,9 @@ class _ReplyScreenState extends State<ReplyScreen> {
                         child: TextField(
                           //textInputAction: TextInputAction.go, //엔터키 치면 제출되게 설정
                           controller: messageTextController,
-                          onSubmitted: (value) {
+                          onSubmitted: (value) async {
+                            anonymousId =
+                            await AuthService().signInAnon(); //익명아이디생성
                             inputText = value;
                             messageTextController.clear();
                             _firestore.collection('post').add({
@@ -150,7 +151,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   String time = message.get('time');
                   DateTime? newMillennium = DateTime.tryParse(time);
                   String timesAgo = Jiffy(time).fromNow();
-   /*               List<dynamic> likey = message.get('likey');*/
+                  List<String> likeyList = message.get('likey');
                   String docId = message.id;
                   MessageVO msgVO = new MessageVO(
                       docId: '',
@@ -159,12 +160,12 @@ class _ReplyScreenState extends State<ReplyScreen> {
                       timesAgo: '',
                       anonymousId: '',
                       likey: [],
-                      likeyCnt:0
+                      likeyCnt: 0
                   );
                   msgVO.messageText = messageText;
                   msgVO.time = time;
                   msgVO.timesAgo = timesAgo;
-                  msgVO.likey = likey;
+                  msgVO.likey = likeyList;
                   int likeyCnt = likey.length;
                   msgVO.likeyCnt = likeyCnt;
                   msgVO.docId = docId;
@@ -175,52 +176,54 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   children: [
                     ListView.builder(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),//스크롤 금지
+                      physics: NeverScrollableScrollPhysics(), //스크롤 금지
                       itemCount: messageList.length,
                       itemBuilder: (context, index) {
                         return Column(
                             children: [
-                                Row(children: [
-                                    CircleAvatar(
-                                      backgroundImage: NetworkImage(
-                                          "https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"),
-                                    ),
-                                    SizedBox(
-                                      width: 20.0,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.all(5.0),
-                                      height: 30.0,
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey[350],
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                      ),
-                                      child: Text(
-                                          '${messageList[index].messageText}'),
-                                    ),
-                                  ]),
-                          //bunch of reply
-                                Row(
-                                  children: [
-                                    SizedBox(width: 75.0),
-                                    LikeButton(
-                                     /* onTap: addingData(messageList[index].docId,anonymousId,messageList[index].likey),*/
-                                      size: 20.0,
-                                    ),
+                              Row(children: [
+                                CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      "https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"),
+                                ),
+                                SizedBox(
+                                  width: 20.0,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(5.0),
+                                  height: 30.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[350],
+                                    borderRadius:
+                                    BorderRadius.circular(10),
+                                  ),
+                                  child: Text(
+                                      '${messageList[index].messageText}'),
+                                ),
+                              ]),
+                              //bunch of reply
+                              Row(
+                                children: [
+                                  SizedBox(width: 75.0),
+                                  LikeButton(
+                                    onTap: addingData(
+                                        messageList[index].docId, anonymousId,
+                                        messageList[index].likey),
+                                    size: 20.0,
+                                  ),
 /*                                    Text(
                                       '${messageList[index].likeyCnt}',
                                       style: TextStyle(fontSize: 10.0),
                                     ),*/
-                                    SizedBox(width: 10.0),
-                                    Text(
-                                      '${messageList[index].timesAgo}',
-                                      style: TextStyle(fontSize: 10.0),
-                                    ),
-                                    SizedBox(
-                                      width: 10.0,
-                                    ),
-                                              /*Text('답글달기',
+                                  SizedBox(width: 10.0),
+                                  Text(
+                                    '${messageList[index].timesAgo}',
+                                    style: TextStyle(fontSize: 10.0),
+                                  ),
+                                  SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  /*Text('답글달기',
                                     style: TextStyle(
                                     fontFamily: 'Varela',
                                     fontSize: 14.0,
@@ -228,9 +231,9 @@ class _ReplyScreenState extends State<ReplyScreen> {
                                     ),
                                     Icon(Icons.mode_comment,
                                     size: 15.0,), */
-                                  ],
-                                ),
-                        ]); //메시지위젯 -끝-
+                                ],
+                              ),
+                            ]); //메시지위젯 -끝-
                       },
                     ),
                   ],
@@ -258,7 +261,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
     });
 */
 
-    //다큐먼트객체 한개 불러오기
+  //다큐먼트객체 한개 불러오기
 /*    FirebaseFirestore.instance
         .collection('post')
         .doc("BTLQ0M5ytSLbR8atNjhN")
@@ -273,39 +276,33 @@ class _ReplyScreenState extends State<ReplyScreen> {
 
   }
 */
-  addingData(String docId, dynamic usrId, List<dynamic> likeList) {
-    CollectionReference post = FirebaseFirestore.instance.collection('post');
-     List<dynamic> newList = likeList;
-     newList.add(usrId);
-    return post
-        .doc('$docId')
-        .update({
-      'likey': newList
-    })
-        .then((value) => print("User Added"))
+  addingData(String docId, dynamic usrId, List<String> likeList) {
+    var doc = FirebaseFirestore.instance
+        .collection('post')
+        .doc(docId);
+    likeList.add(usrId);
+    doc.update({
+      'likey': likeList,
+    });
 
-        .catchError((error) => print("Failed to add user: $error"));
-  }
+    removingData() {
+      CollectionReference post = FirebaseFirestore.instance.collection('post');
+      return post
+          .doc('BTLQ0M5ytSLbR8atNjhN')
+          .update({
+        'likedUsers': FieldValue.delete()
+      })
+          .then((value) => print("User Added"))
 
-  removingData(){
-    CollectionReference post = FirebaseFirestore.instance.collection('post');
-    return post
-        .doc('BTLQ0M5ytSLbR8atNjhN')
-        .update({
-      'likedUsers' : FieldValue.delete()
-    })
-        .then((value) => print("User Added"))
+          .catchError((error) => print("Failed to add user: $error"));
+    }
 
-        .catchError((error) => print("Failed to add user: $error"));
+    Future<bool> onLikeButtonTapped(bool isLiked) async {
+      return !isLiked;
+    }
 
-  }
-
-  Future<bool> onLikeButtonTapped(bool isLiked) async {
-    return !isLiked;
-  }
-
-  //좋아요
-  Future<void> like() async {
+    //좋아요
+    Future<void> like() async {
 /*    // 기존 좋아요 리스트를 복사
     final List likedUsers =
         List<String>.from(widget.data()['likedUsers'] ?? []);
@@ -317,7 +314,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
       'likedUsers': likedUsers,
     };*/
 
-  }
+    }
 /*  //좋아요 취소
   void unlike() {
     // 기존 좋아요 리스트를 복사
@@ -337,6 +334,6 @@ class _ReplyScreenState extends State<ReplyScreen> {
         .updateData(updateData);
   }*/
 
+  }
+
 }
-
-
