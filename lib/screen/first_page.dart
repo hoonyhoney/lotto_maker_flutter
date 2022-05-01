@@ -93,10 +93,13 @@ class _NumberPageState extends State<NumberPage> {
         //step 1. 클래스에서 text를 가져온다.
 
         for (int i=0; i< 5; i++) {
-          var prizeNo = document.getElementsByClassName("udlotto-section-3-2")[i].children[0].text.replaceAll(new RegExp(r"\s+\b|\b\s"), "");
+          var prizeNo = document.getElementsByClassName("udlotto-section-3-2")[i].children[0].text.replaceAll(" ","");
+          print("print"+prizeNo);
           prizeNo.trim();
           prize_2.add(prizeNo);
         }
+
+        print("prize_2"+prize_2.toString());
         for (int i=0; i< 10; i++) {
           var prizeNo3 = document.getElementsByClassName("udlotto-section-4-2")[i].children[0].text.replaceAll(" ","");
           prize_3.add(prizeNo3);
@@ -374,7 +377,7 @@ class _NumberPageState extends State<NumberPage> {
                                   ,style: TextStyle(fontSize: 15),),
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 5,
-                                    childAspectRatio: (3/2),
+                                    //childAspectRatio: (3/2),
                                   ),
 
                                 ),
@@ -442,7 +445,7 @@ class _NumberPageState extends State<NumberPage> {
                                       Text(prize_5[index],style: TextStyle(fontSize: 15,),),
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 5,
-                                    childAspectRatio: (3/2),
+                                    //childAspectRatio: (3/2),
                                   ),
 
                                 ),

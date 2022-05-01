@@ -99,6 +99,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                               'time': DateFormat('yyyy-MM-dd kk:mm:ss')
                                   .format(DateTime.now().toLocal()),
                               'anonymousId': anonymousId,
+                              'likey' : likey
 
                             });
                           },
@@ -151,7 +152,10 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   String time = message.get('time');
                   DateTime? newMillennium = DateTime.tryParse(time);
                   String timesAgo = Jiffy(time).fromNow();
-                  List<String> likeyList = message.get('likey');
+                  List<String> likeyList = message.get('likey'); //message에서 likey 리스트 가져오기
+                  if(likeyList.isEmpty){
+                    likeyList=[];
+                  }
                   String docId = message.id;
                   MessageVO msgVO = new MessageVO(
                       docId: '',
@@ -170,6 +174,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   msgVO.likeyCnt = likeyCnt;
                   msgVO.docId = docId;
                   messageList.add(msgVO);
+                  print("likey"+likey.toString());
                 }
 
                 return Column(
