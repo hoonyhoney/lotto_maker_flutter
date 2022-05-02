@@ -27,7 +27,8 @@ class _ReplyScreenState extends State<ReplyScreen> {
   final _firestore = FirebaseFirestore.instance;
   final messageTextController = TextEditingController();
   String inputText = '';
-  List<String> likey = []; //likey는 유저아이디 리스트
+  List<dynamic> likey = []; //likey는 유저아이디 리스트
+  dynamic isLiked=false;
   DateTime formatDate = DateTime.now().toLocal(); //format변경
   bool loading = false,
       allLoaded = false;
@@ -99,8 +100,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                               'time': DateFormat('yyyy-MM-dd kk:mm:ss')
                                   .format(DateTime.now().toLocal()),
                               'anonymousId': anonymousId,
-                              'likey' : likey
-
+                              'likey': likey
                             });
                           },
                           cursorColor: Colors.black87,
@@ -152,11 +152,11 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   String time = message.get('time');
                   DateTime? newMillennium = DateTime.tryParse(time);
                   String timesAgo = Jiffy(time).fromNow();
-                  List<String> likeyList = message.get('likey'); //message에서 likey 리스트 가져오기
-                  if(likeyList.isEmpty){
-                    likeyList=[];
-                  }
+                  List<dynamic> likeyList = message.get(
+                      'likey'); //message에서 likey 리스트 가져오기
+                  print("likeyList" + likeyList.toString());
                   String docId = message.id;
+                  //msgVO를 초기화한다음에 값을 set한다
                   MessageVO msgVO = new MessageVO(
                       docId: '',
                       messageText: '',
@@ -174,7 +174,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   msgVO.likeyCnt = likeyCnt;
                   msgVO.docId = docId;
                   messageList.add(msgVO);
-                  print("likey"+likey.toString());
+                  print("likey" + likey.toString());
                 }
 
                 return Column(
@@ -210,11 +210,10 @@ class _ReplyScreenState extends State<ReplyScreen> {
                               Row(
                                 children: [
                                   SizedBox(width: 75.0),
-                                  LikeButton(
-                                    onTap: addingData(
-                                        messageList[index].docId, anonymousId,
-                                        messageList[index].likey),
-                                    size: 20.0,
+                                  RaisedButton(
+                                    onPressed:() {
+                                      addingData(messageList[index].docId, anonymousId, messageList[index].likey);
+                                    },
                                   ),
 /*                                    Text(
                                       '${messageList[index].likeyCnt}',
@@ -281,14 +280,6 @@ class _ReplyScreenState extends State<ReplyScreen> {
 
   }
 */
-  addingData(String docId, dynamic usrId, List<String> likeList) {
-    var doc = FirebaseFirestore.instance
-        .collection('post')
-        .doc(docId);
-    likeList.add(usrId);
-    doc.update({
-      'likey': likeList,
-    });
 
     removingData() {
       CollectionReference post = FirebaseFirestore.instance.collection('post');
@@ -302,9 +293,6 @@ class _ReplyScreenState extends State<ReplyScreen> {
           .catchError((error) => print("Failed to add user: $error"));
     }
 
-    Future<bool> onLikeButtonTapped(bool isLiked) async {
-      return !isLiked;
-    }
 
     //좋아요
     Future<void> like() async {
@@ -341,4 +329,18 @@ class _ReplyScreenState extends State<ReplyScreen> {
 
   }
 
-}
+  Future<bool?> onLikeButtonTapped(bool isLiked,) async{
+
+
+    return !isLiked;
+  }
+  addingData(String docId, dynamic usrId, List<dynamic> likeList) {
+    var doc = FirebaseFirestore.instance
+        .collection('post')
+        .doc(docId);
+    likeList.add(usrId);
+    doc.update({
+      'likey': likeList,
+    });
+  }
+
