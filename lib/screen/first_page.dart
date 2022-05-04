@@ -66,6 +66,7 @@ class _NumberPageState extends State<NumberPage> {
     prize_5 = [];
     var headers = {'user-agent': 'Mozilla/5.0 (Linux; U; Android 2.1-update1; ko-kr; Nexus One Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17'};
     final response = await http.Client().get(Uri.parse('https://www.matichon.co.th/lottery'));
+    //final response = await http.Client().get(Uri.parse('https://lotto.mthai.com/'));
     if(response.statusCode ==200) {
       var document = parse(response.body);
       //var elements = document.getElementsByClassName(); //클래스 이름
@@ -73,7 +74,7 @@ class _NumberPageState extends State<NumberPage> {
 
 
       setState(() {
-        /* mthai      prize_1 = document.getElementsByClassName("prize-1")[0].children[1].children[0].children[1].text;
+/*        prize_1 = document.getElementsByClassName("prize-1")[0].children[1].children[0].children[0].text;
         prize_l2= document.getElementsByClassName("prize-l2")[0].children[1].children[0].children[0].text;
         prize_f3 = document.getElementsByClassName("prize-f3")[0].children[1].children[0].children[0].text;
         prize_l3 = document.getElementsByClassName("prize-l3")[0].children[1].children[0].children[0].text;

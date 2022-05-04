@@ -6,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:like_button/like_button.dart';
 import 'package:intl/intl.dart';
 import 'package:lotto_maker_flutter/model/messageVO.dart';
 import 'package:lotto_maker_flutter/services/auth_service.dart';
@@ -29,6 +28,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
   String inputText = '';
   List<dynamic> likey = []; //likey는 유저아이디 리스트
   dynamic isLiked=false;
+  int likeyCnt=0;
   DateTime formatDate = DateTime.now().toLocal(); //format변경
   bool loading = false,
       allLoaded = false;
@@ -170,7 +170,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   msgVO.time = time;
                   msgVO.timesAgo = timesAgo;
                   msgVO.likey = likeyList;
-                  int likeyCnt = likey.length;
+                  likeyCnt = likey.length;
                   msgVO.likeyCnt = likeyCnt;
                   msgVO.docId = docId;
                   messageList.add(msgVO);
@@ -210,11 +210,11 @@ class _ReplyScreenState extends State<ReplyScreen> {
                               Row(
                                 children: [
                                   SizedBox(width: 75.0),
-                                  RaisedButton(
-                                    onPressed:() {
-                                      addingData(messageList[index].docId, anonymousId, messageList[index].likey);
-                                    },
-                                  ),
+
+
+                                      //addingData(messageList[index].docId, anonymousId, messageList[index].likey);
+
+
 /*                                    Text(
                                       '${messageList[index].likeyCnt}',
                                       style: TextStyle(fontSize: 10.0),
@@ -329,11 +329,6 @@ class _ReplyScreenState extends State<ReplyScreen> {
 
   }
 
-  Future<bool?> onLikeButtonTapped(bool isLiked,) async{
-
-
-    return !isLiked;
-  }
   addingData(String docId, dynamic usrId, List<dynamic> likeList) {
     var doc = FirebaseFirestore.instance
         .collection('post')
