@@ -27,7 +27,6 @@ class _ReplyScreenState extends State<ReplyScreen> {
   final messageTextController = TextEditingController();
   String inputText = '';
   List<dynamic> likey = []; //likey는 유저아이디 리스트
-  dynamic isLiked=false;
   int likeyCnt=0;
   DateTime formatDate = DateTime.now().toLocal(); //format변경
   bool loading = false,
@@ -46,11 +45,16 @@ class _ReplyScreenState extends State<ReplyScreen> {
 
   dynamic anonymousId;
   final AuthService _auth = AuthService(); //AuthService 클래스 객체 생성
+
   @override
   void initState() {
+    createUsrId();
     super.initState();
   }
 
+  void createUsrId() async {
+    anonymousId = await AuthService().signInAnon(); //익명아이디생성
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,9 +93,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                         child: TextField(
                           //textInputAction: TextInputAction.go, //엔터키 치면 제출되게 설정
                           controller: messageTextController,
-                          onSubmitted: (value) async {
-                            anonymousId =
-                            await AuthService().signInAnon(); //익명아이디생성
+                          onSubmitted: (value)  {
                             inputText = value;
                             messageTextController.clear();
                             _firestore.collection('post').add({
@@ -152,8 +154,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   String time = message.get('time');
                   DateTime? newMillennium = DateTime.tryParse(time);
                   String timesAgo = Jiffy(time).fromNow();
-                  List<dynamic> likeyList = message.get(
-                      'likey'); //message에서 likey 리스트 가져오기
+                  List<dynamic> likeyList = message.get('likey'); //message에서 likey 리스트 가져오기
                   print("likeyList" + likeyList.toString());
                   String docId = message.id;
                   //msgVO를 초기화한다음에 값을 set한다
@@ -210,15 +211,24 @@ class _ReplyScreenState extends State<ReplyScreen> {
                               Row(
                                 children: [
                                   SizedBox(width: 75.0),
+                                  GestureDetector(
+                                    onTap: () {
+                                        if(messageList[index].likey.contains(anonymousId)) { //좋아요 눌린상태
+                                          removeData(messageList[index].docId,anonymousId,messageList[index].likey);
+                                        }
+                                        else { //좋아요 눌러진 상태
 
-
-                                      //addingData(messageList[index].docId, anonymousId, messageList[index].likey);
-
-
-/*                                    Text(
-                                      '${messageList[index].likeyCnt}',
+                                          addingData(messageList[index].docId,anonymousId,messageList[index].likey);
+                                        }
+                                      },
+                                    child:
+                                    messageList[index].likey.contains(anonymousId) ? Image.asset('images/heart_full.png', width: 15,height: 15,) : Image.asset('images/heart_empty.png', width: 15,height: 15,),
+                                  ),
+                                  SizedBox(width: 3.0),
+                                    Text(
+                                      '${messageList[index].likey.length}',
                                       style: TextStyle(fontSize: 10.0),
-                                    ),*/
+                                    ),
                                   SizedBox(width: 10.0),
                                   Text(
                                     '${messageList[index].timesAgo}',
@@ -281,17 +291,25 @@ class _ReplyScreenState extends State<ReplyScreen> {
   }
 */
 
-    removingData() {
-      CollectionReference post = FirebaseFirestore.instance.collection('post');
-      return post
-          .doc('BTLQ0M5ytSLbR8atNjhN')
-          .update({
-        'likedUsers': FieldValue.delete()
-      })
-          .then((value) => print("User Added"))
 
-          .catchError((error) => print("Failed to add user: $error"));
-    }
+  addingData(String docId, dynamic usrId, List<dynamic> likeList) { //좋아요
+    var doc = FirebaseFirestore.instance
+        .collection('post')
+        .doc(docId);
+    likeList.add(usrId);
+    doc.update({
+      'likey': likeList,
+    });
+  }
+  removeData(String docId, dynamic usrId, List<dynamic> likeList) { //싫어요
+    var doc = FirebaseFirestore.instance
+        .collection('post')
+        .doc(docId);
+    likeList.remove(usrId);
+    doc.update({
+      'likey': likeList,
+    });
+  }
 
 
     //좋아요
@@ -327,15 +345,5 @@ class _ReplyScreenState extends State<ReplyScreen> {
         .updateData(updateData);
   }*/
 
-  }
-
-  addingData(String docId, dynamic usrId, List<dynamic> likeList) {
-    var doc = FirebaseFirestore.instance
-        .collection('post')
-        .doc(docId);
-    likeList.add(usrId);
-    doc.update({
-      'likey': likeList,
-    });
   }
 
