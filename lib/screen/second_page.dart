@@ -34,18 +34,19 @@ class GenerateScreen extends StatelessWidget {
               mainAxisSpacing: 15.0,
               childAspectRatio: 0.8,
               children: [
-                _buildCard('Random 🍀 ',
-                    "https://randomuser.me/api/portraits/men/28.jpg",
+                _buildCard('roulette 🍀 ',
+                    'images/wheel.png',
                     Routes.randomScreen, context,1),
                 _buildCard('Zodiac 🐒',
                     'https://randomuser.me/api/portraits/men/29.jpg',
                     Routes.birthdayScreen, context,2),
-                _buildCard(
-                    'Name ✍ ', 'https://randomuser.me/api/portraits/men/30.jpg',
-                    Routes.nameScreen, context,3),
+
                 _buildCard('Fake 🧙‍️ ',
-                    'https://randomuser.me/api/portraits/men/31.jpg',
-                    Routes.fakeLottery, context,4),
+                    'images/winning.png',
+                    Routes.fakeLottery, context,3),
+                _buildCard(
+                    'coming soon ✍ ', 'images/coming-soon2.png',
+                    Routes.nameScreen, context,4),
               ],
             ),
           ),
@@ -66,10 +67,10 @@ class GenerateScreen extends StatelessWidget {
             if(index==2){
               Navigator.of(context).pushNamed(Routes.birthdayScreen);
             }
-            if(index==3){
+            if(index==4){
               Navigator.of(context).pushNamed(Routes.nameScreen);
             }
-            if(index==4){
+            if(index==3){
               Navigator.of(context).pushNamed(Routes.fakeLottery,arguments: prize_1);
             }
           },
@@ -105,7 +106,7 @@ class GenerateScreen extends StatelessWidget {
                     width: 150.0,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: NetworkImage(imgPath),
+                            image: new ExactAssetImage(imgPath),
                             fit: BoxFit.contain
                         )
                     ),

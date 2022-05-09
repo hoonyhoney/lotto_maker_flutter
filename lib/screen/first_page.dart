@@ -60,10 +60,6 @@ class _NumberPageState extends State<NumberPage> {
   }
 
   void getData() async{
-    prize_2 = [];
-    prize_3 = [];
-    prize_4 = [];
-    prize_5 = [];
     var headers = {'user-agent': 'Mozilla/5.0 (Linux; U; Android 2.1-update1; ko-kr; Nexus One Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17'};
     final response = await http.Client().get(Uri.parse('https://www.matichon.co.th/lottery'));
     //final response = await http.Client().get(Uri.parse('https://lotto.mthai.com/'));
@@ -121,9 +117,6 @@ class _NumberPageState extends State<NumberPage> {
     }
   }
 
-  void _writePost() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => WritePost()));
-  }
   final _firestore = FirebaseFirestore.instance;
   bool isVisible =false;
 

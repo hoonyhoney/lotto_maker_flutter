@@ -26,7 +26,7 @@ class WinNumbers with ChangeNotifier {
       var document = parse(response.body);
       //var elements = document.getElementsByClassName(); //클래스 이름
       //var elementsByTagName = document.getElementsByTagName(); //TagName
-      var prize1 = document.getElementsByClassName("udlotto-section-1-0")[0]
+      var prize1 = await document.getElementsByClassName("udlotto-section-1-0")[0]
           .children[1].text;
 
       prize_1 = prize1;

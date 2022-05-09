@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:lotto_maker_flutter/services/generateNumber.dart';
 
-class RandomScreen extends StatefulWidget {
-  const RandomScreen({Key? key}) : super(key: key);
+class RandomScreen extends StatefulWidget{
 
   @override
   _RandomScreenState createState() => _RandomScreenState();
@@ -14,16 +13,17 @@ class _RandomScreenState extends State<RandomScreen>
     with SingleTickerProviderStateMixin {
 
   late  AnimationController _controller;
+  bool isLoaded =false;
 
   @override
   void initState() {
     super.initState();
-    _controller= AnimationController(
-      vsync:this,)
-    ..addListener(() {
-
+    _controller=
+    AnimationController(vsync:this, duration: const Duration(milliseconds: 750),)
+    ..addStatusListener((status) {
+      if(status ==AnimationStatus.completed)
     setState(() {
-
+      isLoaded = true;
     });
     });
 
@@ -53,7 +53,7 @@ class _RandomScreenState extends State<RandomScreen>
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Lottie.asset('assets/lucky-spin.json',
+          Lottie.asset('assets/spin-wheel.json',
               controller: _controller,
               animate: true,
               onLoaded: (composition) {
@@ -65,22 +65,51 @@ class _RandomScreenState extends State<RandomScreen>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                IconButton(
-                  iconSize: 120.0,
-                  icon: const Icon(Icons.arrow_right),
+                RaisedButton(
+                  textColor: Colors.black87,
+                  color: Colors.amberAccent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular((10)),
+                  ),
+                  child: Row(
+                    children:
+                     [
+                       Text("start"
+                           ,style: TextStyle(fontSize: 30),
+                       ),
+                       Icon(
+                        Icons.play_arrow,size: 50,
+                    )],
+                  ),
                   onPressed: () {
-
-                    _controller.forward();
+                    if(isLoaded==false) {
+                      _controller.reset(); // replay를 위해서 리셋하기
+                      _controller.forward();
+                      _controller.repeat();
+                    }
                   },
                 ),
-                IconButton(
-                  icon: const Icon(Icons.stop),
-                  iconSize: 80.0,
+                SizedBox(width:50),
+                RaisedButton(
+                  textColor: Colors.black87,
+                  color: Colors.amberAccent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular((10)),
+                  ),
+                    child: Row(
+                      children:
+                      [
+                        Text("stop"
+                          ,style: TextStyle(fontSize: 30),
+                        ),
+                        Icon(
+                          Icons.stop,size: 50,
+                        )],
+                    ),
                   onPressed: () {
                     _controller.stop();
                     getNumber();
-                    _controller.reset(); // replay를 위해서 리셋하기
-                  },
+                    }
                 ),
                 // Play backward
               ],
