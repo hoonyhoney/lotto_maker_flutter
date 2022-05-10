@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lotto_maker_flutter/screen/random.dart';
+import 'package:lotto_maker_flutter/screen/roulette.dart';
 import 'package:lotto_maker_flutter/utilities/routes.dart';
 
 import 'number_detail.dart';
@@ -37,16 +37,14 @@ class GenerateScreen extends StatelessWidget {
                 _buildCard('roulette 🍀 ',
                     'images/wheel.png',
                     Routes.randomScreen, context,1),
-                _buildCard('Zodiac 🐒',
+                _buildCard('Random 🐒',
                     'https://randomuser.me/api/portraits/men/29.jpg',
-                    Routes.birthdayScreen, context,2),
+                    Routes.randomScreen, context,2),
 
                 _buildCard('Fake 🧙‍️ ',
                     'images/winning.png',
                     Routes.fakeLottery, context,3),
-                _buildCard(
-                    'coming soon ✍ ', 'images/coming-soon2.png',
-                    Routes.nameScreen, context,4),
+                Image.asset('images/coming-soon2.png',width: 80,height: 80,)
               ],
             ),
           ),
@@ -65,10 +63,7 @@ class GenerateScreen extends StatelessWidget {
               Navigator.of(context).pushNamed(Routes.randomScreen);
             }
             if(index==2){
-              Navigator.of(context).pushNamed(Routes.birthdayScreen);
-            }
-            if(index==4){
-              Navigator.of(context).pushNamed(Routes.nameScreen);
+              Navigator.of(context).pushNamed(Routes.randomScreen);
             }
             if(index==3){
               Navigator.of(context).pushNamed(Routes.fakeLottery,arguments: prize_1);

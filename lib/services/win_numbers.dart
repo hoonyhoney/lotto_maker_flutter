@@ -17,6 +17,7 @@ import 'package:share/share.dart';
 
 class WinNumbers with ChangeNotifier {
   dynamic prize_1;
+  dynamic get _prize_1 => prize_1;
 
 
   dynamic getData() async {
