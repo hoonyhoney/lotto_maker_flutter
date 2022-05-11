@@ -36,9 +36,9 @@ class GenerateScreen extends StatelessWidget {
               children: [
                 _buildCard('roulette 🍀 ',
                     'images/wheel.png',
-                    Routes.randomScreen, context,1),
+                    Routes.rouletteScreen, context,1),
                 _buildCard('Random 🐒',
-                    'https://randomuser.me/api/portraits/men/29.jpg',
+                    'images/random.png',
                     Routes.randomScreen, context,2),
 
                 _buildCard('Fake 🧙‍️ ',
@@ -60,7 +60,7 @@ class GenerateScreen extends StatelessWidget {
         child: InkWell(
           onTap: () {
             if(index==1){
-              Navigator.of(context).pushNamed(Routes.randomScreen);
+              Navigator.of(context).pushNamed(Routes.rouletteScreen);
             }
             if(index==2){
               Navigator.of(context).pushNamed(Routes.randomScreen);

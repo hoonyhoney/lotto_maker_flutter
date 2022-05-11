@@ -30,11 +30,10 @@ class _RouletteScreenState extends State<RouletteScreen>
   }
   void getNumber() async{
     Random random = new Random();
-    int seed= random.nextInt(100);
     int times=2;
 
 
-    List<dynamic> luckyNumber = await GenerateNumber().getRandomLottoNumber(seed,times);
+    List<dynamic> luckyNumber = await GenerateNumber().getRandomLottoNumber(times);
   /*  Navigator.push(context, MaterialPageRoute(
       builder: (context) => NumberDetail(luckynumber:luckyNumber),
     ));*/

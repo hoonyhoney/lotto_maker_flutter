@@ -25,7 +25,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     int times=2;
 
 
-    dynamic luckyNumber = await GenerateNumber().getRandomLottoNumber(seed,times);
+    dynamic luckyNumber = await GenerateNumber().getRandomLottoNumber(times);
     Navigator.push(context, MaterialPageRoute(
         builder: (context) => NumberDetail(luckynumber:luckyNumber),
      ));
