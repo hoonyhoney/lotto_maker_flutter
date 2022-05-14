@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../services/generateNumber.dart';
@@ -20,8 +21,56 @@ class _RandomScreenState extends State<RandomScreen> {
     Random random = new Random();
     int seed = random.nextInt(10);
     List<dynamic> numberList = generateClass.getRandomLottoNumber(2);
-    print(numberList.toString());
-    return Container();
+    print(numberList);
+    int firstNumber = numberList[0];
+    int secondNumber = numberList[1];
+    print(firstNumber);print(secondNumber);
+    return Scaffold(
+      body:Container(
+        
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('images/$firstNumber.png',width:100,height: 100,),
+                Image.asset('images/$secondNumber.png',width:100,height: 100,)
+
+              ],
+            ),
+            SizedBox(height: 70),
+            RaisedButton(
+                textColor: Colors.black87,
+                color: Colors.amberAccent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular((10)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:
+                  [
+                    Text("replay"
+                      ,style: TextStyle(fontSize: 30),
+                    ),
+                    Icon(
+                      Icons.replay,size: 50,
+                    )],
+                ),
+                onPressed: () {
+                  setState(() {
+                    List<dynamic> numberList = generateClass.getRandomLottoNumber(2);
+                    int firstNumber = numberList[0];
+                    int secondNumber = numberList[1];
+                  });
+
+                }
+            ),
+          ],
+        ),
+
+      )
+    );
   }
 }
 
