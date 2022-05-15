@@ -13,6 +13,23 @@ class FakeLottery extends StatefulWidget {
 
 class _FakeLotteryState extends State<FakeLottery> {
   String fakeNumber='';
+   dynamic prize1;
+   dynamic title;
+
+   @override
+  void initState() {
+     getPrizeNumber();
+    super.initState();
+  }
+  dynamic getPrizeNumber() async {
+    prize1 = await WinNumbers().getData();
+    String titleData = await WinNumbers().getTitle();
+    title = titleData.substring(9);
+    setState(() {
+      prize1;
+      title;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<WinNumbers>(
@@ -26,38 +43,82 @@ class _FakeLotteryState extends State<FakeLottery> {
                   children: [
                     Stack(
                       children: [
-                        Container(
+                        Container( //로또 이미지
 
                           width:350,
                           height:350,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('images/fake_lottery.jpg'),
+
+                                image: AssetImage('images/fake_lottery.png'),
                                 fit: BoxFit.contain
                             )
                         ),
                         ),
                         Positioned(
-                          top:95,
-                          left:230,
+                          top:100,
+                          left:185,
                           child: Container(
                             child: Transform.rotate(
-                              angle: -math.pi / 40,
+                              angle: -math.pi / 0,
                               child: Text(
-                               '${Provider.of<WinNumbers>(context).getData()}',
+                               '$prize1',
                                 style: TextStyle(
-                                  letterSpacing: 4.0,
+                                  fontSize: 20,
+                                  color:Color(0xff5C4B30),//색깔은 0xff +
+                                  letterSpacing: 7.0,
                                 ),
                               ),
                             ),
                           ),
                         ),
                         Positioned(
-                          top:130,
-                          left:230,
+                          top:123,
+                          left:180,
                           child: Container(
-                            child: Text('',
-
+                            child: Text('$title',
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top:160,
+                          left:215,
+                          child: Container(
+                            child: Text('084578',
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 1.0,
+                                color:Color(0xffDB9161),//색깔은 0xff +
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top:193,
+                          left:217,
+                          child: Container(
+                            child: Text('8',
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color:Color(0xff9F4257),//색깔은 0xff +
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top:193,
+                          left:280,
+                          child: Container(
+                            child: Text('03',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 3.0,
+                                color:Color(0xff665C5B),//색깔은 0xff +
+                              ),
                             ),
                           ),
                         ),
@@ -88,6 +149,7 @@ class _FakeLotteryState extends State<FakeLottery> {
       ),
     );
   }
+
 }
 
 /*

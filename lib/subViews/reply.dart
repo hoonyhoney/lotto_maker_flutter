@@ -44,7 +44,6 @@ class _ReplyScreenState extends State<ReplyScreen> {
   );
 
   dynamic anonymousId;
-  final AuthService _auth = AuthService(); //AuthService 클래스 객체 생성
 
   @override
   void initState() {

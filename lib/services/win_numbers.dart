@@ -16,7 +16,8 @@ import 'package:share/share.dart';
 
 
 class WinNumbers with ChangeNotifier {
-  dynamic prize_1;
+  String prize_1="";
+  String title="";
   dynamic get _prize_1 => prize_1;
 
 
@@ -27,13 +28,26 @@ class WinNumbers with ChangeNotifier {
       var document = parse(response.body);
       //var elements = document.getElementsByClassName(); //클래스 이름
       //var elementsByTagName = document.getElementsByTagName(); //TagName
-      var prize1 = await document.getElementsByClassName("udlotto-section-1-0")[0]
-          .children[1].text;
+      var  prize1 = document.getElementsByClassName("udlotto-section-1-0")[0].children[1].children[0].text;
 
       prize_1 = prize1;
       print("결과" + prize_1);
     }
     return prize_1;
+    notifyListeners();
+  }
+  dynamic getTitle() async {
+    final response = await http.Client().get(
+        Uri.parse('https://www.matichon.co.th/lottery'));
+    if (response.statusCode == 200) {
+      var document = parse(response.body);
+      //var elements = document.getElementsByClassName(); //클래스 이름
+      //var elementsByTagName = document.getElementsByTagName(); //TagName
+      var  _title = document.getElementsByClassName("udlotto-date")[0].children[1].text;
+
+      title = _title;
+    }
+    return title;
     notifyListeners();
   }
 }
