@@ -48,6 +48,5 @@ class WinNumbers with ChangeNotifier {
       title = _title;
     }
     return title;
-    notifyListeners();
   }
 }

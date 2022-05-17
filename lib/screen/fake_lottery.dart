@@ -12,7 +12,7 @@ class FakeLottery extends StatefulWidget {
 }
 
 class _FakeLotteryState extends State<FakeLottery> {
-  String fakeNumber='';
+  String comment='';
    dynamic prize1;
    dynamic title;
 
@@ -35,21 +35,29 @@ class _FakeLotteryState extends State<FakeLottery> {
     return ChangeNotifierProvider<WinNumbers>(
       create: (_) => WinNumbers(),
       child: Scaffold(
-        body: Container(
+          body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('images/flag.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+
           child: Center(
             child: SingleChildScrollView(
               child: Container(
                 child: Column(
+
                   children: [
                     Stack(
                       children: [
+
                         Container( //로또 이미지
 
                           width:350,
                           height:350,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-
                                 image: AssetImage('images/fake_lottery.png'),
                                 fit: BoxFit.contain
                             )
@@ -77,6 +85,14 @@ class _FakeLotteryState extends State<FakeLottery> {
                           left:180,
                           child: Container(
                             child: Text('$title',
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top:145,
+                          left:200,
+                          child: Container(
+                            child: Text('$comment',
                             ),
                           ),
                         ),
@@ -130,11 +146,11 @@ class _FakeLotteryState extends State<FakeLottery> {
                       child: TextField(
                         onChanged: (newText) {
                           setState(() {
-                            fakeNumber = newText;
+                            comment = newText;
                           });
                         },
                         decoration: new InputDecoration(
-                          suffixIcon: Icon(Icons.search),
+                          suffixIcon: Icon(Icons.send),
                           contentPadding: EdgeInsets.only(left: 20, right: 5, top: 20, bottom: 5),
                           hintText: '숫자를 입력하세요'
                         ),
