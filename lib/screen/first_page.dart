@@ -244,7 +244,7 @@ class _NumberPageState extends State<NumberPage> {
                     ), //검색창
                     SizedBox(height: 70.0,),
                     Container(
-                      child: Text('$title',
+                      child: Text(title == null? 'Loading':'$title',
                           style:TextStyle(
                             fontFamily: 'Varela',
                           fontSize: 20.0,
@@ -264,7 +264,7 @@ class _NumberPageState extends State<NumberPage> {
                         fontSize: 20.0,
                         ),
                       ),
-                      Text('$prize_1',
+                      Text(prize_1 == null? '':'$prize_1',
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 15.0,
@@ -278,7 +278,7 @@ class _NumberPageState extends State<NumberPage> {
                         fontSize: 20.0,
                         ),
                       ),
-                      Text('$prize_l2',
+                      Text(prize_l2 == null? '':'$prize_l2',
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 15.0,
@@ -294,7 +294,7 @@ class _NumberPageState extends State<NumberPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                       children:[
-                        Text('$prize_f3',
+                        Text(prize_f3 == null? '':'$prize_f3',
                       style: TextStyle(
 
                         fontFamily: 'Varela',
@@ -311,7 +311,7 @@ class _NumberPageState extends State<NumberPage> {
                           fontSize: 20.0,
                         ),
                       ),
-                      Text('$prize_l3',
+                      Text(prize_l3 == null? '':'$prize_l3',
                         style: TextStyle(
                           fontFamily: 'Varela',
                           fontSize: 15.0,
@@ -327,13 +327,13 @@ class _NumberPageState extends State<NumberPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                       children:[
-                        Text('$prize_n1',
+                        Text(prize_n1 == null? '':'$prize_n1',
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 15.0,
                         ),
                       ),
-                        Text('$prize_n2',
+                        Text(prize_n2 == null? '':'$prize_n2',
                       style: TextStyle(
                         fontFamily: 'Varela',
                         fontSize: 15.0,

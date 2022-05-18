@@ -70,7 +70,7 @@ class _FakeLotteryState extends State<FakeLottery> {
                             child: Transform.rotate(
                               angle: -math.pi / 0,
                               child: Text(
-                               '$prize1',
+                                prize1==null ? 'Loading':'$prize1',
                                 style: TextStyle(
                                   fontSize: 20,
                                   color:Color(0xff5C4B30),//색깔은 0xff +
@@ -84,7 +84,8 @@ class _FakeLotteryState extends State<FakeLottery> {
                           top:123,
                           left:180,
                           child: Container(
-                            child: Text('$title',
+                            child: Text(
+                              title==null ? '':'$title'
                             ),
                           ),
                         ),
