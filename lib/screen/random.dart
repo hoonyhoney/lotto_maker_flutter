@@ -76,7 +76,7 @@ class _RandomScreenState extends State<RandomScreen> with SingleTickerProviderSt
                   children:
                   [
                     Text("replay"
-                      ,style: TextStyle(fontSize: 30),
+                      ,style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),
                     ),
                     Icon(
                       Icons.replay,size: 50,

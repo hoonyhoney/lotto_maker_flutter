@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:screenshot/screenshot.dart';
 import 'dart:math' as math;
 
 import '../services/win_numbers.dart';
@@ -15,6 +16,8 @@ class _FakeLotteryState extends State<FakeLottery> {
   String comment='';
    dynamic prize1;
    dynamic title;
+   ScreenshotController screenshotController = ScreenshotController(); //스크린샷 컨트롤러 객체 생성
+
 
    @override
   void initState() {
@@ -52,16 +55,19 @@ class _FakeLotteryState extends State<FakeLottery> {
                     Stack(
                       children: [
 
-                        Container( //로또 이미지
+                        Screenshot(
+                          controller: screenshotController,
+                          child: Container( //로또 이미지
 
-                          width:350,
-                          height:350,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('images/fake_lottery.png'),
-                                fit: BoxFit.contain
-                            )
-                        ),
+                            width:350,
+                            height:350,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage('images/fake_lottery.png'),
+                                  fit: BoxFit.contain
+                              )
+                          ),
+                          ),
                         ),
                         Positioned(
                           top:100,
@@ -141,6 +147,9 @@ class _FakeLotteryState extends State<FakeLottery> {
                         ),
                       ],
                     ),
+                      RaisedButton(onPressed:(){
+                        screenshotController.capture(delay: Duration(milliseconds: 10)).
+                      }),
 
                       Container(
                       padding: EdgeInsets.only(left:30.0,right: 30.0),
