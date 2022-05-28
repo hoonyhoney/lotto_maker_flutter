@@ -68,8 +68,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                   width: 50.0,
                   height: 50.0,
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"),
+                    backgroundImage:AssetImage('images/pooh.jpg'),
                   ),
                 ),
                 SizedBox(
@@ -188,8 +187,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                             children: [
                               Row(children: [
                                 CircleAvatar(
-                                  backgroundImage: NetworkImage(
-                                      "https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/640px-SpongeBob_SquarePants_character.svg.png"),
+                                  backgroundImage: AssetImage('images/pooh.jpg'),
                                 ),
                                 SizedBox(
                                   width: 20.0,

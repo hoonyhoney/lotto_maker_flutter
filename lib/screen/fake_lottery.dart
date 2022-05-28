@@ -201,7 +201,7 @@ class _FakeLotteryState extends State<FakeLottery> {
                         decoration: new InputDecoration(
                           suffixIcon: Icon(Icons.send),
                           contentPadding: EdgeInsets.only(left: 20, right: 5, top: 20, bottom: 5),
-                          hintText: '숫자를 입력하세요'
+                          hintText: 'write any message'
                         ),
                       ),
                     ),

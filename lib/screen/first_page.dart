@@ -84,29 +84,35 @@ class _NumberPageState extends State<NumberPage> {
         prize_l3 = document.getElementsByClassName("udlotto-section-1-2")[0].children[1].children[0].text;
         title = document.getElementsByClassName("udlotto-date")[0].children[1].text;
         prize_n1 = document.getElementsByClassName("udlotto-section-2-1")[0].children[0].text.replaceAll(" ","");
+        //prize_n1.replaceAll("[^0-9","");
         prize_n2 = document.getElementsByClassName("udlotto-section-2-2")[0].children[0].text.replaceAll(" ","");
-
+        //prize_n2.replaceAll("[^0-9","");
 
         //step 1. 클래스에서 text를 가져온다.
 
         for (int i=0; i< 5; i++) {
           var prizeNo = document.getElementsByClassName("udlotto-section-3-2")[i].children[0].text.replaceAll(" ","");
-          print("print"+prizeNo);
+          prizeNo.replaceAll("[^0-9","");
           prizeNo.trim();
+          prizeNo.toString();
           prize_2.add(prizeNo);
         }
-
-        print("prize_2"+prize_2.toString());
         for (int i=0; i< 10; i++) {
           var prizeNo3 = document.getElementsByClassName("udlotto-section-4-2")[i].children[0].text.replaceAll(" ","");
+          prizeNo3.replaceAll("[^0-9","");
+          prizeNo3.trim();
           prize_3.add(prizeNo3);
         }
         for (int i=0; i< 50; i++) {
           var prizeNo4 = document.getElementsByClassName("udlotto-section-5-2")[i].children[0].text.replaceAll(" ","");
+          prizeNo4.replaceAll("[^0-9","");
+          prizeNo4.trim();
           prize_4.add(prizeNo4);
         }
         for (int i=0; i< 100; i++) {
           var prizeNo5 = document.getElementsByClassName("udlotto-section-6-2")[i].children[0].text.replaceAll(" ","");
+          prizeNo5.replaceAll("[^0-9","");
+          prizeNo5.trim();
           prize_5.add(prizeNo5);
         }
 
@@ -155,11 +161,11 @@ class _NumberPageState extends State<NumberPage> {
    if(value==prize_1) {
      return 'ที่ 1';
    } else if(prize_n1.contains(value)){
-     return 'ที่ /';
+     return 'ที่ 아차상';
    } else if(prize_n2.contains(value)){
-     return 'ที่ /';
+     return 'ที่ 아차상';
    } else if(prize_2.contains(value)){
-     return 'ที่ /';
+     return 'ที่ 2등';
    } else if(prize_3.contains(value)) {
      return 'ที่ 3';
    }else if(prize_4.contains(value)) {
