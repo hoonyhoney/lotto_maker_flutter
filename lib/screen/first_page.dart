@@ -8,9 +8,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:html/parser.dart';
-import 'package:lotto_maker_flutter/DB/database_helper.dart';
-import 'package:lotto_maker_flutter/screen/writePost.dart';
-import 'package:lotto_maker_flutter/subViews/commentBox.dart';
 import 'package:lotto_maker_flutter/subViews/dialogs.dart';
 import 'package:lotto_maker_flutter/subViews/reply.dart';
 import 'package:http/http.dart' as http;
@@ -91,31 +88,21 @@ class _NumberPageState extends State<NumberPage> {
         //step 1. 클래스에서 text를 가져온다.
 
         for (int i=0; i< 5; i++) {
-          var prizeNo = document.getElementsByClassName("udlotto-section-3-2")[i].children[0].text.replaceAll(" ","");
-          prizeNo.replaceAll("[^0-9","");
-          prizeNo.trim();
-          prizeNo.toString();
+          var prizeNo = document.getElementsByClassName("udlotto-section-3-2")[i].children[0].text.replaceAll(" ","").trim();
           prize_2.add(prizeNo);
         }
         for (int i=0; i< 10; i++) {
-          var prizeNo3 = document.getElementsByClassName("udlotto-section-4-2")[i].children[0].text.replaceAll(" ","");
-          prizeNo3.replaceAll("[^0-9","");
-          prizeNo3.trim();
+          var prizeNo3 = document.getElementsByClassName("udlotto-section-4-2")[i].children[0].text.replaceAll(" ","").trim();
           prize_3.add(prizeNo3);
         }
         for (int i=0; i< 50; i++) {
-          var prizeNo4 = document.getElementsByClassName("udlotto-section-5-2")[i].children[0].text.replaceAll(" ","");
-          prizeNo4.replaceAll("[^0-9","");
-          prizeNo4.trim();
+          var prizeNo4 = document.getElementsByClassName("udlotto-section-5-2")[i].children[0].text.replaceAll(" ","").trim();
           prize_4.add(prizeNo4);
         }
         for (int i=0; i< 100; i++) {
-          var prizeNo5 = document.getElementsByClassName("udlotto-section-6-2")[i].children[0].text.replaceAll(" ","");
-          prizeNo5.replaceAll("[^0-9","");
-          prizeNo5.trim();
+          var prizeNo5 = document.getElementsByClassName("udlotto-section-6-2")[i].children[0].text.replaceAll(" ","").trim();
           prize_5.add(prizeNo5);
         }
-
       });
 
     }else {
@@ -139,7 +126,6 @@ class _NumberPageState extends State<NumberPage> {
    await for (var snapshot in _firestore.collection('post').snapshots()) {
      // 그 snapshot 에서 메시지를 하나 꺼냄
      for (var message in snapshot.docs) {
-       print(message.data);
      }
    }
  }
@@ -150,36 +136,39 @@ class _NumberPageState extends State<NumberPage> {
   var l3 = '';
   var l2 = '';
 
+  value = value.toString();
+  print("value"+value);
+
    if(value.length==6) {
       f3 = value.substring(0, 3);
       l3 = value.substring(3, 6);
       l2 = value.substring(4, 6);
    }else {
-     return 'Please enter number';
+     return 'โปรดป้อนหมายเลขที่ถูกต้อง';
    }
 
    if(value==prize_1) {
-     return 'ที่ 1';
+     return 'ยินดีด้วย!!! รางวัลที่ 1';
    } else if(prize_n1.contains(value)){
-     return 'ที่ 아차상';
+     return 'ยินดีด้วย!!! ข้างเคียงรางวัลที่ 1';
    } else if(prize_n2.contains(value)){
-     return 'ที่ 아차상';
+     return 'ยินดีด้วย!!! ข้างเคียงรางวัลที่ 1';
    } else if(prize_2.contains(value)){
-     return 'ที่ 2등';
+     return 'ยินดีด้วย!!! รางวัลที่ 2';
    } else if(prize_3.contains(value)) {
-     return 'ที่ 3';
+     return 'ยินดีด้วย!!! รางวัลที่ 3';
    }else if(prize_4.contains(value)) {
-     return 'ที่ 4';
+     return 'ยินดีด้วย!!! รางวัลที่ 4';
    }else if(prize_5.contains(value)) {
-     return 'ที่ 5';
+     return 'ยินดีด้วย!!! รางวัลที่ 5';
    }else if(prize_f3.contains(f3)) {
-     return 'หน้า 3ตัว';
+     return 'ยินดีด้วย!!! เลขหน้าหน้า 3ตัว';
    }else if(prize_l3.contains(l3)) {
-     return 'หลัง 3ตัว';
+     return 'ยินดีด้วย!!! เลขท้าย 3ตัว';
    }else if(prize_l2.contains(l2)) {
-     return 'หลัง 2ตัว';
+     return 'ยินดีด้วย!!! เลขท้าย 2 ตัว';
    }else {
-     return 'ไม่ถูกนะครับ  :(';
+     return "ไม่ถูกรางวัล T,.T";
    }
  }
 
@@ -264,37 +253,39 @@ class _NumberPageState extends State<NumberPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
 
                     children: [
-                      Text('🏆🏆🏆 No.1 🏆🏆🏆',
+                      Text('🏆🏆🏆 รางวัลที่ 1 🏆🏆🏆',
                       style: TextStyle(
                         fontFamily: 'Varela',
-                        fontSize: 20.0,
+                        fontSize: 15.0,
                         ),
                       ),
                       Text(prize_1 == null? '':'$prize_1',
                       style: TextStyle(
                         fontFamily: 'Varela',
-                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30.0,
 
                         ),
                       ),
                       SizedBox(height: 15.0,),
-                      Text('🏆 ㅡㅡㅡㅡOO 🏆',
+                      Text('🏆🏆 เลขท้าย 2 ตัว 🏆🏆',
                       style: TextStyle(
                         fontFamily: 'Varela',
-                        fontSize: 20.0,
+                        fontSize: 15.0,
                         ),
                       ),
                       Text(prize_l2 == null? '':'$prize_l2',
                       style: TextStyle(
                         fontFamily: 'Varela',
-                        fontSize: 15.0,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(height: 15.0,),
-                      Text('🏆 OOOㅡㅡㅡ 🏆',
+                      Text('🏆🏆 เลขหน้า 3 ตัว 🏆🏆',
                       style: TextStyle(
                         fontFamily: 'Varela',
-                        fontSize: 20.0,
+                        fontSize: 15.0,
                         ),
                       ),
                       Row(
@@ -304,30 +295,31 @@ class _NumberPageState extends State<NumberPage> {
                       style: TextStyle(
 
                         fontFamily: 'Varela',
-                        fontSize: 15.0,
-                        height: 1.0
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
                         ),
                       ),
                         ],
                       ),
                       SizedBox(height: 15.0,),
-                      Text('🏆 ㅡㅡㅡOOO 🏆 ',
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 20.0,
-                        ),
-                      ),
-                      Text(prize_l3 == null? '':'$prize_l3',
+                      Text('🏆🏆 เลขท้าย 3 ตัว 🏆🏆 ',
                         style: TextStyle(
                           fontFamily: 'Varela',
                           fontSize: 15.0,
                         ),
                       ),
+                      Text(prize_l3 == null? '':'$prize_l3',
+                        style: TextStyle(
+                          fontFamily: 'Varela',
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       SizedBox(height: 15.0,),
-                      Text('🏆 OOOOOㅡ 🏆',
+                      Text('🏆🏆 รางวัลข้างเคียง 🏆🏆',
                       style: TextStyle(
                         fontFamily: 'Varela',
-                        fontSize: 20.0,
+                        fontSize: 15.0,
                         ),
                       ),
                       Row(
@@ -336,20 +328,21 @@ class _NumberPageState extends State<NumberPage> {
                         Text(prize_n1 == null? '':'$prize_n1',
                       style: TextStyle(
                         fontFamily: 'Varela',
-                        fontSize: 15.0,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
                         ),
                       ),
                         Text(prize_n2 == null? '':'$prize_n2',
                       style: TextStyle(
                         fontFamily: 'Varela',
-                        fontSize: 15.0,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
                         ),
                       ),
 
                         SizedBox(width:10),
                         ],
                       ),
-                      SizedBox(height: 15.0,),
 
                       //숨김부분
                       Visibility(
@@ -358,11 +351,29 @@ class _NumberPageState extends State<NumberPage> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Divider(thickness:2.0),
+                              RaisedButton(
+                                textColor: Colors.black87,
+                                color: Colors.amberAccent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular((10)),
+                                ),
+                                child: Icon(Icons.keyboard_arrow_up_outlined),
+                                onPressed: () {
+                                  setState(() {
+                                    isVisible = !isVisible;
+                                  });
+                                  _scrollController.animateTo(
+                                      0, // 가고자하는 높이
+                                      duration: const Duration(milliseconds: 1), //시간
+                                      curve: Curves.fastOutSlowIn);  //효과
+                                },
+                              ),
                               SizedBox(height:30),
-                              Text('2등',
+                              Text('รางวัลที่ 2',
                                 style: TextStyle(
                                   fontFamily: 'Varela',
                                   fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               SizedBox(height: 10,),
@@ -384,15 +395,16 @@ class _NumberPageState extends State<NumberPage> {
                               ),
                               SizedBox(width:10),
                               SizedBox(height: 15.0,),
-                              Text('3등',
+                              Text('รางวัลที่ 3',
                                 style: TextStyle(
                                   fontFamily: 'Varela',
                                   fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               SizedBox(height: 10,),
                               Container(
-                                height: 200,
+                                height: 150,
                                 child: GridView.builder(
                                   physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
@@ -406,10 +418,11 @@ class _NumberPageState extends State<NumberPage> {
                                 ),
                               ),
                               SizedBox(width:10),
-                              SizedBox(height: 15.0,),Text('4등',
+                              SizedBox(height: 15.0,),Text('รางวัลที่ 4',
                                 style: TextStyle(
                                   fontFamily: 'Varela',
                                   fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               SizedBox(height: 10,),
@@ -427,12 +440,13 @@ class _NumberPageState extends State<NumberPage> {
 
                                 ),
                               ),
-
                               SizedBox(width:10),
-                              SizedBox(height: 15.0,),Text('5등',
+                              SizedBox(height: 15.0,),
+                              Text('รางวัลที่ 5',
                                 style: TextStyle(
                                   fontFamily: 'Varela',
                                   fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               SizedBox(height: 10,),
@@ -445,7 +459,7 @@ class _NumberPageState extends State<NumberPage> {
                                       Text(prize_5[index],style: TextStyle(fontSize: 15,),),
                                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 5,
-                                    //childAspectRatio: (3/2),
+                                    childAspectRatio: (3/2),
                                   ),
 
                                 ),
@@ -461,7 +475,7 @@ class _NumberPageState extends State<NumberPage> {
                        shape: RoundedRectangleBorder(
                          borderRadius: BorderRadius.circular((10)),
                        ),
-                     child: Icon(Icons.more_horiz_outlined),
+                     child: Icon(Icons.keyboard_arrow_down_outlined),
                        onPressed: () {
                         setState(() {
                           isVisible = !isVisible;
@@ -599,14 +613,6 @@ class _NumberPageState extends State<NumberPage> {
           ],
         ),
       ),
-/*      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => CmmtBox()));
-        },
-        child: Icon(Icons.create),
-      ),*/
-
-
     );
 
   }
@@ -614,26 +620,4 @@ class _NumberPageState extends State<NumberPage> {
 
 }
 
-
-//SQFLITE
-/*class Grocery {
-  final int? id;
-  final String name;
-
-  //생성자처리
-  Grocery({this.id, required this.name});
-
-  factory Grocery.fromMap(Map<String, dynamic> json) => new Grocery(
-  id:json['id'],
-  name: json['name'],
-  );
-
-  Map<String, dynamic> toMap() {
-    return{
-      'id':id,
-      'name':name,
-    };
-  }
-
-}*/
 

@@ -31,9 +31,9 @@ class _DialogsState extends State<Dialogs> with SingleTickerProviderStateMixin{
     super.dispose();
   }
   dynamic lottiePath () { //당첨결과에 따라 로띠화면 분기
-    if (result == "ไม่ถูกนะครับ  :(") {
+    if (result == "ไม่ถูกรางวัล T,.T") {
         return "assets/angry-dog.json";
-    } else if(result=="Please enter number") {
+    } else if(result=="โปรดป้อนหมายเลขที่ถูกต้อง") {
       return "assets/error-state-dog.json";
     }
     else{
@@ -47,7 +47,7 @@ class _DialogsState extends State<Dialogs> with SingleTickerProviderStateMixin{
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0)
       ),
-      title: Center(child: new Text("당첨결과")),
+      title: Center(child: new Text("ผลสลากกินแบ่ง")),
       content: SingleChildScrollView(
         child: Column(
           children: [
