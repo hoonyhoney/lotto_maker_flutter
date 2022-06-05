@@ -40,7 +40,7 @@ class MyHomePage extends StatefulWidget {
    @override
    Widget build(BuildContext context) {
      return Scaffold(
-       resizeToAvoidBottomInset: false,
+       resizeToAvoidBottomInset: true,
        appBar: AppBar(
          backgroundColor: Colors.white,
          elevation: 0.0,
@@ -83,17 +83,7 @@ class MyHomePage extends StatefulWidget {
            ),*/
          ],
        ),
-       body: ListView(
-         padding: EdgeInsets.only(left: 5.0),
-         children: [
-           SizedBox(height: 15.0),
-           Container(
-             height: MediaQuery
-                 .of(context)
-                 .size
-                 .height - 20.0,
-             width: double.infinity,
-             child: TabBarView(
+             body:TabBarView(
                controller: _tabController,
                physics: NeverScrollableScrollPhysics(), //탭바 슬라이드 안되게 설정
                children: [
@@ -101,9 +91,6 @@ class MyHomePage extends StatefulWidget {
                  GenerateScreen(),
                ],
              ),
-           )
-         ],
-       ),
        bottomNavigationBar:BottomNavigationBar(
          onTap: onTabTapped,
          currentIndex: _tabController.index,

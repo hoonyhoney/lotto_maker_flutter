@@ -89,6 +89,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                     children: [
                       Expanded(
                         child: TextField(
+                          textAlignVertical: TextAlignVertical.center,
                           //textInputAction: TextInputAction.go, //엔터키 치면 제출되게 설정
                           controller: messageTextController,
                           onSubmitted: (value)  {
@@ -105,11 +106,13 @@ class _ReplyScreenState extends State<ReplyScreen> {
                           },
                           cursorColor: Colors.black87,
                           style: TextStyle(
+
                             fontFamily: 'Varela',
                             fontSize: 15.0,
                           ),
                           decoration: InputDecoration(
-                            hintText: "댓글을 입력하세요...",
+                            contentPadding: EdgeInsets.symmetric(vertical: 9),
+                            hintText: "แสดงความคิดเห็น...",
                             hintStyle: TextStyle(
                               fontFamily: 'Varela',
                               color: Colors.black87.withOpacity(0.5),
@@ -219,7 +222,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                                         }
                                       },
                                     child:
-                                    messageList[index].likey.contains(anonymousId) ? Image.asset('images/heart_full.png', width: 15,height: 15,) : Image.asset('images/heart_empty.png', width: 15,height: 15,),
+                                    messageList[index].likey.contains(anonymousId) ? Image.asset('images/heart_full.png', width: 17,height: 17,) : Image.asset('images/heart_empty.png', width: 17,height: 17,),
                                   ),
                                   SizedBox(width: 3.0),
                                     Text(

@@ -80,9 +80,9 @@ class _NumberPageState extends State<NumberPage> {
         prize_l2 = document.getElementsByClassName("udlotto-section-1-3")[0].children[1].children[0].text;
         prize_l3 = document.getElementsByClassName("udlotto-section-1-2")[0].children[1].children[0].text;
         title = document.getElementsByClassName("udlotto-date")[0].children[1].text;
-        prize_n1 = document.getElementsByClassName("udlotto-section-2-1")[0].children[0].text.replaceAll(" ","");
+        prize_n1 = document.getElementsByClassName("udlotto-section-2-1")[0].children[0].text.replaceAll(" ","").trim();
         //prize_n1.replaceAll("[^0-9","");
-        prize_n2 = document.getElementsByClassName("udlotto-section-2-2")[0].children[0].text.replaceAll(" ","");
+        prize_n2 = document.getElementsByClassName("udlotto-section-2-2")[0].children[0].text.replaceAll(" ","").trim();
         //prize_n2.replaceAll("[^0-9","");
 
         //step 1. 클래스에서 text를 가져온다.
@@ -184,8 +184,8 @@ class _NumberPageState extends State<NumberPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
+        padding: EdgeInsets.only(left: 5.0),
         controller: _scrollController,
         child: Row(
           children: [
@@ -332,6 +332,7 @@ class _NumberPageState extends State<NumberPage> {
                         fontWeight: FontWeight.bold,
                         ),
                       ),
+                        SizedBox(width:50.0),
                         Text(prize_n2 == null? '':'$prize_n2',
                       style: TextStyle(
                         fontFamily: 'Varela',
@@ -341,8 +342,11 @@ class _NumberPageState extends State<NumberPage> {
                       ),
 
                         SizedBox(width:10),
+
                         ],
+
                       ),
+                      SizedBox(height:30.0),
 
                       //숨김부분
                       Visibility(
@@ -572,52 +576,14 @@ class _NumberPageState extends State<NumberPage> {
                     //댓글리스트
                     Expanded(child: ReplyScreen(url: url)),
 
-
-                    /*Container(
-                      height: 500,
-                      child: Center(
-                        child: FutureBuilder<List<Grocery>>(
-                            future: DatabaseHelper.instance.getGroceries(),
-                            builder: (BuildContext context, AsyncSnapshot<List<Grocery>> snapshot) {
-                              if(!snapshot.hasData) {
-                                return Center(child: Text('Loading...'));
-                              }
-                              return snapshot.data!.isEmpty
-                                  ? Center(child: Text('No List'))
-                                  : ListView(
-                                children: snapshot.data!.map((grocery){
-                                  return Center(
-                                    child: Card(
-                                      child: ListTile(
-                                        title:Text(grocery.name),
-                                        onLongPress: () {
-                                          setState(() {
-                                            DatabaseHelper.instance.remove(grocery.id!);
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  );
-                                }).toList(),
-                              );
-                            }
-                        ),
-                      ),
-                    ),*/
-
-
                   ],
                 ),
               ),
             ),
           ],
         ),
-      ),
     );
-
   }
-
-
 }
 
 

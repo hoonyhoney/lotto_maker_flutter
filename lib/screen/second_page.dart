@@ -18,7 +18,7 @@ class GenerateScreen extends StatelessWidget {
         children: [
           SizedBox(height: 15.0),
           Container(
-            padding: EdgeInsets.only(right: 15.0),
+            padding: EdgeInsets.only(left: 15.0, right: 15.0),
             width: MediaQuery
                 .of(context)
                 .size
