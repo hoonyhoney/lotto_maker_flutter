@@ -9,22 +9,19 @@ class Name extends StatefulWidget {
 }
 
 class _NameState extends State<Name> {
-
-
   @override
   void initState() {
     super.initState();
     getNumber();
   }
-  void getNumber() async{
-    int seed=3;
-    int times=2;
 
+  void getNumber() async {
+    int seed = 3;
+    int times = 2;
   }
+
   @override
   Widget build(BuildContext context) {
     return Container();
   }
 }
-
-

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-
       shape: CircularNotchedRectangle(),
       notchMargin: 6.0,
       color: Colors.transparent,
@@ -13,13 +11,11 @@ class BottomBar extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Container(
         height: 60.0,
-          decoration: BoxDecoration(
+        decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25.0),
-              topRight: Radius.circular(25.0)
-            ),
-            color: Colors.white
-          ),
+                topLeft: Radius.circular(25.0),
+                topRight: Radius.circular(25.0)),
+            color: Colors.white),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -28,10 +24,16 @@ class BottomBar extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Icon(Icons.home, color: Colors.amberAccent,
-                    size: 40.0,),
-                    Icon(Icons.casino, color:Color(0xFF676E79),
-                    size: 40.0,),
+                    Icon(
+                      Icons.home,
+                      color: Colors.amberAccent,
+                      size: 40.0,
+                    ),
+                    Icon(
+                      Icons.casino,
+                      color: Color(0xFF676E79),
+                      size: 40.0,
+                    ),
                   ],
                 ),
               ),

@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:62940781041:android:97ca769bb90bc9c3de4c50",
         "android_client_info": {
-          "package_name": "com.lottomaker.lotto_maker_flutter"
+          "package_name": "com.lotto.tab"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "62940781041-b8ma0lq0saq6b3807i4pqnklpvkp1qgq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.lottomaker.lotto_maker_flutter",
+            "package_name": "com.lotto.tab",
             "certificate_hash": "4ad131375e81a5cebe7487237f77dc1d237ef307"
           }
         },

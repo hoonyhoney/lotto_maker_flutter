@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/rendering.dart';
@@ -20,26 +19,25 @@ import '../services/win_numbers.dart';
 import 'first_page.dart';
 
 class FakeLottery extends StatefulWidget {
-
   @override
   State<FakeLottery> createState() => _FakeLotteryState();
 }
 
 class _FakeLotteryState extends State<FakeLottery> {
-  String comment='';
-   dynamic prize1;
-   dynamic title;
-    int _counter = 0;
-    late Uint8List _imageFile= Uint8List(0); //imageFile초기화
+  String comment = '';
+  dynamic prize1;
+  dynamic title;
+  int _counter = 0;
+  late Uint8List _imageFile = Uint8List(0); //imageFile초기화
   //ScreenshotController screenshotController = ScreenshotController(); //스크린샷 컨트롤러 객체 생성
   GlobalKey previewContainer = new GlobalKey();
 
-
-   @override
+  @override
   void initState() {
-     getPrizeNumber();
+    getPrizeNumber();
     super.initState();
   }
+
   dynamic getPrizeNumber() async {
     prize1 = await WinNumbers().getData();
     String titleData = await WinNumbers().getTitle();
@@ -50,53 +48,48 @@ class _FakeLotteryState extends State<FakeLottery> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<WinNumbers>(
       create: (_) => WinNumbers(),
       child: Scaffold(
-          body: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/flag.jpg'),
-                fit: BoxFit.cover,
-              ),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('images/flag.jpg'),
+              fit: BoxFit.cover,
             ),
-
+          ),
           child: Center(
             child: SingleChildScrollView(
               child: Container(
                 child: Column(
-
                   children: [
                     RepaintBoundary(
-
                       key: previewContainer,
                       child: Stack(
                         children: [
-
-                          Container( //로또 이미지
-                            width:350,
-                            height:250,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage('images/fake_lottery.png'),
-                                  fit: BoxFit.contain
-                              )
-                          ),
+                          Container(
+                            //로또 이미지
+                            width: 350,
+                            height: 250,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage('images/fake_lottery.png'),
+                                    fit: BoxFit.contain)),
                           ),
                           Positioned(
-                            top:50,
-                            left:185,
+                            top: 50,
+                            left: 185,
                             child: Container(
                               child: Transform.rotate(
                                 angle: -math.pi / 0,
                                 child: Text(
-                                  prize1==null ? 'Loading':'$prize1',
+                                  prize1 == null ? 'Loading' : '$prize1',
                                   style: TextStyle(
                                     fontSize: 20,
-                                    color:Color(0xff5C4B30),//색깔은 0xff +
+                                    color: Color(0xff5C4B30), //색깔은 0xff +
                                     letterSpacing: 7.0,
                                   ),
                                 ),
@@ -104,60 +97,62 @@ class _FakeLotteryState extends State<FakeLottery> {
                             ),
                           ),
                           Positioned(
-                            top:73,
-                            left:180,
+                            top: 73,
+                            left: 180,
+                            child: Container(
+                              child: Text(title == null ? '' : '$title'),
+                            ),
+                          ),
+                          Positioned(
+                            top: 95,
+                            left: 200,
                             child: Container(
                               child: Text(
-                                title==null ? '':'$title'
+                                '$comment',
                               ),
                             ),
                           ),
                           Positioned(
-                            top:95,
-                            left:200,
+                            top: 110,
+                            left: 215,
                             child: Container(
-                              child: Text('$comment',
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top:110,
-                            left:215,
-                            child: Container(
-                              child: Text('084578',
+                              child: Text(
+                                '084578',
                                 style: TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.w400,
                                   letterSpacing: 1.0,
-                                  color:Color(0xffDB9161),//색깔은 0xff +
+                                  color: Color(0xffDB9161), //색깔은 0xff +
                                 ),
                               ),
                             ),
                           ),
                           Positioned(
-                            top:143,
-                            left:217,
+                            top: 143,
+                            left: 217,
                             child: Container(
-                              child: Text('8',
+                              child: Text(
+                                '8',
                                 style: TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
-                                  color:Color(0xff9F4257),//색깔은 0xff +
+                                  color: Color(0xff9F4257), //색깔은 0xff +
                                 ),
                               ),
                             ),
                           ),
                           Positioned(
-                            top:143,
-                            left:280,
+                            top: 143,
+                            left: 280,
                             child: Container(
-                              child: Text('03',
+                              child: Text(
+                                '03',
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontStyle: FontStyle.italic,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 3.0,
-                                  color:Color(0xff665C5B),//색깔은 0xff +
+                                  color: Color(0xff665C5B), //색깔은 0xff +
                                 ),
                               ),
                             ),
@@ -165,33 +160,29 @@ class _FakeLotteryState extends State<FakeLottery> {
                         ],
                       ),
                     ),
-                      RaisedButton(
-                        textColor: Colors.black87,
-                        color: Colors.amberAccent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular((10)),
-                        ),
-                        child: Wrap(
-                            alignment: WrapAlignment.center,
-                            children:
-                            [
-                              Icon(Icons.share,size: 18.0,
-                              ),
-                              SizedBox(width:5.0),
-                              Text(
-                                'Share to Friend ❤️‍' ,
-
-                              ),
-                            ]
-                        ),
-                        onPressed:(){ //Uint8List는 정수리스트라고 생각하면됨
-                        _captureSocialPng();
-
-                      },
+                    RaisedButton(
+                      textColor: Colors.black87,
+                      color: Colors.amberAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular((10)),
                       ),
-
-                      Container(
-                      padding: EdgeInsets.only(left:30.0,right: 30.0),
+                      child: Wrap(alignment: WrapAlignment.center, children: [
+                        Icon(
+                          Icons.share,
+                          size: 18.0,
+                        ),
+                        SizedBox(width: 5.0),
+                        Text(
+                          'Share to Friend ❤️‍',
+                        ),
+                      ]),
+                      onPressed: () {
+                        //Uint8List는 정수리스트라고 생각하면됨
+                        _captureSocialPng();
+                      },
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 30.0, right: 30.0),
                       child: TextField(
                         onChanged: (newText) {
                           setState(() {
@@ -199,10 +190,10 @@ class _FakeLotteryState extends State<FakeLottery> {
                           });
                         },
                         decoration: new InputDecoration(
-                          suffixIcon: Icon(Icons.send),
-                          contentPadding: EdgeInsets.only(left: 20, right: 5, top: 20, bottom: 5),
-                          hintText: 'กรุณาเขียนข้อความใดๆ'
-                        ),
+                            suffixIcon: Icon(Icons.send),
+                            contentPadding: EdgeInsets.only(
+                                left: 20, right: 5, top: 20, bottom: 5),
+                            hintText: 'กรุณาเขียนข้อความใดๆ'),
                       ),
                     ),
                   ],
@@ -224,7 +215,7 @@ class _FakeLotteryState extends State<FakeLottery> {
       ui.Image image = await boundary!.toImage();
       final directory = (await getApplicationDocumentsDirectory()).path;
       ByteData? byteData =
-      await image.toByteData(format: ui.ImageByteFormat.png);
+          await image.toByteData(format: ui.ImageByteFormat.png);
       Uint8List pngBytes = byteData!.buffer.asUint8List();
       File imgFile = new File('$directory/screenshot.png');
       imagePaths.add(imgFile.path);
@@ -238,8 +229,6 @@ class _FakeLotteryState extends State<FakeLottery> {
       });
     });
   }
-
-
 }
 
 /*
