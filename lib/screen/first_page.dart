@@ -655,7 +655,12 @@ class _NumberPageState extends State<NumberPage> {
                   SizedBox(height: 20.0),
 
                   //댓글리스트
-                  Expanded(child: ReplyScreen(url: url)),
+
+                  Row(
+                    children: [
+                      Expanded(child: ReplyScreen(url: url)),
+                    ],
+                  ),
                 ],
               ),
             ),
