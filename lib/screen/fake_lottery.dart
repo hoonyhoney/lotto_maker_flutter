@@ -7,13 +7,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share/share.dart';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:screenshot/screenshot.dart';
-import 'package:share/share.dart';
 import 'dart:math' as math;
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../services/win_numbers.dart';
 import 'first_page.dart';
@@ -32,10 +28,19 @@ class _FakeLotteryState extends State<FakeLottery> {
   //ScreenshotController screenshotController = ScreenshotController(); //스크린샷 컨트롤러 객체 생성
   GlobalKey previewContainer = new GlobalKey();
 
+  final BannerAd myBanner = BannerAd(
+    adUnitId: 'ca-app-pub-4392134703994560/1032937884',
+    size: AdSize.banner,
+    request: AdRequest(),
+    listener: BannerAdListener(),
+  );
+
+
   @override
   void initState() {
     getPrizeNumber();
     super.initState();
+    myBanner.load();
   }
 
   dynamic getPrizeNumber() async {
@@ -195,6 +200,12 @@ class _FakeLotteryState extends State<FakeLottery> {
                                 left: 20, right: 5, top: 20, bottom: 5),
                             hintText: 'กรุณาเขียนข้อความใดๆ'),
                       ),
+                    ),
+                    SizedBox(height: 20,),
+                    Container(
+                      height: 50.0,
+                      width: 320.0,
+                      child: AdWidget(ad:myBanner),
                     ),
                   ],
                 ),

@@ -1,13 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lotto_maker_flutter/screen/roulette.dart';
 import 'package:lotto_maker_flutter/utilities/routes.dart';
 
 import 'number_detail.dart';
 import 'loading_screen.dart';
 
-class GenerateScreen extends StatelessWidget {
+class GenerateScreen extends StatefulWidget {
+
+
+  @override
+  State<GenerateScreen> createState() => _GenerateScreenState();
+}
+
+class _GenerateScreenState extends State<GenerateScreen> {
   var prize_1;
-  LoadingScreen _loadingScreen = new LoadingScreen();
+
+  final BannerAd myBanner = BannerAd(
+    adUnitId: 'ca-app-pub-4392134703994560/6736954039',
+    size: AdSize.banner,
+    request: AdRequest(),
+    listener: BannerAdListener(),
+  );
+
+
+  @override
+  void initState() {
+    super.initState();
+    myBanner.load();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +41,7 @@ class GenerateScreen extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(left: 15.0, right: 15.0),
             width: MediaQuery.of(context).size.width - 30.0,
-            height: MediaQuery.of(context).size.height - 50.0,
+            height: MediaQuery.of(context).size.height - 250.0,
             child: GridView.count(
               crossAxisCount: 2,
               primary: false,
@@ -40,6 +62,11 @@ class GenerateScreen extends StatelessWidget {
                 )
               ],
             ),
+          ),
+          Container(
+            height: 50.0,
+            width: 320.0,
+            child: AdWidget(ad:myBanner),
           ),
         ],
       ),

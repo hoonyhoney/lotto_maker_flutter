@@ -1,12 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:lotto_maker_flutter/screen/homeView.dart';
 import 'package:lotto_maker_flutter/services/win_numbers.dart';
-import 'package:lotto_maker_flutter/utilities/constants.dart';
 import 'package:lotto_maker_flutter/utilities/routes.dart';
 import 'package:provider/provider.dart';
-
-import 'screen/fake_lottery.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'screen/splash_screen.dart';
 
 
@@ -14,6 +11,8 @@ import 'screen/splash_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   runApp(MyApp());
 }
 
@@ -41,6 +40,8 @@ class MyApp extends StatelessWidget {
 }
 
 class FirstPage extends StatelessWidget{
+
+
 
   @override
   Widget build(BuildContext context) {

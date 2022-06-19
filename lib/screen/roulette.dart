@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:lotto_maker_flutter/services/generateNumber.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class RouletteScreen extends StatefulWidget {
   @override
@@ -12,6 +13,13 @@ class _RouletteScreenState extends State<RouletteScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   bool isLoaded = false;
+
+  final BannerAd myBanner = BannerAd(
+    adUnitId: 'ca-app-pub-4392134703994560/6476836250',
+    size: AdSize.banner,
+    request: AdRequest(),
+    listener: BannerAdListener(),
+  );
 
   @override
   void initState() {
@@ -25,6 +33,7 @@ class _RouletteScreenState extends State<RouletteScreen>
             isLoaded = true;
           });
       });
+    myBanner.load();
   }
 
   void getNumber() async {
@@ -109,10 +118,17 @@ class _RouletteScreenState extends State<RouletteScreen>
                       _controller.stop();
                       getNumber();
                     }),
+
                 // Play backward
               ],
             ),
-          )
+          ),
+          SizedBox(height: 30,),
+          Container(
+            height: 50.0,
+            width: 320.0,
+            child: AdWidget(ad:myBanner),
+          ),
         ],
       ),
     );
