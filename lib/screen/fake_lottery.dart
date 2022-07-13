@@ -35,7 +35,6 @@ class _FakeLotteryState extends State<FakeLottery> {
     listener: BannerAdListener(),
   );
 
-
   @override
   void initState() {
     getPrizeNumber();
@@ -201,11 +200,13 @@ class _FakeLotteryState extends State<FakeLottery> {
                             hintText: 'กรุณาเขียนข้อความใดๆ'),
                       ),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Container(
                       height: 50.0,
                       width: 320.0,
-                      child: AdWidget(ad:myBanner),
+                      child: AdWidget(ad: myBanner),
                     ),
                   ],
                 ),
@@ -241,13 +242,3 @@ class _FakeLotteryState extends State<FakeLottery> {
     });
   }
 }
-
-/*
-class Data extends ChangeNotifier{
-  String fakeNumber = '';
-  void changeString(String newString) {
-    fakeNumber = newString;
-    notifyListeners();
-  }
-  }
-*/

@@ -597,55 +597,6 @@ class _NumberPageState extends State<NumberPage> {
                                 subject: subject,
                               );
                             }),
-
-
-/*                      Text('Facebook (Logged'+ (_userData ==null ? 'out' : 'in')),
-                      RaisedButton(child: Text("log in"),
-                        onPressed: () async {
-                          final result = await FacebookAuth.i.login(
-                            permissions: ["public_profile", "email"]
-                          );
-                          if (result.status == LoginStatus.success) {
-                            final requestData = await FacebookAuth.i.getUserData(
-                              fields: "email, name,picture"
-                            );
-
-
-                            setState(() {
-                              _userData = requestData;
-                              final picture =_userData!['picture'];
-                              final data = picture['data'];
-                              final imgUrl = data['url'];
-                              url = imgUrl;
-                              print("imgUrl"+url);
-
-                            });
-                            print("userData"+_userData.toString());
-                          }
-
-                        },),
-                      RaisedButton(child: Text("log out"),
-                        onPressed: () async {
-                          await FacebookAuth.i.logOut();
-
-                          setState(() {
-                            _userData = null;
-                          });
-                        },
-                      ),
-                      RaisedButton(child: Text("Lotto"),
-                        onPressed: () async {
-                          getData();
-                        },
-                      ),*/
-/*                      SizedBox([[[
-                        child: Text(_userData?['name'])
-                      ),*/
-                        /*                     SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: Image.network(url)
-                      ),*/
                       ], //로또번호 컬럼
                     ),
                   ), //1등부터 아차상

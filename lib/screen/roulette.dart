@@ -123,11 +123,13 @@ class _RouletteScreenState extends State<RouletteScreen>
               ],
             ),
           ),
-          SizedBox(height: 30,),
+          SizedBox(
+            height: 30,
+          ),
           Container(
             height: 50.0,
             width: 320.0,
-            child: AdWidget(ad:myBanner),
+            child: AdWidget(ad: myBanner),
           ),
         ],
       ),

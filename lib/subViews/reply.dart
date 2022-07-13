@@ -273,33 +273,6 @@ class _ReplyScreenState extends State<ReplyScreen> {
     );
   }
 
-/*  getData() {
-    //다큐먼트 리스트의 time값 모두 불러오기
-    FirebaseFirestore.instance
-        .collection('post')
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        print(doc["time"]);
-      });'
-    });
-*/
-
-  //다큐먼트객체 한개 불러오기
-/*    FirebaseFirestore.instance
-        .collection('post')
-        .doc("BTLQ0M5ytSLbR8atNjhN")
-        .get()
-        .then((DocumentSnapshot documentSnapshot) {
-      if (documentSnapshot.exists) {
-        print('Document data: ${documentSnapshot.data()}');
-      } else {
-        print('Document does not exist on the database');
-      }
-    });
-
-  }
-*/
 
   addingData(String docId, dynamic usrId, List<dynamic> likeList) {
     //좋아요
@@ -318,37 +291,5 @@ class _ReplyScreenState extends State<ReplyScreen> {
       'likey': likeList,
     });
   }
-
-  //좋아요
-  Future<void> like() async {
-/*    // 기존 좋아요 리스트를 복사
-    final List likedUsers =
-        List<String>.from(widget.data()['likedUsers'] ?? []);
-    // 나를 추가
-    likedUsers.add(widget.user.email);
-
-    //업데이트할 항목을 문서로 준비
-    final updateData = {
-      'likedUsers': likedUsers,
-    };*/
-  }
-/*  //좋아요 취소
-  void unlike() {
-    // 기존 좋아요 리스트를 복사
-    final List likedUsers =
-    List<String>.from(widget.document['likedUsers'] ?? []);
-    // 나를 추가
-    likedUsers.remove(widget.user.email);
-
-    //업데이트할 항목을 문서로 준비
-    final updateData = {
-      'likedUsers': likedUsers,
-    };
-
-    FirebaseFirestore.instance
-        .collection('post')
-        .doc(widget.document.documentId)
-        .updateData(updateData);
-  }*/
 
 }
