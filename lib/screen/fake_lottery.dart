@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:ui' as ui;
 import 'package:path_provider/path_provider.dart';
 import 'package:share/share.dart';
@@ -34,6 +35,12 @@ class _FakeLotteryState extends State<FakeLottery> {
     request: AdRequest(),
     listener: BannerAdListener(),
   );
+
+  final List<String> imgList =[
+    'images/20220616.png',
+    'images/20220716.png',
+  ];
+
 
   @override
   void initState() {
@@ -74,14 +81,26 @@ class _FakeLotteryState extends State<FakeLottery> {
                       child: Stack(
                         children: [
                           Container(
+                            color: Color(0xFFDF0F),
                             //로또 이미지
                             width: 350,
                             height: 250,
-                            decoration: BoxDecoration(
+                            child: Swiper(
+                              autoplay: true,
+                              control: SwiperControl(),
+                              pagination: SwiperPagination(
+                              ),
+                              itemCount: imgList.length,
+                              itemBuilder: (BuildContext context, int index){
+                                return Image.asset(imgList[index]);
+                              },
+
+                            ),
+/*                            decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image:
-                                        AssetImage('images/fake_lottery.png'),
-                                    fit: BoxFit.contain)),
+                                        AssetImage('images/20220716.png'),
+                                    fit: BoxFit.contain)),*/
                           ),
                           Positioned(
                             top: 50,
