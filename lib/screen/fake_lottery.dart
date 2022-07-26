@@ -85,16 +85,19 @@ class _FakeLotteryState extends State<FakeLottery> {
                             //로또 이미지
                             width: 350,
                             height: 250,
-                            child: Swiper(
-                              autoplay: true,
-                              control: SwiperControl(),
-                              pagination: SwiperPagination(
-                              ),
-                              itemCount: imgList.length,
-                              itemBuilder: (BuildContext context, int index){
-                                return Image.asset(imgList[index]);
-                              },
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Swiper(
+                                autoplay: true,
 
+                                pagination: SwiperPagination(
+                                ),
+                                itemCount: imgList.length,
+                                itemBuilder: (BuildContext context, int index){
+                                  return Image.asset(imgList[index]);
+                                },
+
+                              ),
                             ),
 /*                            decoration: BoxDecoration(
                                 image: DecorationImage(
