@@ -39,6 +39,10 @@ class _FakeLotteryState extends State<FakeLottery> {
   final List<String> imgList =[
     'images/20220616.png',
     'images/20220716.png',
+    'images/20220801.png',
+    'images/20220816.png',
+    'images/20220901.png',
+    'images/20220916.png'
   ];
 
 
@@ -83,7 +87,7 @@ class _FakeLotteryState extends State<FakeLottery> {
                           Container(
                             color: Color(0xFFDF0F),
                             //로또 이미지
-                            width: 350,
+                            width: 370,
                             height: 250,
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
@@ -158,7 +162,7 @@ class _FakeLotteryState extends State<FakeLottery> {
                             left: 217,
                             child: Container(
                               child: Text(
-                                '8',
+                                '5',
                                 style: TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
@@ -172,7 +176,7 @@ class _FakeLotteryState extends State<FakeLottery> {
                             left: 280,
                             child: Container(
                               child: Text(
-                                '03',
+                                '55',
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontStyle: FontStyle.italic,
