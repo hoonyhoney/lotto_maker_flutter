@@ -1,2 +1,7 @@
-이젠IT아카데미 자바 웹&앱 개발자 과정_프로젝트
-중고 거래 쇼핑몰 '사이다마켓'
+<pre>
+Thai Lotto Application
+search win numbers
+get lucky numbers
+write reply
+
+</pre>
