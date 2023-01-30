@@ -7,13 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:get/get.dart';
 import 'package:html/parser.dart';
+import 'package:lotto_maker_flutter/services/win_numbers.dart';
 import 'package:lotto_maker_flutter/subViews/dialogs.dart';
 import 'package:lotto_maker_flutter/subViews/reply.dart';
 import 'package:http/http.dart' as http;
 import 'package:share/share.dart';
 
 import 'bottom_bar.dart';
+import 'fake_lottery.dart';
 
 class NumberPage extends StatefulWidget with ChangeNotifier {
   @override
@@ -36,6 +39,7 @@ class _NumberPageState extends State<NumberPage> {
   List<dynamic> prize_5 = [];
   final textController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  WinNumbers winNumbers = new WinNumbers();
 
   String text = 'https://play.google.com/store/apps/details?id=com.lotto.tab';
   String subject = 'Oppa Lotto ตรวจหวย ฟรีเลขเด็ด แสดงความคิดเห็น';
@@ -45,28 +49,17 @@ class _NumberPageState extends State<NumberPage> {
   void initState() {
     super.initState();
     getData();
+    Get.to(FakeLottery(),arguments: prize_1);
   }
 
-  void getData() async {
-    var headers = {
-      'user-agent':
-          'Mozilla/5.0 (Linux; U; Android 2.1-update1; ko-kr; Nexus One Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17'
-    };
+   Future<dynamic>getData() async {
+
     final response = await http.Client()
         .get(Uri.parse('https://www.matichon.co.th/lottery'));
-    //final response = await http.Client().get(Uri.parse('https://lotto.mthai.com/'));
     if (response.statusCode == 200) {
       var document = parse(response.body);
-      //var elements = document.getElementsByClassName(); //클래스 이름
-      //var elementsByTagName = document.getElementsByTagName(); //TagName
 
       setState(() {
-/*        prize_1 = document.getElementsByClassName("prize-1")[0].children[1].children[0].children[0].text;
-        prize_l2= document.getElementsByClassName("prize-l2")[0].children[1].children[0].children[0].text;
-        prize_f3 = document.getElementsByClassName("prize-f3")[0].children[1].children[0].children[0].text;
-        prize_l3 = document.getElementsByClassName("prize-l3")[0].children[1].children[0].children[0].text;
-        title = document.getElementById("site-head-title")?.getElementsByTagName('h2').first.text;
-        prize_n1 = document.getElementsByClassName("prize-n1")[0].children[1].children[0].children[0].text;*/
 
         prize_1 = document
             .getElementsByClassName("udlotto-section-1-0")[0]
@@ -145,7 +138,7 @@ class _NumberPageState extends State<NumberPage> {
         }
       });
     } else {
-      throw Exception();
+      getData();
     }
   }
 
@@ -168,47 +161,7 @@ class _NumberPageState extends State<NumberPage> {
     }
   }
 
-  //결과확인
-  dynamic getResult(var value) {
-    var f3 = '';
-    var l3 = '';
-    var l2 = '';
 
-    value = value.toString();
-    print("value" + value);
-
-    if (value.length == 6) {
-      f3 = value.substring(0, 3);
-      l3 = value.substring(3, 6);
-      l2 = value.substring(4, 6);
-    } else {
-      return 'โปรดป้อนหมายเลขที่ถูกต้อง';
-    }
-
-    if (value == prize_1) {
-      return 'ยินดีด้วย!!! รางวัลที่ 1';
-    } else if (prize_n1.contains(value)) {
-      return 'ยินดีด้วย!!! ข้างเคียงรางวัลที่ 1';
-    } else if (prize_n2.contains(value)) {
-      return 'ยินดีด้วย!!! ข้างเคียงรางวัลที่ 1';
-    } else if (prize_2.contains(value)) {
-      return 'ยินดีด้วย!!! รางวัลที่ 2';
-    } else if (prize_3.contains(value)) {
-      return 'ยินดีด้วย!!! รางวัลที่ 3';
-    } else if (prize_4.contains(value)) {
-      return 'ยินดีด้วย!!! รางวัลที่ 4';
-    } else if (prize_5.contains(value)) {
-      return 'ยินดีด้วย!!! รางวัลที่ 5';
-    } else if (prize_f3.contains(f3)) {
-      return 'ยินดีด้วย!!! เลขหน้าหน้า 3ตัว';
-    } else if (prize_l3.contains(l3)) {
-      return 'ยินดีด้วย!!! เลขท้าย 3ตัว';
-    } else if (prize_l2.contains(l2)) {
-      return 'ยินดีด้วย!!! เลขท้าย 2 ตัว';
-    } else {
-      return "ไม่ถูกรางวัล T,.T";
-    }
-  }
 
   void _showDialog(dynamic result) {
     showDialog(
@@ -264,7 +217,7 @@ class _NumberPageState extends State<NumberPage> {
                         focusedBorder: InputBorder.none,
                       ),
                       onSubmitted: (value) {
-                        var result = getResult(value);
+                        var result = winNumbers.getResult(value,prize_1, prize_f3, prize_l2,prize_l3, prize_n1, prize_n2, prize_2,  prize_3,  prize_4, prize_5);
                         textController.clear();
                         _showDialog(result);
                       },

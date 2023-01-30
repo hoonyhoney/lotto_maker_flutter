@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lotto_maker_flutter/services/win_numbers.dart';
 import 'package:lotto_maker_flutter/utilities/routes.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
      ChangeNotifierProvider<WinNumbers>(create: (_) => WinNumbers()),
 
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         title: 'LottoMaker',
         routes: Routes.routes,
         theme: ThemeData(

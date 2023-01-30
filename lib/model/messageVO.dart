@@ -12,7 +12,14 @@ class MessageVO {
   int likeyCnt;
 
   MessageVO(
-      {required this.docId, required this.messageText, required this.time, required this.timesAgo,required this.anonymousId, required this.likey, required this.likeyCnt});
+       {required this.docId,
+        required this.messageText,
+        required this.time,
+        required this.timesAgo,
+        required this.anonymousId,
+        required this.likey,
+        required this.likeyCnt
+       });
 
 /*  MessageVO.fromJson(Map<String, dynamic> json)
       : docId = json['docId'],

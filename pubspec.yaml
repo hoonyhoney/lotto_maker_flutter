@@ -54,6 +54,7 @@ dependencies:
   change_app_package_name: ^1.0.0
   google_mobile_ads: ^0.13.4
   flutter_swiper: ^1.1.6
+  get:
 
 dev_dependencies:
   flutter_test:
