@@ -49,7 +49,6 @@ class _NumberPageState extends State<NumberPage> {
   void initState() {
     super.initState();
     getData();
-    Get.to(FakeLottery(),arguments: prize_1);
   }
 
    Future<dynamic>getData() async {
