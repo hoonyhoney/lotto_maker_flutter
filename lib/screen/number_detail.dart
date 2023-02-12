@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lotto_maker_flutter/services/generateNumber.dart';
+import 'package:lotto_maker_flutter/services/generate_number.dart';
 
 import 'bottom_bar.dart';
 

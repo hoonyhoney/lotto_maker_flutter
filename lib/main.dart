@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
       providers: [
      ChangeNotifierProvider<WinNumbers>(create: (_) => WinNumbers()),
@@ -41,8 +42,6 @@ class MyApp extends StatelessWidget {
 }
 
 class FirstPage extends StatelessWidget{
-
-
 
   @override
   Widget build(BuildContext context) {

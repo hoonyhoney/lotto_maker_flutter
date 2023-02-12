@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../services/generateNumber.dart';
+import '../services/generate_number.dart';
 
 class RandomScreen extends StatefulWidget {
   @override
@@ -33,6 +33,13 @@ class _RandomScreenState extends State<RandomScreen>
 
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle =
+    ElevatedButton.styleFrom(
+        textStyle: const TextStyle(color: Colors.black87,),
+        backgroundColor: Colors.amberAccent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular((10)),),
+        );
+
     Random random = new Random();
     int seed = random.nextInt(10);
     List<dynamic> numberList = generateClass.getRandomLottoNumber(2);
@@ -71,12 +78,8 @@ class _RandomScreenState extends State<RandomScreen>
             ],
           ),
           SizedBox(height: 70),
-          RaisedButton(
-              textColor: Colors.black87,
-              color: Colors.amberAccent,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular((10)),
-              ),
+          ElevatedButton(
+            style: ButtonStyle,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

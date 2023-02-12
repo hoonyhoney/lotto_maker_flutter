@@ -1,15 +1,8 @@
 import 'dart:core';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:html/parser.dart';
-import 'package:lotto_maker_flutter/subViews/dialogs.dart';
-import 'package:lotto_maker_flutter/subViews/reply.dart';
 import 'package:http/http.dart' as http;
-import 'package:share/share.dart';
 
 
 class WinNumbers with ChangeNotifier {

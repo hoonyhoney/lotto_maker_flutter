@@ -69,7 +69,7 @@ class _DialogsState extends State<Dialogs> with SingleTickerProviderStateMixin{
         ),
       ),
       actions: [
-        new FlatButton(
+        new TextButton(
         child: new Text("CLose"),
     onPressed: (){
     Navigator.pop(context);

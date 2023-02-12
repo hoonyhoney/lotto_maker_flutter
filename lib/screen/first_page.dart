@@ -1,22 +1,17 @@
 import 'dart:core';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:html/parser.dart';
 import 'package:lotto_maker_flutter/services/win_numbers.dart';
-import 'package:lotto_maker_flutter/subViews/dialogs.dart';
-import 'package:lotto_maker_flutter/subViews/reply.dart';
 import 'package:http/http.dart' as http;
 import 'package:share/share.dart';
 
-import 'bottom_bar.dart';
-import 'fake_lottery.dart';
+import '../widget/dialogs.dart';
+import '../widget/reply.dart';
+
 
 class NumberPage extends StatefulWidget with ChangeNotifier {
   @override
@@ -24,8 +19,6 @@ class NumberPage extends StatefulWidget with ChangeNotifier {
 }
 
 class _NumberPageState extends State<NumberPage> {
-  Map? _userData;
-
   var prize_1;
   var prize_l2;
   var prize_f3;
@@ -51,15 +44,13 @@ class _NumberPageState extends State<NumberPage> {
     getData();
   }
 
-   Future<dynamic>getData() async {
-
+  Future<dynamic> getData() async {
     final response = await http.Client()
         .get(Uri.parse('https://www.matichon.co.th/lottery'));
     if (response.statusCode == 200) {
       var document = parse(response.body);
 
       setState(() {
-
         prize_1 = document
             .getElementsByClassName("udlotto-section-1-0")[0]
             .children[1]
@@ -160,8 +151,6 @@ class _NumberPageState extends State<NumberPage> {
     }
   }
 
-
-
   void _showDialog(dynamic result) {
     showDialog(
         context: context,
@@ -172,6 +161,19 @@ class _NumberPageState extends State<NumberPage> {
 
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle = ElevatedButton.styleFrom(
+      textStyle: const TextStyle(
+        color: Colors.black87,
+      ),
+      backgroundColor: Colors.amberAccent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular((10)),
+      ),
+    );
+
+    var qrCode = Get.arguments;
+    print(qrCode);
+
     return SingleChildScrollView(
       padding: EdgeInsets.only(left: 5.0),
       controller: _scrollController,
@@ -216,7 +218,18 @@ class _NumberPageState extends State<NumberPage> {
                         focusedBorder: InputBorder.none,
                       ),
                       onSubmitted: (value) {
-                        var result = winNumbers.getResult(value,prize_1, prize_f3, prize_l2,prize_l3, prize_n1, prize_n2, prize_2,  prize_3,  prize_4, prize_5);
+                        var result = winNumbers.getResult(
+                            value,
+                            prize_1,
+                            prize_f3,
+                            prize_l2,
+                            prize_l3,
+                            prize_n1,
+                            prize_n2,
+                            prize_2,
+                            prize_3,
+                            prize_4,
+                            prize_5);
                         textController.clear();
                         _showDialog(result);
                       },
@@ -357,12 +370,8 @@ class _NumberPageState extends State<NumberPage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Divider(thickness: 2.0),
-                              RaisedButton(
-                                textColor: Colors.black87,
-                                color: Colors.amberAccent,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular((10)),
-                                ),
+                              ElevatedButton(
+                                style: ButtonStyle,
                                 child: Icon(Icons.keyboard_arrow_up_outlined),
                                 onPressed: () {
                                   setState(() {
@@ -507,12 +516,8 @@ class _NumberPageState extends State<NumberPage> {
                             ],
                           ),
                         ),
-                        RaisedButton(
-                          textColor: Colors.black87,
-                          color: Colors.amberAccent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular((10)),
-                          ),
+                        ElevatedButton(
+                          style: ButtonStyle,
                           child: Icon(Icons.keyboard_arrow_down_outlined),
                           onPressed: () {
                             setState(() {
@@ -523,12 +528,8 @@ class _NumberPageState extends State<NumberPage> {
                                 curve: Curves.fastOutSlowIn); //효과
                           },
                         ),
-                        RaisedButton(
-                            textColor: Colors.black87,
-                            color: Colors.amberAccent,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular((10)),
-                            ),
+                        ElevatedButton(
+                            style: ButtonStyle,
                             child: Wrap(
                                 alignment: WrapAlignment.center,
                                 children: [

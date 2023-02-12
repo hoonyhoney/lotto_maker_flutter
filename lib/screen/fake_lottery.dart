@@ -65,6 +65,14 @@ class _FakeLotteryState extends State<FakeLottery> {
 
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle =
+    ElevatedButton.styleFrom(
+      textStyle: const TextStyle(color: Colors.black87,),
+      backgroundColor: Colors.amberAccent,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular((10)),),
+    );
+
+
     return ChangeNotifierProvider<WinNumbers>(
       create: (_) => WinNumbers(),
       child: Scaffold(
@@ -113,8 +121,7 @@ class _FakeLotteryState extends State<FakeLottery> {
                             top: 50,
                             left: 185,
                             child: Container(
-                              child: Transform.rotate(
-                                angle: -math.pi / 0,
+
                                 child: Text(
                                   prize1 == null ? 'Loading' : '$prize1',
                                   style: TextStyle(
@@ -123,7 +130,6 @@ class _FakeLotteryState extends State<FakeLottery> {
                                     letterSpacing: 7.0,
                                   ),
                                 ),
-                              ),
                             ),
                           ),
                           Positioned(
@@ -190,12 +196,8 @@ class _FakeLotteryState extends State<FakeLottery> {
                         ],
                       ),
                     ),
-                    RaisedButton(
-                      textColor: Colors.black87,
-                      color: Colors.amberAccent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular((10)),
-                      ),
+                    ElevatedButton(
+                      style: ButtonStyle,
                       child: Wrap(alignment: WrapAlignment.center, children: [
                         Icon(
                           Icons.share,

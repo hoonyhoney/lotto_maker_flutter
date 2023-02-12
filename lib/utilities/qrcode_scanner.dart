@@ -1,7 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import '../main.dart';
 
 
 class QRViewExample extends StatefulWidget {
@@ -16,16 +20,6 @@ class _QRViewExampleState extends State<QRViewExample>{
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   Barcode? result;
   QRViewController? controller;
-
-  @override
-  void reassemble(){
-    super.reassemble();
-    if(Platform.isAndroid){
-      controller!.pauseCamera();
-    }else if(Platform.isIOS){
-      controller!.resumeCamera();
-    }
-  }
 
 
   @override
@@ -52,6 +46,7 @@ class _QRViewExampleState extends State<QRViewExample>{
       setState(() {
         result = scanData;
       });
+      Get.to(MyApp(),arguments: result);
     });
   }
   @override

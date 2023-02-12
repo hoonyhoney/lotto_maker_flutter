@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:lotto_maker_flutter/services/generateNumber.dart';
+import 'package:lotto_maker_flutter/services/generate_number.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class RouletteScreen extends StatefulWidget {
@@ -56,6 +56,14 @@ class _RouletteScreenState extends State<RouletteScreen>
 
   @override
   Widget build(BuildContext context) {
+
+    final ButtonStyle =
+    ElevatedButton.styleFrom(
+      textStyle: const TextStyle(color: Colors.black87,),
+      backgroundColor: Colors.amberAccent,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular((10)),),
+    );
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -69,12 +77,8 @@ class _RouletteScreenState extends State<RouletteScreen>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                RaisedButton(
-                  textColor: Colors.black87,
-                  color: Colors.amberAccent,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular((10)),
-                  ),
+                ElevatedButton(
+                  style: ButtonStyle,
                   child: Row(
                     children: [
                       Text(
@@ -96,12 +100,8 @@ class _RouletteScreenState extends State<RouletteScreen>
                   },
                 ),
                 SizedBox(width: 50),
-                RaisedButton(
-                    textColor: Colors.black87,
-                    color: Colors.amberAccent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular((10)),
-                    ),
+                ElevatedButton(
+                    style: ButtonStyle,
                     child: Row(
                       children: [
                         Text(

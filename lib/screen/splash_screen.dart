@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:lotto_maker_flutter/screen/homeView.dart';
+import 'package:lotto_maker_flutter/screen/home_view.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
