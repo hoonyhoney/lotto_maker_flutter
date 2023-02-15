@@ -9,6 +9,7 @@ import 'package:lotto_maker_flutter/services/win_numbers.dart';
 import 'package:http/http.dart' as http;
 import 'package:share/share.dart';
 
+import '../utilities/qrcode_scanner.dart';
 import '../widget/dialogs.dart';
 import '../widget/reply.dart';
 
@@ -37,6 +38,7 @@ class _NumberPageState extends State<NumberPage> {
   String text = 'https://play.google.com/store/apps/details?id=com.lotto.tab';
   String subject = 'Oppa Lotto ตรวจหวย ฟรีเลขเด็ด แสดงความคิดเห็น';
   dynamic url = 'sample';
+
 
   @override
   void initState() {
@@ -171,9 +173,6 @@ class _NumberPageState extends State<NumberPage> {
       ),
     );
 
-    var qrCode = Get.arguments;
-    print(qrCode);
-
     return SingleChildScrollView(
       padding: EdgeInsets.only(left: 5.0),
       controller: _scrollController,
@@ -254,6 +253,9 @@ class _NumberPageState extends State<NumberPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
 
                       children: [
+                        TextButton(onPressed:(){
+                          Get.to(QRViewExample());
+                        }, child: Text("QR찍기")),
                         Text(
                           '🏆🏆🏆 รางวัลที่ 1 🏆🏆🏆',
                           style: TextStyle(

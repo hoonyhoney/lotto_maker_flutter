@@ -6,6 +6,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../main.dart';
+import '../screen/first_page.dart';
+import '../screen/home_view.dart';
 
 
 class QRViewExample extends StatefulWidget {
@@ -21,7 +23,6 @@ class _QRViewExampleState extends State<QRViewExample>{
   Barcode? result;
   QRViewController? controller;
 
-
   @override
   Widget build(BuildContext context) {
    return Scaffold(
@@ -32,6 +33,11 @@ class _QRViewExampleState extends State<QRViewExample>{
            child: QRView(
              key:qrKey,
              onQRViewCreated: _onQRViewCreated,
+               overlay: QrScannerOverlayShape(
+                   borderColor: Colors.red,
+                   borderRadius: 10,
+                   borderLength: 30,
+                   borderWidth: 10,),
            ),
          )
        ],
@@ -46,7 +52,7 @@ class _QRViewExampleState extends State<QRViewExample>{
       setState(() {
         result = scanData;
       });
-      Get.to(MyApp(),arguments: result);
+      Get.to(MyHomePage(),arguments: result!.code);
     });
   }
   @override

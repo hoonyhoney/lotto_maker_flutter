@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lotto_maker_flutter/model/lotto_numbers.dart';
 import 'package:lotto_maker_flutter/screen/second_page.dart';
 import 'package:lotto_maker_flutter/utilities/constants.dart';
@@ -16,10 +17,11 @@ class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _selectedIndex = 0;
+  dynamic qrCode = Get.arguments;
 
   @override
   void initState() {
-    //tabController를 set함
+    print(qrCode);
     super.initState();
     _tabController = TabController(
       length: 2,
@@ -38,6 +40,11 @@ class _MyHomePageState extends State<MyHomePage>
     setState(() {
       _tabController.index = index;
     });
+  }
+
+  void checkWinNumber() {
+    String scanNumber = qrCode.toString().substring(10,16);
+
   }
 
   @override
