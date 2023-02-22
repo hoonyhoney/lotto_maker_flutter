@@ -15,6 +15,9 @@ import '../widget/reply.dart';
 
 
 class NumberPage extends StatefulWidget with ChangeNotifier {
+   NumberPage({required this.qrCode});
+   final String qrCode;
+
   @override
   State<NumberPage> createState() => _NumberPageState();
 }
@@ -132,7 +135,8 @@ class _NumberPageState extends State<NumberPage> {
     } else {
       getData();
     }
-  }
+  } //getResult 함수 끝
+
 
   final _firestore = FirebaseFirestore.instance;
   bool isVisible = false;

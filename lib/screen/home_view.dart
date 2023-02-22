@@ -21,7 +21,6 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   void initState() {
-    print(qrCode);
     super.initState();
     _tabController = TabController(
       length: 2,
@@ -40,11 +39,6 @@ class _MyHomePageState extends State<MyHomePage>
     setState(() {
       _tabController.index = index;
     });
-  }
-
-  void checkWinNumber() {
-    String scanNumber = qrCode.toString().substring(10,16);
-
   }
 
   @override
@@ -109,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage>
         controller: _tabController,
         physics: NeverScrollableScrollPhysics(), //탭바 슬라이드 안되게 설정
         children: [
-          NumberPage(),
+          NumberPage(qrCode: qrCode),
           GenerateScreen(),
         ],
       ),
