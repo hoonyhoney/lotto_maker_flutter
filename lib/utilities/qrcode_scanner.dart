@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-
-import '../main.dart';
-import '../screen/first_page.dart';
 import '../screen/home_view.dart';
 
 

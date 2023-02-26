@@ -21,19 +21,4 @@ class MessageVO {
         required this.likeyCnt
        });
 
-/*  MessageVO.fromJson(Map<String, dynamic> json)
-      : docId = json['docId'],
-        messageText = json['messageText'],
-        time = json['time'],
-        timesAgo = json['timesAgo'],
-        likey = json['likey'];
-
-  Map<String, dynamic> toJson() => {
-    'docId': docId,
-    'messageText': messageText,
-    'time': time,
-    'timesAgo': timesAgo,
-    'likey': likey,
-  };*/
-
 }

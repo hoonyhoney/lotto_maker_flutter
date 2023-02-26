@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lotto_maker_flutter/model/lotto_numbers.dart';
 import 'package:lotto_maker_flutter/screen/second_page.dart';
-import 'package:lotto_maker_flutter/utilities/constants.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'bottom_bar.dart';
+import '../services/get_result.dart';
 import 'first_page.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -18,6 +16,8 @@ class _MyHomePageState extends State<MyHomePage>
   late TabController _tabController;
   int _selectedIndex = 0;
   dynamic qrCode = Get.arguments;
+  final controller = Get.put(GetResultController());
+
 
   @override
   void initState() {
@@ -27,6 +27,7 @@ class _MyHomePageState extends State<MyHomePage>
       vsync: this,
     );
     _tabController.addListener(_handleSelection);
+    controller.getData();
   }
 
   void _handleSelection() {

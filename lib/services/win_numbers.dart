@@ -8,36 +8,6 @@ import 'package:http/http.dart' as http;
 class WinNumbers with ChangeNotifier {
   String prize_1="";
   String title="";
-  dynamic get _prize_1 => prize_1;
-
-
-  dynamic getData() async {
-    final response = await http.Client().get(
-        Uri.parse('https://www.matichon.co.th/lottery'));
-    if (response.statusCode == 200) {
-      var document = parse(response.body);
-      var  prize1 = document.getElementsByClassName("udlotto-section-1-0")[0].children[1].children[0].text;
-
-      prize_1 = prize1;
-      print("결과" + prize_1);
-    }
-    return prize_1;
-    notifyListeners();
-  }
-  dynamic getTitle() async {
-    final response = await http.Client().get(
-        Uri.parse('https://www.matichon.co.th/lottery'));
-    if (response.statusCode == 200) {
-      var document = parse(response.body);
-      //var elements = document.getElementsByClassName(); //클래스 이름
-      //var elementsByTagName = document.getElementsByTagName(); //TagName
-      var  _title = document.getElementsByClassName("udlotto-date")[0].children[1].text;
-
-      title = _title;
-    }
-    return title;
-  }
-
 
   //결과확인
   dynamic getResult(var value, var prize_1, var prize_f3,var prize_l2,var prize_l3,var prize_n1,var prize_n2,dynamic prize_2, dynamic prize_3, dynamic prize_4, dynamic prize_5) {

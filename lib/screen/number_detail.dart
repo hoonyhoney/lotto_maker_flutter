@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lotto_maker_flutter/services/generate_number.dart';
 
-import 'bottom_bar.dart';
+import '../widget/bottom_bar.dart';
 
 class NumberDetail extends StatefulWidget {
   //numberDetail의 파라미터는 loadingscreen으로 부터 넘어온 luckylist

@@ -16,6 +16,7 @@ class _DialogsState extends State<Dialogs> with SingleTickerProviderStateMixin{
   late  AnimationController _controller;
   _DialogsState(this.result);
   void initState() {
+
     super.initState();
     _controller= AnimationController(
       vsync:this,)

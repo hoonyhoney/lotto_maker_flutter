@@ -4,7 +4,7 @@ import 'package:lotto_maker_flutter/screen/roulette.dart';
 import 'package:lotto_maker_flutter/utilities/routes.dart';
 
 import 'number_detail.dart';
-import 'loading_screen.dart';
+import '../widget/loading_screen.dart';
 
 class GenerateScreen extends StatefulWidget {
 

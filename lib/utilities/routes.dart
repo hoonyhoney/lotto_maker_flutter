@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lotto_maker_flutter/screen/random.dart';
 import 'package:lotto_maker_flutter/screen/fake_lottery.dart';
-import 'package:lotto_maker_flutter/screen/loading_screen.dart';
+import 'package:lotto_maker_flutter/widget/loading_screen.dart';
 import 'package:lotto_maker_flutter/screen/name.dart';
 import 'package:lotto_maker_flutter/screen/roulette.dart';
 

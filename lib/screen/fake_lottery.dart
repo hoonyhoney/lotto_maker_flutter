@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:get/get.dart';
+import 'package:lotto_maker_flutter/services/get_result.dart';
 import 'dart:ui' as ui;
 import 'package:path_provider/path_provider.dart';
 import 'package:share/share.dart';
@@ -48,19 +50,8 @@ class _FakeLotteryState extends State<FakeLottery> {
 
   @override
   void initState() {
-    getPrizeNumber();
     super.initState();
     myBanner.load();
-  }
-
-  dynamic getPrizeNumber() async {
-    prize1 = await WinNumbers().getData();
-    String titleData = await WinNumbers().getTitle();
-    title = titleData.substring(9);
-    setState(() {
-      prize1;
-      title;
-    });
   }
 
   @override
@@ -111,24 +102,23 @@ class _FakeLotteryState extends State<FakeLottery> {
 
                               ),
                             ),
-/*                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image:
-                                        AssetImage('images/20220716.png'),
-                                    fit: BoxFit.contain)),*/
                           ),
                           Positioned(
                             top: 50,
                             left: 185,
                             child: Container(
 
-                                child: Text(
-                                  prize1 == null ? 'Loading' : '$prize1',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Color(0xff5C4B30), //색깔은 0xff +
-                                    letterSpacing: 7.0,
-                                  ),
+                                child: GetBuilder<GetResultController>(
+                                  builder: (_) {
+                                    return Text(
+                                      _.prize_1 == null ? 'Loading' : '${_.prize_1}',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: Color(0xff5C4B30), //색깔은 0xff +
+                                        letterSpacing: 7.0,
+                                      ),
+                                    );
+                                  }
                                 ),
                             ),
                           ),
@@ -136,7 +126,11 @@ class _FakeLotteryState extends State<FakeLottery> {
                             top: 73,
                             left: 180,
                             child: Container(
-                              child: Text(title == null ? '' : '$title'),
+                              child: GetBuilder<GetResultController>(
+                                builder: (_) {
+                                  return Text(_.title == null ? '' : '${_.title}'.substring(9));
+                                }
+                              ),
                             ),
                           ),
                           Positioned(

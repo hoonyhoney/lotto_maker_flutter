@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
 
 
 
-class GetResult{
+class GetResultController extends GetxController{
 
-  var prize_1;
-  var prize_l2;
-  var prize_f3;
-  var prize_l3;
-  var title;
-  var prize_n1;
-  var prize_n2;
-  List<dynamic> prize_2 = [];
-  List<dynamic> prize_3 = [];
-  List<dynamic> prize_4 = [];
-  List<dynamic> prize_5 = [];
+   var prize_1;
+   var prize_l2;
+   var prize_f3;
+   var prize_l3;
+   var title;
+   var prize_n1;
+   var prize_n2;
+   List<dynamic> prize_2 = [];
+   List<dynamic> prize_3 = [];
+   List<dynamic> prize_4 = [];
+   List<dynamic> prize_5 = [];
 
-/*
+
   Future<dynamic> getData() async {
     final response = await http.Client()
         .get(Uri.parse('https://www.matichon.co.th/lottery'));
     if (response.statusCode == 200) {
       var document = parse(response.body);
 
-      setState(() {
         prize_1 = document
             .getElementsByClassName("udlotto-section-1-0")[0]
             .children[1]
@@ -100,10 +100,12 @@ class GetResult{
               .replaceAll(" ", "")
               .trim();
           prize_5.add(prizeNo5);
+
         }
-      });
+      update();
     } else {
       getData();
+      update();
     }
-  } */
+  }
 }

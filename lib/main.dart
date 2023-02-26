@@ -5,7 +5,7 @@ import 'package:lotto_maker_flutter/services/win_numbers.dart';
 import 'package:lotto_maker_flutter/utilities/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'screen/splash_screen.dart';
+import 'widget/splash_screen.dart';
 
 
 //push test
