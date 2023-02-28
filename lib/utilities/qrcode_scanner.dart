@@ -50,10 +50,11 @@ class _QRViewExampleState extends State<QRViewExample>{
         result = scanData;
       });
       Get.to(MyHomePage(),arguments: result!.code);
+      dispose();
     });
   }
   @override
-  void  dispose(){
+  void dispose(){
     controller?.dispose();
     super.dispose();
   }

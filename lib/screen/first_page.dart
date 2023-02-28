@@ -8,6 +8,7 @@ import 'package:lotto_maker_flutter/screen/prize_one_to_five.dart';
 import 'package:lotto_maker_flutter/services/win_numbers.dart';
 
 import '../services/get_result.dart';
+import '../utilities/qrcode_scanner.dart';
 import '../widget/dialogs.dart';
 import '../widget/reply.dart';
 
@@ -34,6 +35,11 @@ class _NumberPageState extends State<NumberPage> {
   @override
   void initState() {
     super.initState();
+
+    Future.delayed(Duration.zero, () {
+      qrCodeScanResult(widget.qrCode.substring(9));
+
+    });
   }
 
 
@@ -176,6 +182,7 @@ class _NumberPageState extends State<NumberPage> {
         });
   }
   void qrCodeScanResult(String qrCode) {
+    print("QrCode"+qrCode);
       var result = winNumbers.getResult(
           qrCode,
           GetResultController().prize_1,
@@ -188,6 +195,7 @@ class _NumberPageState extends State<NumberPage> {
           GetResultController().prize_3,
           GetResultController().prize_4,
           GetResultController().prize_5);
+      print("result"+result);
       _showDialog(result);
   }
 }
