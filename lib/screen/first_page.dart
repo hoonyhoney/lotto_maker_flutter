@@ -15,7 +15,7 @@ import '../widget/reply.dart';
 
 class NumberPage extends StatefulWidget with ChangeNotifier {
    NumberPage({required this.qrCode});
-   final String qrCode;
+    late String qrCode;
 
   @override
   State<NumberPage> createState() => _NumberPageState();
@@ -26,6 +26,7 @@ class _NumberPageState extends State<NumberPage> {
   final textController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   final controller = Get.put(GetResultController());
+  final findController = Get.find<GetResultController>();
   final _firestore = FirebaseFirestore.instance;
   bool isVisible = false;
   WinNumbers winNumbers = new WinNumbers();
@@ -36,10 +37,9 @@ class _NumberPageState extends State<NumberPage> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration.zero, () {
-      qrCodeScanResult(widget.qrCode.substring(9));
-
-    });
+      Future.delayed(Duration.zero, () {
+        qrCodeScanResult(widget.qrCode.substring(9));
+      });
   }
 
 
@@ -185,17 +185,24 @@ class _NumberPageState extends State<NumberPage> {
     print("QrCode"+qrCode);
       var result = winNumbers.getResult(
           qrCode,
-          GetResultController().prize_1,
-          GetResultController().prize_f3,
-          GetResultController().prize_l2,
-          GetResultController().prize_l3,
-          GetResultController().prize_n1,
-          GetResultController().prize_n2,
-          GetResultController().prize_2,
-          GetResultController().prize_3,
-          GetResultController().prize_4,
-          GetResultController().prize_5);
-      print("result"+result);
+          controller.prize_1,
+          controller.prize_f3,
+          controller.prize_l2,
+          controller.prize_l3,
+          controller.prize_n1,
+          controller.prize_n2,
+          controller.prize_2,
+          controller.prize_3,
+          controller.prize_4,
+          controller.prize_5);
+
       _showDialog(result);
+      setState(() {
+        qrCode = "";
+        widget.qrCode="";
+        print("widget.qrCode"+widget.qrCode);
+        print("qrCode 초기화"+qrCode);
+      });
+
   }
 }

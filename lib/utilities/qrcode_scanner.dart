@@ -49,8 +49,9 @@ class _QRViewExampleState extends State<QRViewExample>{
       setState(() {
         result = scanData;
       });
+      controller.pauseCamera();
       Get.to(MyHomePage(),arguments: result!.code);
-      dispose();
+
     });
   }
   @override
