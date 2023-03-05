@@ -38,7 +38,7 @@ class _NumberPageState extends State<NumberPage> {
     super.initState();
 
       Future.delayed(Duration.zero, () {
-        qrCodeScanResult(widget.qrCode.substring(9));
+        qrCodeScanResult(widget.qrCode.substring(9,15));
       });
   }
 
@@ -154,8 +154,10 @@ class _NumberPageState extends State<NumberPage> {
               ),
             ],
           ),
+
         );
       }
+
     );
   }
   void getMessages() async {
@@ -195,14 +197,6 @@ class _NumberPageState extends State<NumberPage> {
           controller.prize_3,
           controller.prize_4,
           controller.prize_5);
-
       _showDialog(result);
-      setState(() {
-        qrCode = "";
-        widget.qrCode="";
-        print("widget.qrCode"+widget.qrCode);
-        print("qrCode 초기화"+qrCode);
-      });
-
   }
 }

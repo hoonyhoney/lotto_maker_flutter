@@ -37,9 +37,6 @@ class _PrizeOneToFiveState extends State<PrizeOneToFive> {
             mainAxisAlignment: MainAxisAlignment.center,
 
             children: [
-              TextButton(onPressed:(){
-                Get.to(QRViewExample());
-              }, child: Text("QR찍기")),
               Text(
                 '🏆🏆🏆 รางวัลที่ 1 🏆🏆🏆',
                 style: TextStyle(

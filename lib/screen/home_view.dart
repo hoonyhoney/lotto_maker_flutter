@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lotto_maker_flutter/screen/second_page.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:lotto_maker_flutter/utilities/qrcode_scanner.dart';
 import '../services/get_result.dart';
 import 'first_page.dart';
 
@@ -17,7 +17,6 @@ class _MyHomePageState extends State<MyHomePage>
   int _selectedIndex = 0;
   dynamic qrCode = Get.arguments;
   final controller = Get.put(GetResultController());
-
 
   @override
   void initState() {
@@ -58,20 +57,7 @@ class _MyHomePageState extends State<MyHomePage>
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AnimatedTextKit(
-                animatedTexts: [
-                  WavyAnimatedText('หวย 로또 Lotto',
-                      textStyle: TextStyle(
-                        fontSize: 30.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      speed: Duration(milliseconds: 300)),
-                ],
-                isRepeatingAnimation: true,
-                onTap: () {},
-              ),
-              SizedBox(
+          SizedBox(
                 width: 20.0,
               ),
               Image.asset(
@@ -125,6 +111,28 @@ class _MyHomePageState extends State<MyHomePage>
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+        Get.to(QRViewExample());
+          },
+        child:Image.asset(
+          'images/qrScan.png',
+        ),
+      ),
+      floatingActionButtonLocation: CustomFloatingActionButtonLocation(Offset(335,160)),
     );
   }
+}
+
+class CustomFloatingActionButtonLocation extends FloatingActionButtonLocation{
+  final Offset offset;
+
+  CustomFloatingActionButtonLocation(this.offset);
+
+  @override
+  Offset getOffset(ScaffoldPrelayoutGeometry scaffoldPrelayoutGeometry){
+    return offset;
+  }
+  @override
+  String toString() => 'CustomFloatingAcationButtonLocation';
 }
