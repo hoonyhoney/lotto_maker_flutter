@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
 
       ],
       child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'LottoMaker',
         routes: Routes.routes,
         theme: ThemeData(

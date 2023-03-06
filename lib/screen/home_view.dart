@@ -7,6 +7,8 @@ import '../services/get_result.dart';
 import 'first_page.dart';
 
 class MyHomePage extends StatefulWidget {
+
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -15,8 +17,10 @@ class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _selectedIndex = 0;
-  dynamic qrCode = Get.arguments;
   final controller = Get.put(GetResultController());
+  String qrCode = Get.arguments;
+
+
 
   @override
   void initState() {
@@ -38,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage>
   void onTabTapped(int index) {
     setState(() {
       _tabController.index = index;
+      qrCode="";
     });
   }
 

@@ -11,6 +11,7 @@ import '../services/get_result.dart';
 import '../utilities/qrcode_scanner.dart';
 import '../widget/dialogs.dart';
 import '../widget/reply.dart';
+import 'home_view.dart';
 
 
 class NumberPage extends StatefulWidget with ChangeNotifier {
@@ -31,6 +32,7 @@ class _NumberPageState extends State<NumberPage> {
   bool isVisible = false;
   WinNumbers winNumbers = new WinNumbers();
   dynamic url = 'sample';
+  MyHomePage myHomePage = new MyHomePage();
 
 
   @override
@@ -197,6 +199,8 @@ class _NumberPageState extends State<NumberPage> {
           controller.prize_3,
           controller.prize_4,
           controller.prize_5);
-      _showDialog(result);
+          _showDialog(result);
+          print("쇼다이로그 실행됨");
+
   }
 }
