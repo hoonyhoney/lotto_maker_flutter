@@ -3,6 +3,7 @@
 lotto_maker_flutter
 아멘복권
 
+
 ## Description
 
 태국 로또 번호를 확인할 수 있는 앱입니다. 플러터로 제작했습니다.
@@ -12,9 +13,11 @@ Check Thai Lotto number with QR code, generate lucky number, fake win first priz
 
 <img src="https://ifh.cc/g/CPNahA.jpg"/>
 
+
 ## Getting Started
 
 <a href="https://play.google.com/store/apps/details?id=com.lotto.tab">아멘복권</a>
+
 
 
 ## Authors
