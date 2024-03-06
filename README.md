@@ -21,8 +21,7 @@ Check Thai Lotto number with QR code, generate lucky number, fake win first priz
 
 
 </br>
+
 ## Authors
 
-Contributors names and contact info
-
-DOGNHUN LEE
+<a href="https://github.com/hoonyhoney" > DOGNHUN LEE </a>
